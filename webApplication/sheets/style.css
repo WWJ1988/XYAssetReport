@@ -1,0 +1,43 @@
+html{
+	color:#000;
+	background:#fff;}
+
+body, ul, li, div, a{
+	padding:0;
+	margin:0;
+}
+
+ul{
+	list-style:none;
+}
+
+body {
+  padding-top:70px;
+  padding-left: 100px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.navbar-active{
+	background-color:#4b6170 !important;
+	color:red !important;
+}
+
+.navbar-fixed-left {
+  width: 100px;
+  position: fixed;
+  border-radius: 0;
+  height: 100%;
+  top: 50px;
+  left:0px;
+}
+
+.navbar-fixed-left .navbar-nav > li {
+  float: none;  /* Cancel default li float: left */
+  width: 99px;
+}
+
+/* On using dropdown menu (To right shift popuped) */
+.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
+  margin-top: -50px;
+  margin-left: 100px;
+}
