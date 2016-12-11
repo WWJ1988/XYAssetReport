@@ -1,0 +1,17 @@
+<div class="expander panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title" ng-click="collapse=!collapse">
+                <a>
+                    {{title}}
+                </a>
+                <span class="glyphicon" ng-class="{'glyphicon-chevron-up':collapse, 'glyphicon-chevron-down':!collapse}"></span>
+            </h4>
+        </div>
+        <div class="panel-collapse collapse in" ng-hide="!collapse">
+            <div class="panel-body" ng-transclude>
+
+            </div>
+        </div>
+    </div>
+</div>

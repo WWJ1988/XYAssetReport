@@ -4,7 +4,7 @@
 	<%-include header.html%>
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+	<nav class="topbar navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="col-md-6">
 				<ul class="nav navbar-nav">
@@ -18,13 +18,15 @@
 			</div>
 		</div>
 	</nav>
-	<div class="navbar navbar-inverse navbar-fixed-left">
+    <left-bar></left-bar>
+	<!--<div class="leftbar navbar navbar-fixed-left">
 		<ul class="nav navbar-nav">
 			<li><a ui-sref="data" ui-sref-active="navbar-active">数据处理</a></li>
 			<li><a ui-sref="detail" ui-sref-active="navbar-active">交易明细</a></li>
 			<li><a ui-sref="report" ui-sref-active="navbar-active">交易统计</a></li>
+            <li><a ui-sref="report" ui-sref-active="navbar-active">系统设置</a></li>
 		</ul>
-	</div>
+	</div>-->
 	<div class="main-content">
 		<div ui-view>
 		</div>
