@@ -1,4 +1,4 @@
-﻿<div class="leftbar navbar navbar-fixed-left">
+<div class="leftbar navbar navbar-fixed-left">
     <div  class="panel-group">
         <expander expander-title="数据处理" expander-collapse="true">
             <ul class="nav navbar-nav">
@@ -31,11 +31,17 @@
                     </a>
                 </li>
                 <li>
-                    <a ui-sref="symbol" ui-sref-active="navbar-active">
-                        <span class="glyphicon glyphicon-globe"></span>
-                        股票设置
-                    </a>
+					<a ui-sref="setting.symbol" ui-sref-active="navbar-active">
+						<span class="glyphicon glyphicon-globe"></span>
+						股票设置
+					</a>
                 </li>
+				<li>
+					<a ui-sref="setting.broker" ui-sref-active="navbar-active">
+						<span class="glyphicon glyphicon-globe"></span>
+						券商设置
+					</a>
+				</li>
             </ul>
         </expander>
     </div>

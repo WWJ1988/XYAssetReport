@@ -1,90 +1,133 @@
 html {
-    color: #000;
-    background: #fff;
+	color: #000;
+	height: 100%;
 }
 
 body, ul, li, div, a {
-    padding: 0;
-    margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 ul {
-    list-style: none;
+	list-style: none;
 }
 
 body {
-    padding-top: 72px;
-    padding-left: 150px;
-    font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding-top: 52px;
+	padding-left: 150px;
+	font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+	height: 100%;
 }
 
 .topbar {
-    background-color: #0e90d2;
+	background-color: #0e90d2;
 }
 
-    .topbar div {
-        background-color: #0e90d2;
-    }
+.container-fluid{
+	overflow: hidden;
+}
+
+.item-clickable {
+	cursor: pointer;
+}
+
+	.item-clickable:hover {
+		background-color: #09608c !important;
+	}
+
+.topbar a {
+	color: #fff !important;
+}
+
+.topbar div {
+	background-color: #0e90d2;
+}
+
+.topbar img {
+	margin-right: 5px;
+}
+
+.topbar .glyphicon {
+	font-size: 1.5em;
+	margin: -3px 5px;
+}
+
+.topbar-header {
+	font-size: 1.5em;
+}
 
 .leftbar {
-    border: 2px solid #bfd1e2;
+	border: 2px solid #bfd1e2;
 }
 
-    .leftbar a {
-        color: #000;
-    }
-
-    .leftbar .panel-heading {
-        padding: 5px;
-        background-color: #d7e9ff !important;
-        background-image: none !important;
-    }
-
-    .leftbar .panel-title {
-        font-size: 14px;
-        font-weight: bold;
-    }
-
-    .leftbar .panel-body {
-        padding: 15px 0px !important;
-    }
-
-        .leftbar .panel-body .glyphicon {
-            margin-right: 5px;
-        }
-
-        .leftbar .panel-body .navbar-nav > li > a {
-            padding: 3px 15px;
-        }
-
-        .leftbar .panel{
-            border: 0px;
-        }
-
 .navbar-active {
-    background-color: #b5deff !important;
-    color: #000 !important;
+	background-color: #b5deff !important;
+	color: #000 !important;
+}
+
+.leftbar a {
+	color: #000;
+}
+
+.leftbar .panel-heading {
+	padding: 5px;
+	background-color: #d7e9ff !important;
+	background-image: none !important;
+	cursor: pointer;
+}
+
+.leftbar .panel-title {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.leftbar .panel-body {
+	padding: 15px 0px !important;
+}
+
+	.leftbar .panel-body .glyphicon {
+		margin-right: 5px;
+	}
+
+	.leftbar .panel-body .navbar-nav > li > a {
+		padding: 3px 15px;
+	}
+
+.leftbar .panel {
+	border: 0px;
 }
 
 .navbar-fixed-left {
-    width: 150px;
-    position: fixed;
-    border-radius: 0;
-    height: 100%;
-    top: 52px;
-    left: 0px;
+	width: 150px;
+	position: fixed;
+	border-radius: 0;
+	height: 100%;
+	top: 52px;
+	left: 0px;
 }
 
-    .navbar-fixed-left .navbar-nav > li {
-        float: none;
-        width: 147px;
-    }
+	.navbar-fixed-left .navbar-nav > li {
+		float: none;
+		width: 147px;
+	}
 
-        .navbar-fixed-left .navbar-nav > li > .dropdown-menu {
-            margin-top: -50px;
-            margin-left: 150px;
-        }
+		.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
+			margin-top: -50px;
+			margin-left: 150px;
+		}
 
 .expander .panel-heading .glyphicon {
-    margin-left: 15px;
+	margin-left: 15px;
 }
+
+.main-content {
+	margin: 0px 2px;
+	border: 2px solid #bfd1e2;
+	border-bottom: 0px;
+	height: 100%;
+}
+
+.myGrid {
+    width: 500px;
+    min-height: 500px;
+  }

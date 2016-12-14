@@ -11,7 +11,8 @@ require.config({
 		// globalize: "thirdparty/globalize",
 		// globalizeCultures: "thirdparty/cultures/globalize.cultures",
 		// sanitize: "thirdparty/angular-sanitize.min"
-        uiBootstrapTpls: "thirdparty/ui-bootstrap-tpls.min"
+        uiBootstrapTpls: "thirdparty/ui-bootstrap-tpls.min",
+        uiGrid: "thirdparty/ui-grid.min"
     },
     shim: {
         'angular': {
@@ -41,6 +42,10 @@ require.config({
         'uiBootstrapTpls': {
             deps: ['angular'],
             exports: 'uiBootstrapTpls'
+        },
+        'uiGrid': {
+            deps: ['angular'],
+            exports: 'uiGrid'
         }
     }
 });

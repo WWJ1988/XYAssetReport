@@ -8,25 +8,26 @@
 		<div class="container-fluid">
 			<div class="col-md-6">
 				<ul class="nav navbar-nav">
-					<li><a ui-sref="data"><img src="../sheets/imgs/report.png" /></a></li>
+					<li>
+						<a ui-sref="data" class="topbar-header">
+							<img src="../sheets/imgs/report.png" />资产报表
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="col-md-6">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a ui-sref="data"><img src="../sheets/imgs/report.png" /></a></li>
+					<li>
+						<user-info></user-info>
+					</li>
+					<li>
+						<a class="item-clickable"><span class="glyphicon glyphicon-question-sign"></span></a>
+					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-    <left-bar></left-bar>
-	<!--<div class="leftbar navbar navbar-fixed-left">
-		<ul class="nav navbar-nav">
-			<li><a ui-sref="data" ui-sref-active="navbar-active">数据处理</a></li>
-			<li><a ui-sref="detail" ui-sref-active="navbar-active">交易明细</a></li>
-			<li><a ui-sref="report" ui-sref-active="navbar-active">交易统计</a></li>
-            <li><a ui-sref="report" ui-sref-active="navbar-active">系统设置</a></li>
-		</ul>
-	</div>-->
+	<left-bar></left-bar>
 	<div class="main-content">
 		<div ui-view>
 		</div>

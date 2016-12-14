@@ -3,9 +3,11 @@ define(["angular",
     "uiRoute",
     "bootstrap",
     "uiBootstrapTpls",
+    "uiGrid",
+    "services",
     "directives"], function () {
 
-        var mainModule = angular.module("webapp", ['ui.router', 'ngAnimate', 'ui.bootstrap', 'directives']);
+        var mainModule = angular.module("webapp", ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ui.grid', 'services', 'directives']);
 
         mainModule.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/');
@@ -36,11 +38,15 @@ define(["angular",
                     templateUrl: '../views/templates/user.html',
                     controller: 'userController as userCtrl'
                 })
-                .state('symbol', {
-                    parent: 'setting',
+                .state('setting.symbol', {
                     url: '/setting/symbols',
                     templateUrl: '../views/templates/symbol.html',
                     controller: 'symbolController as symbolCtrl'
+                })
+                .state('setting.broker', {
+                    url: '/setting/broker',
+                    templateUrl: '../views/templates/broker.html',
+                    controller: 'brokerController as brokerCtrl'
                 })
         }]);
 
@@ -54,13 +60,19 @@ define(["angular",
         mainModule.controller("detailController", ["$scope", function ($scope) {
         }]);
 
-        mainModule.controller('dataController', function ($scope) {
+        mainModule.controller('dataController', ["$scope", function ($scope) {
             var vm = this;
-        });
+        }]);
 
-        mainModule.controller('reportController', function ($scope) {
+        mainModule.controller('reportController', ["$scope", "dataService", function ($scope, dataService) {
             var vm = this;
-        });
+
+            var tradingSwagger = function (res) {
+                $scope.text = res.data;
+            }
+
+            dataService.getTradingSwagger(tradingSwagger);
+        }]);
 
         mainModule.controller('settingController', function ($scope) { });
 
@@ -69,6 +81,14 @@ define(["angular",
         mainModule.controller('symbolController', function ($scope) {
 
         });
+
+        mainModule.controller('brokerController', ["$scope", "dataService", function ($scope, dataService) {
+            var loadBrokers = function (res) {
+                $scope.text = res.data;
+            }
+
+            dataService.getBrokers(loadBrokers);
+        }]);
 
         mainModule.directive("preventDefaultAction", function () {
             return {
@@ -80,5 +100,6 @@ define(["angular",
                 }
             };
         });
+
         return mainModule;
     });
