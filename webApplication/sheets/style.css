@@ -3,12 +3,12 @@ html {
 	height: 100%;
 }
 
-body, ul, li, div, a {
+body, ul, ol, li, div, a {
 	padding: 0;
 	margin: 0;
 }
 
-ul {
+ul, ol {
 	list-style: none;
 }
 
@@ -19,11 +19,34 @@ body {
 	height: 100%;
 }
 
+.login-bar{
+	width: 400px;
+	position: fixed;
+	border-radius: 0;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	background-color: black;
+}
+
+.login-bar-content{
+	color: white;
+	width: 100%;   
+  	height: 60%;  
+	padding:80px; 
+}
+
+.login-bar-content label{
+	padding-top:5px;
+	padding-bottom:5px;
+	font-size:1.2em;
+}
+
 .topbar {
 	background-color: #0e90d2;
 }
 
-.container-fluid{
+.container-fluid {
 	overflow: hidden;
 }
 
@@ -124,10 +147,55 @@ body {
 	margin: 0px 2px;
 	border: 2px solid #bfd1e2;
 	border-bottom: 0px;
-	height: 100%;
+	min-height: 100%;
+}
+
+.setting-container {
+	min-width: 400px;
+}
+
+.setting-breadcrumb {
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+	border-bottom: 2px solid #bfd1e2;
+	background-color: #d7e9ff;
+}
+
+	.setting-breadcrumb li {
+		float: left;
+		margin-right: 5px;
+		font-size: 1.3em;
+		font-weight: bold;
+	}
+
+.setting-grid-action {
+	float: right;
 }
 
 .myGrid {
-    width: 500px;
-    min-height: 500px;
-  }
+	width: 100%;
+	min-height: 500px;
+	overflow: hidden;
+}
+
+.setting-grid-action .btn {
+	margin: 5px;
+	padding: 2px 10px;
+	background-color: #d4d4d4;
+}
+
+.setting-detail-content {
+	border-top: 1px #6ebfb8 solid;
+	clear: both;
+}
+
+.setting-detail-content label{
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.setting-detail-content .row{
+	font-size:1.2em;
+	padding-top:10px;
+}

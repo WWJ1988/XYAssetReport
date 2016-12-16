@@ -31,14 +31,6 @@ require.config({
 			deps: ['angular'],
 			exports: 'bootstrap'
 		},
-		// 'sanitize':{
-			// deps:['angular'],
-			// exports:'sanitize'
-		// },
-		// 'dxAll':{
-			// deps:['jquery','angular','sanitize', 'globalize', 'globalizeCultures'],
-			// exports: 'dxAll'
-		// }
         'uiBootstrapTpls': {
             deps: ['angular'],
             exports: 'uiBootstrapTpls'

@@ -1,3 +1,46 @@
-<div>
-	<div ui-grid="{data: text}" class="myGrid"></div>
+﻿<div class="container-fluid">
+	<div class="col-md-6 setting-grid-container">
+		<div class="setting-grid-action">
+			<button class="btn" title="添加" ng-click="addBroker()">
+				<span class="glyphicon glyphicon-plus"></span>
+				添加
+			</button>
+			<button class="btn" title="删除" ng-click="deleteBroker()">
+				<span class="glyphicon glyphicon-remove"></span>
+				删除
+			</button>
+		</div>
+		<h4>券商列表</h4>
+		<div ui-grid="gridOption" class="myGrid" ui-grid-selection></div>
+	</div>
+	<div class="col-md-6 setting-detail-container">
+		<div class="setting-grid-action">
+			<button class="btn" title="保存" ng-click="saveBroker()">
+				<span class="glyphicon glyphicon-plus-sign"></span>
+				保存
+			</button>
+			<button class="btn" title="取消" ng-click="cancel()">
+				<span class="glyphicon glyphicon-remove-sign"></span>
+				取消
+			</button>
+		</div>
+		<div class="setting-detail-content">
+			<div class="row">
+				<div class="col-md-3">
+					<label>券商名称：</label>
+				</div>
+				<div class="col-md-9">
+					<input type="text" class="form-control" ng-model="selectedRow.BrokerName" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<label>券商名称：</label>
+				</div>
+				<div class="col-md-9">
+					<textarea class="form-control" rows="4" ng-model="selectedRow.BrokerNote" />
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

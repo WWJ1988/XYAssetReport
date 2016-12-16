@@ -1,4 +1,4 @@
-define(["angular",
+﻿define(["angular",
     "angularAnimate",
     "uiRoute",
     "bootstrap",
@@ -7,7 +7,7 @@ define(["angular",
     "services",
     "directives"], function () {
 
-        var mainModule = angular.module("webapp", ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ui.grid', 'services', 'directives']);
+        var mainModule = angular.module("webapp", ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ui.grid', 'ui.grid.selection', 'services', 'directives']);
 
         mainModule.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/');
@@ -74,7 +74,9 @@ define(["angular",
             dataService.getTradingSwagger(tradingSwagger);
         }]);
 
-        mainModule.controller('settingController', function ($scope) { });
+        mainModule.controller('settingController', ["$scope", "dataService", function ($scope, dataService) {
+            $scope.breadCrumbs = dataService.settingPages;
+        }]);
 
         mainModule.controller('userController', function ($scope) { });
 
@@ -83,23 +85,49 @@ define(["angular",
         });
 
         mainModule.controller('brokerController', ["$scope", "dataService", function ($scope, dataService) {
-            var loadBrokers = function (res) {
-                $scope.text = res.data;
+            dataService.setCurrentSettingPage("Broker");
+            dataService.getBrokers(function (res) {
+                $scope.gridOption.data = res.data;
+            });
+
+            $scope.selectedRow = {};
+
+            $scope.addBroker = function () {
+
             }
 
-            dataService.getBrokers(loadBrokers);
-        }]);
+            $scope.deleteBroker = function () {
 
-        mainModule.directive("preventDefaultAction", function () {
-            return {
-                restrict: "A",
-                link: function (scope, element, attrs) {
-                    element.on("click", function (event) {
-                        event.preventDefault();
+            }
+
+            $scope.saveBroker = function () {
+
+
+            }
+
+            $scope.cancel = function () {
+
+            }
+
+            $scope.gridOption = {
+                enableSorting: false,
+                enableRowSelection: true,
+                enableRowHeaderSelection: false,
+                multiSelect: false,
+                modifierKeysToMultiSelect: false,
+                columnDefs: [
+                    { field: "BrokerID", name: "" },
+                    { field: "BrokerName", name: "券商" },
+                    { field: "BrokerNote", name: "备注" }
+                ],
+                onRegisterApi: function (gridApi) {
+                    $scope.grid1Api = gridApi;
+                    gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                        $scope.selectedRow = row.entity;
                     });
                 }
             };
-        });
+        }]);
 
         return mainModule;
     });

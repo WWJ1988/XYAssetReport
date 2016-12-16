@@ -1,4 +1,11 @@
 <div>
-    <div>Setting</div>
-    <div ui-view></div>
+	<div class="setting-breadcrumb">
+		<ol>
+			<li ng-repeat="crumb in breadCrumbs">
+				{{crumb}}
+				<span ng-if="!$last" class="glyphicon glyphicon-chevron-right"></span>
+			</li>
+		</ol>
+	</div>
+	<div class="setting-container" ui-view></div>
 </div>
