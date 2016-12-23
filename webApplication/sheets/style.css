@@ -19,6 +19,10 @@ body {
 	height: 100%;
 }
 
+hr {
+	border-color: #6ebfb8
+}
+
 .login-bar{
 	width: 400px;
 	position: fixed;
@@ -39,6 +43,11 @@ body {
 .login-bar-content label{
 	padding-top:5px;
 	padding-bottom:5px;
+	font-size:1.2em;
+}
+
+.login-bar-error{
+	color:red;
 	font-size:1.2em;
 }
 
@@ -198,4 +207,58 @@ body {
 .setting-detail-content .row{
 	font-size:1.2em;
 	padding-top:10px;
+}
+
+.data-picker>div{
+	float:left;
+}
+
+.data-picker-action{
+	width:80px;
+	height: 400px;
+	display:table;
+	padding-top:40px;
+}
+
+.data-picker-content{
+	background-color: white;
+	border:1px solid #bdbebd;
+	height: 400px;
+	overflow: auto;
+	padding:0px !important;
+	width:200px;
+}
+
+.data-picker-content li{
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+.data-picker-content>ul>li:hover{
+	background-color:#c9dde1;
+}
+
+.data-picker-content li:nth-child(odd){
+	background-color: #f5f5f5;
+}
+
+.data-picker-content-item-selected{
+	background-color: #0e90d2 !important;
+}
+
+.data-picker-action>div{
+	display: table-row;
+	padding:10px;
+	text-align: center;
+}
+
+.data-picker-action>div>button{
+	display:table-cell;
+	vertical-align: middle;    
+	border:0px;
+	background-color: transparent;
+}
+
+.data-picker-action>div>button:hover{
+	background-color:#E0E0E0;
 }

@@ -10,17 +10,17 @@ exports.postLogin = function (req, res) {
             password: req.body.password
         }
     }, function (error, response, body) {
-        if (!error) {
+        if (!error && response && response.statusCode == 200) {
             req.session.user = req.body.username;
             res.redirect('/');
         }
         else {
             req.session.user = null;
-            res.render('login', { errorMessage: "Login failed." })
+            res.render('login', { errorMessage: "登录失败，请重新登录。" });
         }
     });
 };
 
 exports.login = function (req, res) {
-    res.render('login', { title: 'Login' });
+    res.render('login', { title: 'Login', errorMessage: "" });
 }

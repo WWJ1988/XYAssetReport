@@ -1,0 +1,14 @@
+<div class="col-md-6 setting-grid-container">
+	<div class="setting-grid-action">
+		<button class="btn" title="添加" ng-click="add()" ng-disabled="!enableAdd">
+				<span class="glyphicon glyphicon-plus"></span>
+				添加
+			</button>
+		<button class="btn" title="删除" ng-click="delete()" ng-disabled="!deleteEnable">
+				<span class="glyphicon glyphicon-remove"></span>
+				删除
+			</button>
+	</div>
+	<h4>{{title}}</h4>
+	<div ui-grid="gridOption" class="myGrid" ui-grid-selection></div>
+</div>

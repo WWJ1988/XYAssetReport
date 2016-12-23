@@ -1,31 +1,23 @@
 var request = require("request");
-exports.brokerService = {
-    getBrokers: function (req, res) {
-        var http = require("http");
-
-        var options = {
-            hostname: "localhost",
-            port: 8899,
-            path: "/api/Broker",
+exports.securityGroupService = {
+    getSecurityGroups: function (req, res) {
+        request({
+            url: "http://localhost:8899/api/SecurityGroup/",
             method: "GET"
-        };
-
-        var httpReq = http.request(options, function (response) {
-            var data;
+        }).on('response', function (response) {
+            var data = "";
             response.setEncoding('utf8');
             response.on('data', function (responseData) {
-                data = responseData;
+                data += responseData;
             });
             response.on('end', function () {
                 res.send(data);
             });
         });
-
-        httpReq.end();
     },
-    deleteBroker: function (req, res) {
+    deleteSecurityGroup: function (req, res) {
         request({
-            url: "http://localhost:8899/api/Broker/" + req.body.brokerID,
+            url: "http://localhost:8899/api/SecurityGroup/" + req.body.securityGroupId,
             method: "DELETE"
         }).on('response', function (response) {
             var result = {};
@@ -39,11 +31,11 @@ exports.brokerService = {
             });
         });
     },
-    saveBroker: function (req, res) {
+    saveSecurityGroup: function (req, res) {
         request({
-            url: "http://localhost:8899/api/Broker",
+            url: "http://localhost:8899/api/SecurityGroup",
             method: "POST",
-            json: req.body.broker
+            json: req.body.securityGroup
         }, function (error, response, body) {
             if (error) {
                 console.log(error);

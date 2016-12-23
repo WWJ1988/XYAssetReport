@@ -3,34 +3,35 @@ require.config({
     paths: {
         jquery: "thirdparty/jquery.min",
         angular: "thirdparty/angular.min",
-		angularAnimate: "thirdparty/angular-animate.min",
+        angularAnimate: "thirdparty/angular-animate.min",
         uiRoute: "thirdparty/angular-ui-router.min",
         bootstrap: "thirdparty/bootstrap.min",
-		//uiBootstrapTpls: "thirdparty/ui-bootstrap-tpls.min"
-		// dxAll: "thirdparty/dx.all",
-		// globalize: "thirdparty/globalize",
-		// globalizeCultures: "thirdparty/cultures/globalize.cultures",
-		// sanitize: "thirdparty/angular-sanitize.min"
+        //uiBootstrapTpls: "thirdparty/ui-bootstrap-tpls.min"
+        // dxAll: "thirdparty/dx.all",
+        // globalize: "thirdparty/globalize",
+        // globalizeCultures: "thirdparty/cultures/globalize.cultures",
+        // sanitize: "thirdparty/angular-sanitize.min"
         uiBootstrapTpls: "thirdparty/ui-bootstrap-tpls.min",
-        uiGrid: "thirdparty/ui-grid.min"
+        uiGrid: "thirdparty/ui-grid.min",
+        lodash: "thirdparty/lodash"
     },
     shim: {
         'angular': {
-			deps:['jquery'],
+            deps: ['jquery'],
             exports: 'angular'
         },
         'uiRoute': {
             deps: ['angular'],
             exports: 'uiRoute'
         },
-		'angularAnimate':{
-			deps: ['angular'],
-			exports: 'angularAnimate'
-		},
-		'bootstrap':{
-			deps: ['angular'],
-			exports: 'bootstrap'
-		},
+        'angularAnimate': {
+            deps: ['angular'],
+            exports: 'angularAnimate'
+        },
+        'bootstrap': {
+            deps: ['angular'],
+            exports: 'bootstrap'
+        },
         'uiBootstrapTpls': {
             deps: ['angular'],
             exports: 'uiBootstrapTpls'
@@ -38,6 +39,9 @@ require.config({
         'uiGrid': {
             deps: ['angular'],
             exports: 'uiGrid'
+        },
+        'lodash': {
+            exports: 'lodash'
         }
     }
 });
