@@ -4,35 +4,36 @@
     "bootstrap",
     "uiBootstrapTpls",
     "uiGrid",
+    "ngStorage",
+    "ActivityMonitor",
     "services",
     "directives",
     "controllers"], function () {
 
-        var mainModule = angular.module("webapp", ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ui.grid', 'ui.grid.selection', 'services', 'directives', 'controllers']);
+        var mainModule = angular.module("webapp", ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ui.grid', 'ui.grid.selection', 'ngStorage', 'ActivityMonitor', 'services', 'directives', 'controllers']);
+
+        mainModule.run(["$rootScope", "$localStorage", function ($rootScope, $localStorage) {
+            if ($localStorage.token) {
+                $rootScope.isLogin = true;
+            }
+
+            $rootScope.$on("$destroy", function () {
+                delete $localStorage.token;
+            });
+        }]);
 
         mainModule.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
-            $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
-                return {
-                    'request': function (config) {
-                        config.headers = config.headers || {};
-                        if ($localStorage.token) {
-                            config.headers.Authorization = 'Bearer ' + $localStorage.token;
-                        }
-                        return config;
-                    },
-                    'responseError': function (response) {
-                        if (response.status === 401 || response.status === 403) {
-                            $location.path('/login');
-                        }
-                        return $q.reject(response);
-                    }
-                };
-            }]);
+            $httpProvider.interceptors.push("interceptorService");
 
             $urlRouterProvider.otherwise('/');
             $stateProvider
-                .state('data', {
+                .state('login', {
                     url: '/',
+                    templateUrl: '../views/templates/login.html',
+                    controller: 'loginController as loginCtrl'
+                })
+                .state('data', {
+                    url: '/data',
                     templateUrl: '../views/templates/data.html',
                     controller: 'dataController as dataCtrl'
                 })

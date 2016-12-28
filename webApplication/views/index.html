@@ -1,36 +1,44 @@
 <!doctype html>
 <html>
+
 <head>
 	<%-include header.html%>
 </head>
+
 <body>
-	<nav class="topbar navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container-fluid">
-			<div class="col-md-6">
-				<ul class="nav navbar-nav">
-					<li>
-						<a ui-sref="data" class="topbar-header">
-							<img src="../sheets/imgs/report.png" />资产报表
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-md-6">
-				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<user-info></user-info>
-					</li>
-					<li>
-						<a class="item-clickable"><span class="glyphicon glyphicon-question-sign"></span></a>
-					</li>
-				</ul>
+	<div>
+		<div ng-if="isLogin" ng-controller="mainController as mainCtrl">
+			<nav class="topbar navbar navbar-default navbar-fixed-top" role="navigation">
+				<div class="container-fluid">
+					<div class="col-md-6">
+						<ul class="nav navbar-nav">
+							<li>
+								<a ui-sref="data" class="topbar-header">
+									<img src="../sheets/imgs/report.png" />资产报表
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-6">
+						<ul class="nav navbar-nav navbar-right">
+							<user-info logout="mainCtrl.logout()"></user-info>
+							<li>
+								<a class="item-clickable"><span class="glyphicon glyphicon-question-sign"></span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<left-bar></left-bar>
+			<div class="main-content">
+				<div ui-view>
+				</div>
 			</div>
 		</div>
-	</nav>
-	<left-bar></left-bar>
-	<div class="main-content">
-		<div ui-view>
+		<div ng-if="!isLogin">
+			<div ui-view></div>
 		</div>
 	</div>
 </body>
+
 </html>

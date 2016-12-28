@@ -31,7 +31,7 @@ define(function () {
             this.settingPages[1] = currentPageName;
         };
 
-         this.getSymbols = function (callback) {
+        this.getSymbols = function (callback) {
             $http.get("/api/security").then(function (res) {
                 callback(res);
             });

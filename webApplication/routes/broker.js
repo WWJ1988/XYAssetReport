@@ -1,27 +1,21 @@
 var request = require("request");
 exports.brokerService = {
     getBrokers: function (req, res) {
-        var http = require("http");
-
-        var options = {
-            hostname: "localhost",
-            port: 8899,
-            path: "/api/Broker",
-            method: "GET"
-        };
-
-        var httpReq = http.request(options, function (response) {
-            var data;
+        request({
+            url: "http://localhost:8899/api/Broker/",
+            method: "GET",
+            headers: req.headers
+        }).on('response', function (response) {
+            var data = "";
+            var statueCode = response ? response.statusCode : 404;
             response.setEncoding('utf8');
             response.on('data', function (responseData) {
-                data = responseData;
+                data += responseData;
             });
             response.on('end', function () {
-                res.send(data);
+                res.status(statueCode).send(data);
             });
         });
-
-        httpReq.end();
     },
     deleteBroker: function (req, res) {
         request({

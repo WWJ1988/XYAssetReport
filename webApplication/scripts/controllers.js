@@ -2,17 +2,12 @@ define(['angular',
     'services',
     'controllers/brokerController',
     'controllers/symbolController',
-    'controllers/symbolGroupController'], function (angular, services, brokerController, symbolController, symbolGroupController) {
+    'controllers/symbolGroupController',
+    'controllers/loginController',
+    'controllers/mainController'], function (angular, services, brokerController, symbolController, symbolGroupController, loginController, mainController) {
         var controllersModule = angular.module("controllers", ['services']);
 
         controllersModule.controller("brokerController", brokerController);
-
-        controllersModule.controller("mainCtr", ["$scope", function ($scope) {
-            var vm = this;
-
-            vm.title = "Hello World!!!";
-            vm.name = "hello";
-        }]);
 
         controllersModule.controller("detailController", ["$scope", function ($scope) {
         }]);
@@ -40,6 +35,10 @@ define(['angular',
         controllersModule.controller('symbolController', symbolController);
 
         controllersModule.controller('symbolGroupController', symbolGroupController);
+
+        controllersModule.controller('loginController', loginController);
+
+        controllersModule.controller("mainController", mainController);
 
         return controllersModule;
     });

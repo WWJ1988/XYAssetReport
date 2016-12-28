@@ -29,17 +29,17 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.use(function (req, res, next) {
-    var url = req.originalUrl;
-    if (url != "/login" && url != "/api/login" && !req.session.user) {
-        return res.redirect("/login");
-    }
-    next();
-});
+// app.use(function (req, res, next) {
+//     var url = req.originalUrl;
+//     if (url != "/api/login" && !req.session.user) {
+//         return res.redirect("/login");
+//     }
+//     next();
+// });
 
 app.get('/', routes.index);
-app.get('/login', login.login);
 app.post('/api/login', login.postLogin);
+app.post('/api/login/health', login.checkHealth);
 
 app.get('/api/broker', broker.brokerService.getBrokers);
 app.delete('/api/broker', broker.brokerService.deleteBroker);

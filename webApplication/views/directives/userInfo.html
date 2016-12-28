@@ -1,4 +1,9 @@
-<a class="user-info item-clickable">
-	<span class="glyphicon glyphicon-user user-info-img"></span>
-	<span>{{userName}}</span>
-</a>
+<li class="dropdown">
+	<a class="user-info item-clickable dropdown-toggle" id="userInfoMenu" data-toggle="dropdown">
+		<span class="glyphicon glyphicon-user user-info-img"></span>
+		<span class="user-info-text">{{userInfo.userName}}</span>
+	</a>
+	<ul class="dropdown-menu" role="menu" aria-labelledby="userInfoMenu">
+		<li role="presentation"><a role="menuitem" tabindex="-1" ng-click="logout()">退出</a></li>
+	</ul>
+</li>

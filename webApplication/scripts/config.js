@@ -13,7 +13,9 @@ require.config({
         // sanitize: "thirdparty/angular-sanitize.min"
         uiBootstrapTpls: "thirdparty/ui-bootstrap-tpls.min",
         uiGrid: "thirdparty/ui-grid.min",
-        lodash: "thirdparty/lodash"
+        lodash: "thirdparty/lodash",
+        ngStorage: "thirdparty/ngStorage.min",
+        ActivityMonitor:"thirdparty/activity-monitor.min"
     },
     shim: {
         'angular': {

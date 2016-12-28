@@ -1,5 +1,7 @@
 define(['lodash'], function (_) {
     return ["$scope", "dataService", function ($scope, dataService) {
+        'use strict';
+
         var vm = this;
         vm.enableGridAction = true;
         vm.hasRowSelected = false;
