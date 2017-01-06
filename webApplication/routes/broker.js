@@ -20,7 +20,8 @@ exports.brokerService = {
     deleteBroker: function (req, res) {
         request({
             url: "http://localhost:8899/api/Broker/" + req.body.brokerID,
-            method: "DELETE"
+            method: "DELETE",
+            headers: req.headers
         }).on('response', function (response) {
             var result = {};
             response.setEncoding('utf8');
@@ -37,6 +38,7 @@ exports.brokerService = {
         request({
             url: "http://localhost:8899/api/Broker",
             method: "POST",
+            headers: req.headers,
             json: req.body.broker
         }, function (error, response, body) {
             if (error) {

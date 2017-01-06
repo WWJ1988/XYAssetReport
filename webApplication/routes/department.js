@@ -1,9 +1,9 @@
 var request = require("request");
 
-exports.user = {
-    getUser: function (req, res) {
+exports.departmentService = {
+    getDepartments: function (req, res) {
         request({
-            url: "http://localhost:8899/api/User/",
+            url: "http://localhost:8899/api/Department/",
             method: "GET",
             headers: req.headers
         }).on("response", function (response) {
@@ -17,9 +17,9 @@ exports.user = {
             });
         })
     },
-    deleteUser: function (req, res) {
+    deleteDepartment: function (req, res) {
         request({
-            url: "http://localhost:8899/api/User/" + req.body.userId,
+            url: "http://localhost:8899/api/Department/" + req.body.departmentId,
             method: "DELETE",
             headers: req.headers
         }).on('response', function (response) {
@@ -29,12 +29,12 @@ exports.user = {
             });
         });
     },
-    saveUser: function (req, res) {
+    saveDepartment: function (req, res) {
         request({
-            url: "http://localhost:8899/api/Security",
+            url: "http://localhost:8899/api/Department/",
             method: "POST",
             headers: req.headers,
-            json: req.body.security
+            json: req.body.department
         }).on('response', function (response) {
             var data = "";
             response.setEncoding('utf8');

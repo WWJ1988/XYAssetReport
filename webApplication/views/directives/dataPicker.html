@@ -1,0 +1,38 @@
+<div class="data-picker">
+    <div class="data-picker-content">
+        <ul>
+            <li ng-repeat="selectedItem in selectedData" ng-click="selectCheckedSecurity(selectedItem, $event)">
+                {{selectedItem[displayName]}}
+            </li>
+        </ul>
+    </div>
+    <div class="data-picker-action">
+        <div>
+            <button ng-disabled="unselectedData.length == 0" ng-click="moveAllToLeft()">
+                    <span class="glyphicon glyphicon-backward"></span>
+                    </button>
+        </div>
+        <div>
+            <button ng-disabled="!selectedUncheckedDataItem.isSelected" ng-click="moveToLeft()">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </button>
+        </div>
+        <div>
+            <button ng-disabled="!selectedCheckedDataItem.isSelected" ng-click="moveToRight()">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+        </div>
+        <div>
+            <button ng-disabled="selectedData.length == 0" ng-click="moveAllToRight()">
+                    <span class="glyphicon glyphicon-forward"></span>
+                </button>
+        </div>
+    </div>
+    <div class="data-picker-content">
+        <ul>
+            <li ng-repeat="unselectedItem in unselectedData" ng-click="selectUncheckedItem(unselectedItem, $event)">
+                {{unselectedItem[displayName]}}
+            </li>
+        </ul>
+    </div>
+</div>

@@ -3,7 +3,8 @@ exports.securityService = {
     getSecurities: function (req, res) {
         request({
             url: "http://localhost:8899/api/Security/",
-            method: "GET"
+            method: "GET",
+            headers: req.headers
         }).on('response', function (response) {
             var data = "";
             response.setEncoding('utf8');
@@ -18,7 +19,8 @@ exports.securityService = {
     deleteSecurity: function (req, res) {
         request({
             url: "http://localhost:8899/api/Security/" + req.body.securityId,
-            method: "DELETE"
+            method: "DELETE",
+            headers: req.headers
         }).on('response', function (response) {
             var result = {};
             response.setEncoding('utf8');
@@ -35,6 +37,7 @@ exports.securityService = {
         request({
             url: "http://localhost:8899/api/Security",
             method: "POST",
+            headers: req.headers,
             json: req.body.security
         }, function (error, response, body) {
             if (error) {

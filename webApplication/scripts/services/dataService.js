@@ -72,5 +72,53 @@ define(function () {
                 data: { securityGroup: symbolGroup }
             });
         };
+
+        this.getUsers = function (callback) {
+            $http.get("/api/user").then(function (res) {
+                callback(res);
+            });
+        };
+        this.deleteUser = function (userId) {
+            return $http({
+                method: "DELETE",
+                url: "/api/user",
+                data: { userId: userId },
+                headers: { 'Content-Type': 'application/json;charset=utf-8' }
+            });
+        };
+        this.saveUser = function (user) {
+            return $http({
+                method: "POST",
+                url: "/api/user",
+                data: { user: user }
+            });
+        };
+
+        this.getFunctions = function (callback) {
+            return $http.get("/api/userFunction").success(function (response) {
+                callback(response);
+            });
+        };
+
+        this.getDepartments = function (callback) {
+            $http.get("/api/department").then(function (res) {
+                callback(res);
+            });
+        };
+        this.deleteDepartment = function (departmentId) {
+            return $http({
+                method: "DELETE",
+                url: "/api/department",
+                data: { departmentId: departmentId },
+                headers: { 'Content-Type': 'application/json;charset=utf-8' }
+            });
+        };
+        this.saveDepartment = function (department) {
+            return $http({
+                method: "POST",
+                url: "/api/department",
+                data: { department: department }
+            });
+        };
     }];
 });

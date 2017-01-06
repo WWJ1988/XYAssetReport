@@ -3,7 +3,8 @@ exports.securityGroupService = {
     getSecurityGroups: function (req, res) {
         request({
             url: "http://localhost:8899/api/SecurityGroup/",
-            method: "GET"
+            method: "GET",
+            headers: req.headers
         }).on('response', function (response) {
             var data = "";
             response.setEncoding('utf8');
@@ -18,7 +19,8 @@ exports.securityGroupService = {
     deleteSecurityGroup: function (req, res) {
         request({
             url: "http://localhost:8899/api/SecurityGroup/" + req.body.securityGroupId,
-            method: "DELETE"
+            method: "DELETE",
+            headers: req.headers
         }).on('response', function (response) {
             var result = {};
             response.setEncoding('utf8');
@@ -35,6 +37,7 @@ exports.securityGroupService = {
         request({
             url: "http://localhost:8899/api/SecurityGroup",
             method: "POST",
+            headers: req.headers,
             json: req.body.securityGroup
         }, function (error, response, body) {
             if (error) {

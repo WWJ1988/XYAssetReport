@@ -73,6 +73,11 @@
                     templateUrl: '../views/templates/symbolGroup.html',
                     controller: 'symbolGroupController as symbolGroupCtrl'
                 })
+                .state('setting.department', {
+                    url: '/department',
+                    templateUrl: '../views/templates/department.html',
+                    controller: 'departmentController as departmentCtrl'
+                })
         }]);
 
         return mainModule;

@@ -1,0 +1,10 @@
+<ul class="my-tree">
+    <li class="my-tree-item" ng-repeat="treeItem in data">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-click="itemCheckChanged(treeItem)" ng-model="treeItem.enable"  ng-disabled="isDisabled"> {{treeItem.title}}
+            </label>
+        </div>
+        <tree data="treeItem.children" parent="treeItem" child-item-changed-handler="childChanged" is-disabled="isDisabled"></tree>
+    </li>
+</ul>

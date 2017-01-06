@@ -4,7 +4,9 @@ define(['angular',
     'controllers/symbolController',
     'controllers/symbolGroupController',
     'controllers/loginController',
-    'controllers/mainController'], function (angular, services, brokerController, symbolController, symbolGroupController, loginController, mainController) {
+    'controllers/mainController',
+    "controllers/userController",
+    "controllers/departmentController"], function (angular, services, brokerController, symbolController, symbolGroupController, loginController, mainController, userController, departmentController) {
         var controllersModule = angular.module("controllers", ['services']);
 
         controllersModule.controller("brokerController", brokerController);
@@ -30,7 +32,7 @@ define(['angular',
             $scope.breadCrumbs = dataService.settingPages;
         }]);
 
-        controllersModule.controller('userController', function ($scope) { });
+        controllersModule.controller('userController', userController);
 
         controllersModule.controller('symbolController', symbolController);
 
@@ -39,6 +41,8 @@ define(['angular',
         controllersModule.controller('loginController', loginController);
 
         controllersModule.controller("mainController", mainController);
+
+        controllersModule.controller("departmentController", departmentController);
 
         return controllersModule;
     });

@@ -1,0 +1,15 @@
+<setting-grid-section title="部门列表" add-event="departmentCtrl.addDepartment()" delete-event="departmentCtrl.deleteDepartment()"
+    enable-add="departmentCtrl.enableGridAction" delete-enable="departmentCtrl.hasRowSelected" grid-option="departmentCtrl.gridOption">
+</setting-grid-section>
+<setting-detail-section save-event="departmentCtrl.saveDepartment()" cancel-event="departmentCtrl.cancel()" action-enable="departmentCtrl.enableGridAction">
+    <div class="row">
+        <div class="col-md-3">
+            <label>部门名称：</label>
+        </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" ng-model="departmentCtrl.selectedRow.DepartmentName" />
+        </div>
+    </div>
+    <hr />
+    <picker selected-data="departmentCtrl.selectedUsers" unselected-data="departmentCtrl.unsetDepartmentUsers" display-name="UserName"></picker>
+</setting-detail-section>

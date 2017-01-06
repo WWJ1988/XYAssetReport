@@ -19,6 +19,14 @@ body {
 	height: 100%;
 }
 
+input[type="radio"], input[type="checkbox"]{
+	margin-top:0px !important;
+}
+
+.checkbox{
+	min-height:15px !important;
+}
+
 hr {
 	border-color: #6ebfb8
 }
@@ -211,7 +219,36 @@ hr {
 	overflow: hidden;
 }
 
-.setting-grid-action .btn {
+.grid-checkbox-cell{
+	text-align: center;
+	height:100%;
+	padding-top:8px;
+}
+
+.grid-checkbox-cell>input{
+	cursor: default !important;
+}
+
+.grid-action{
+	padding-top: 5px;
+	padding-left:5px;
+}
+
+.grid-action>a{
+	margin:5px;
+	cursor: pointer;
+	color:black;
+}
+
+.grid-action>a:hover{
+	color:red;
+}
+
+.sub-grid-top-action{
+	text-align: right;
+}
+
+.setting-grid-action .btn, .sub-grid-top-action .btn {
 	margin: 5px;
 	padding: 2px 10px;
 	background-color: #d4d4d4;
@@ -284,4 +321,18 @@ hr {
 
 .data-picker-action>div>button:hover{
 	background-color:#E0E0E0;
+}
+
+.col-customer .col-md-2{
+	padding-left:10px;
+	padding-right:5px;
+}
+
+.col-customer .col-md-4{
+	padding-left:10px;
+	padding-right:10px;
+}
+
+.my-tree{
+	padding-left:20px;
 }
