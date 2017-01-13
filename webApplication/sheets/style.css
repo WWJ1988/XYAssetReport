@@ -31,6 +31,10 @@ hr {
 	border-color: #6ebfb8
 }
 
+.overflow-hidden{
+	overflow: hidden;
+}
+
 .login-bar{
 	width: 400px;
 	position: fixed;
@@ -213,12 +217,6 @@ hr {
 	float: right;
 }
 
-.myGrid {
-	width: 100%;
-	min-height: 500px;
-	overflow: hidden;
-}
-
 .grid-checkbox-cell{
 	text-align: center;
 	height:100%;
@@ -335,4 +333,119 @@ hr {
 
 .my-tree{
 	padding-left:20px;
+}
+
+.my-grid {
+	width: 100%;
+	min-height: 600px;
+	overflow: hidden;
+}
+
+.data-page-container{
+	padding:10px;
+}
+
+.data-page-container hr{
+	margin-top:10px;
+	margin-bottom: 10px;
+}
+
+.data-page-container .form-control,.data-page-container .btn{
+	height:28px;
+	font-size: 12px;
+	padding:3px 8px;
+	float: right;
+	width:auto;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.filter-container{
+	overflow: hidden;
+}
+
+.filter-container>input{
+	padding-right:20px !important;
+}
+
+.form-control-feedback{
+	position: absolute;
+    top: 11px;
+    right: 5px;
+	cursor: pointer;
+}
+
+.multi-select-item{
+	padding-left:10px;
+}
+
+.multi-select{
+	padding-top:0px !important;
+}
+
+.multi-select>.filter-container{
+	margin-bottom: 0px !important;
+}
+
+.multi-select-content{
+	max-height: 400px;
+	overflow: auto;
+}
+
+.multi-select-btn{
+	width: 140px !important;
+	height: 28px !important;
+	font-size:12px;
+}
+
+.multi-select-header{
+	max-width:100px;
+	word-wrap: break-word;
+	overflow:hidden;
+	text-overflow: ellipsis;
+}
+
+.multi-select-btn .caret{
+	margin-top:5px;
+	margin-left:5px;
+}
+
+.fill-filter-row{
+	margin-top:10px;
+	margin-bottom: 20px;
+}
+
+.fill-filter-row>div{
+	float:left;
+	width:23%;
+}
+
+.fill-filter-row>div:last-child{
+	float:left;
+	width:8%;
+}
+
+.filter-date>input{
+	width:148px !important;
+	line-height: 28px;
+	margin-left:0px;
+	margin-right: 0px;
+	height: 28px;
+	padding:0px;
+    padding-left: 5px;
+    border-radius: 4px !important;
+}
+
+.filter-date>.input-group-addon{
+	font-size: 12px !important;
+	padding-top:0px;
+	padding-left:5px;
+	padding-right: 5px;
+	padding-bottom: 0px;
+}
+
+.datepicker-addon{
+	position: absolute;
+    top: 4px;
+    right: 8px;
 }

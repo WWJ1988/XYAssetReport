@@ -1,0 +1,60 @@
+<div class="custome-fill-filter">
+    <div class="container fill-filter-row">
+        <div>
+            <multiselect items="multiSelectCtrl.departments" enable-checkall="true" display-name="DepartmentName" header="" enable-filter="true"
+                filter-placeholder="Filter stuff.." disabled="false" check-all-label="所有部门">
+            </multiselect>
+        </div>
+        <div>
+            <multiselect items="multiSelectCtrl.traders" enable-checkall="true" display-name="UserName" header="" enable-filter="true"
+                filter-placeholder="Filter stuff.." disabled="false" check-all-label="所有交易员">
+            </multiselect>
+        </div>
+        <div>
+            <multiselect items="multiSelectCtrl.securities" enable-checkall="true" display-name="SecurityName" header="" enable-filter="true"
+                filter-placeholder="Filter stuff.." disabled="false" check-all-label="所有股票（组）">
+            </multiselect>
+        </div>
+        <div>
+            <multiselect items="multiSelectCtrl.cashAccounts" enable-checkall="true" display-name="CashAccountName" header="" enable-filter="true"
+                filter-placeholder="Filter stuff.." disabled="false" check-all-label="所有资金账号">
+            </multiselect>
+        </div>
+        <div>
+            <button type="button" ng-click="multiSelectCtrl.QueryData();">查询数据</button>
+        </div>
+    </div>
+    <div class="container fill-filter-row">
+        <div>
+            <multiselect items="multiSelectCtrl.brokers" enable-checkall="true" display-name="BrokerName" header="" enable-filter="true"
+                filter-placeholder="Filter stuff.." disabled="false" check-all-label="所有券商">
+            </multiselect>
+        </div>
+        <div>
+            <div class="input-group filter-date">
+                <label>开始日期：</label>
+                <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" ng-model="multiSelectCtrl.startDateTime" is-open="multiSelectCtrl.isStartDateOpen"
+                    datepicker-options="multiSelectCtrl.startDateOptions" close-text="Close" alt-input-formats="altInputFormats"
+                />
+                <span class="datepicker-addon" ng-click="multiSelectCtrl.openStartDataPicker()"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+        </div>
+        <div>
+            <p class="input-group filter-date">
+                <label>结束日期：</label>
+                <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" ng-model="multiSelectCtrl.endDateTime" is-open="multiSelectCtrl.isEndDateOpen"
+                    datepicker-options="multiSelectCtrl.endDateOptions" close-text="Close" alt-input-formats="altInputFormats2"
+                />
+                <span class="datepicker-addon" ng-click="multiSelectCtrl.openEndDataPicker()"><i class="glyphicon glyphicon-calendar"></i></span>
+            </p>
+        </div>
+        <div>
+            <multiselect items="multiSelectCtrl.shareHolders" enable-checkall="true" display-name="ShareHolderID" header="" enable-filter="true"
+                filter-placeholder="Filter stuff.." disabled="false" check-all-label="所有股东代码">
+            </multiselect>
+        </div>
+        <div>
+            <button type="button" ng-click="multiSelectCtrl.ExportData();">导出数据</button>
+        </div>
+    </div>
+</div>

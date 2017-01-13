@@ -55,9 +55,9 @@ define([
         function initialize() {
             initializeGrid();
             dataService.setCurrentSettingPage("部门设置");
-            dataService.getDepartments(function (res) {
-                vm.gridOption.data = res.data.DepartmentList;
-                vm.allUsers = res.data.TraderList;
+            dataService.getDepartments.success(function (data) {
+                vm.gridOption.data = data.DepartmentList;
+                vm.allUsers = data.TraderList;
                 setUnsetDepartmentUsers();
             });
         }

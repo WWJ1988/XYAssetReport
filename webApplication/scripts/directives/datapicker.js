@@ -19,17 +19,17 @@ define([
                 scope.selectCheckedItem = function (item, event) {
                     $(scope.selectedCheckedDataItem.element).removeClass('data-picker-content-item-selected');
                     $(event.target).addClass('data-picker-content-item-selected');
-                    vm.selectedCheckedDataItem.item = item;
-                    vm.selectedCheckedDataItem.element = event.target;
-                    vm.selectedCheckedDataItem.isSelected = true;
+                    scope.selectedCheckedDataItem.item = item;
+                    scope.selectedCheckedDataItem.element = event.target;
+                    scope.selectedCheckedDataItem.isSelected = true;
                 }
 
                 scope.selectUncheckedItem = function (item, event) {
                     $(scope.selectedUncheckedDataItem.element).removeClass('data-picker-content-item-selected');
                     $(event.target).addClass('data-picker-content-item-selected');
-                    vm.selectedUncheckedDataItem.item = item;
-                    vm.selectedUncheckedDataItem.element = event.target;
-                    vm.selectedUncheckedDataItem.isSelected = true;
+                    scope.selectedUncheckedDataItem.item = item;
+                    scope.selectedUncheckedDataItem.element = event.target;
+                    scope.selectedUncheckedDataItem.isSelected = true;
                 }
 
                 scope.moveToLeft = function () {
@@ -37,24 +37,46 @@ define([
                     _.remove(scope.unselectedData, function (unselectedItem) {
                         return unselectedItem == scope.selectedUncheckedDataItem.item;
                     });
+                    clearSelection();
                 }
 
                 scope.moveToRight = function () {
                     scope.unselectedData.push(scope.selectedCheckedDataItem.item);
                     _.remove(scope.selectedData, function (selectedItem) {
-                        return selectedItem == scope.selectedUncheckedDataItem.item;
+                        return selectedItem == scope.selectedCheckedDataItem.item;
                     });
+                    clearSelection();
                 }
 
                 scope.moveAllToLeft = function () {
-                    scope.selecteddata = _.concat(scope.selecteddata, scope.unselectedData);
+                    scope.selectedData.push.apply(scope.selectedData, scope.unselectedData);
                     scope.unselectedData = [];
+                    clearSelection();
                 }
 
                 scope.moveAllToRight = function () {
-                    scope.selecteddata = _.concat(scope.selecteddata, scope.unselectedData);
-                    scope.selecteddata = [];
+                    scope.unselectedData.push.apply(scope.unselectedData, scope.selectedData);
+                    scope.selectedData = [];
+                    clearSelection();
                 }
+
+                function clearSelection() {
+                    $(scope.selectedCheckedDataItem.element).removeClass('data-picker-content-item-selected');
+                    $(scope.selectedUncheckedDataItem.element).removeClass('data-picker-content-item-selected');
+                    scope.selectedCheckedDataItem = {};
+                    scope.selectedUncheckedDataItem = {};
+                }
+
+                function setWatch() {
+                    scope.$watch("selectedData", function () {
+                        clearSelection();
+                    });
+                    scope.$watch("unselectedData", function () {
+                        clearSelection();
+                    });
+                }
+
+                setWatch();
             }
         };
     }];

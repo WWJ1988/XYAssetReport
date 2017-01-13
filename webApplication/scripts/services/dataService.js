@@ -7,9 +7,7 @@ define(function () {
             });
         };
         this.getBrokers = function (callback) {
-            $http.get("/api/broker").then(function (res) {
-                callback(res);
-            });
+            return $http.get("/api/broker");
         };
         this.deleteBroker = function (brokerId) {
             return $http({
@@ -32,9 +30,7 @@ define(function () {
         };
 
         this.getSymbols = function (callback) {
-            $http.get("/api/security").then(function (res) {
-                callback(res);
-            });
+            return $http.get("/api/security");
         };
         this.deleteSymbol = function (symbolId) {
             return $http({
@@ -53,9 +49,7 @@ define(function () {
         };
 
         this.getSymbolGroups = function (callback) {
-            $http.get("/api/securityGroup").then(function (res) {
-                callback(res);
-            });
+            return $http.get("/api/securityGroup");
         };
         this.deleteSymbolGroup = function (symbolGroupId) {
             return $http({
@@ -100,10 +94,8 @@ define(function () {
             });
         };
 
-        this.getDepartments = function (callback) {
-            $http.get("/api/department").then(function (res) {
-                callback(res);
-            });
+        this.getDepartments = function () {
+            return $http.get("/api/department");
         };
         this.deleteDepartment = function (departmentId) {
             return $http({
@@ -119,6 +111,42 @@ define(function () {
                 url: "/api/department",
                 data: { department: department }
             });
+        };
+        this.getColumnMaps = function () {
+            return $http({
+                method: "GET",
+                url: "/api/columnMap"
+            });
+        };
+        this.getMacAddress = function () {
+            return $http.get("/api/macAddress");
+        };
+        this.getLookupData = function (callback) {
+            return $http.get("/api/lookupData");
+        };
+
+        this.getShareHolders = function (callback) {
+            $http.get("/api/shareHolder").then(function (res) {
+                callback(res);
+            });
+        };
+        this.deleteShareHolder = function (shareHolderId) {
+            return $http({
+                method: "DELETE",
+                url: "/api/shareHolder",
+                data: { shareHolderId: shareHolderId },
+                headers: { 'Content-Type': 'application/json;charset=utf-8' }
+            });
+        };
+        this.saveShareHolder = function (shareHolder) {
+            return $http({
+                method: "POST",
+                url: "/api/shareHolder",
+                data: { shareHolder: shareHolder }
+            });
+        };
+        this.getFills = function () {
+            return $http.get("/api/fill");
         };
     }];
 });

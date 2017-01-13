@@ -4,6 +4,7 @@ require.config({
         jquery: "thirdparty/jquery.min",
         angular: "thirdparty/angular.min",
         angularAnimate: "thirdparty/angular-animate.min",
+        angularResource: "thirdparty/angular-resource.min",
         uiRoute: "thirdparty/angular-ui-router.min",
         bootstrap: "thirdparty/bootstrap.min",
         //uiBootstrapTpls: "thirdparty/ui-bootstrap-tpls.min"
@@ -15,7 +16,8 @@ require.config({
         uiGrid: "thirdparty/ui-grid.min",
         lodash: "thirdparty/lodash",
         ngStorage: "thirdparty/ngStorage.min",
-        ActivityMonitor:"thirdparty/activity-monitor.min"
+        ActivityMonitor: "thirdparty/activity-monitor.min",
+        uiSelect: "thirdparty/select.min"
     },
     shim: {
         'angular': {
@@ -30,6 +32,10 @@ require.config({
             deps: ['angular'],
             exports: 'angularAnimate'
         },
+        'angularResource': {
+            deps: ['angular'],
+            exports: 'angularResource'
+        },
         'bootstrap': {
             deps: ['angular'],
             exports: 'bootstrap'
@@ -41,6 +47,10 @@ require.config({
         'uiGrid': {
             deps: ['angular'],
             exports: 'uiGrid'
+        },
+        'uiSelect': {
+            deps: ['angular'],
+            exports: 'uiSelect'
         },
         'lodash': {
             exports: 'lodash'

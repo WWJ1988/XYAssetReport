@@ -4,7 +4,9 @@ define(['angular',
     'directives/userInfo',
     'directives/settingFramework',
     'directives/tree',
-    'directives/dataPicker'], function (angular, leftbar, expander, userInfo, settingFramework, tree, dataPicker) {
+    'directives/dataPicker',
+    'directives/fillFilter',
+    'directives/multiSelect'], function (angular, leftbar, expander, userInfo, settingFramework, tree, dataPicker, fillFilter, multiSelect) {
         var directivesModule = angular.module("directives", []);
 
         directivesModule.directive("leftBar", leftbar);
@@ -14,6 +16,8 @@ define(['angular',
         directivesModule.directive("settingDetailSection", settingFramework.detailSection);
         directivesModule.directive("picker", dataPicker);
         directivesModule.directive("tree", tree);
+        directivesModule.directive("fillFilter", fillFilter);
+        directivesModule.directive("multiselect", multiSelect);
 
         return directivesModule;
     });

@@ -1,0 +1,39 @@
+<setting-grid-section title="Mac地址列表" add-event="macAddressCtrl.addMacAddress()" delete-event="macAddressCtrl.deleteMacAddress()"
+    enable-add="macAddressCtrl.enableGridAction" delete-enable="macAddressCtrl.hasRowSelected" grid-option="macAddressCtrl.gridOption">
+</setting-grid-section>
+<setting-detail-section save-event="macAddressCtrl.saveMacAddress()" cancel-event="macAddressCtrl.cancel()" action-enable="macAddressCtrl.enableGridAction">
+    <div class="row">
+        <div class="col-md-3">
+            <label>交易员：</label>
+        </div>
+        <div class="col-md-9">
+            <select class="form-control" ng-model="macAddressCtrl.selectedRow.TraderID">
+                <option ng-repeat="trader in macAddressCtrl.users" ng-value="trader.UserID" ng-selected="trader.UserID == macAddressCtrl.selectedRow.TraderID" >
+                    {{trader.UserName}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label>Mac地址：</label>
+        </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" ng-model="macAddressCtrl.selectedRow.MacAddress" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label>生效日期：</label>
+        </div>
+        <div class="col-md-9">
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" ng-model="macAddressCtrl.selectedRow.dateTime"
+                    is-open="macAddressCtrl.isOpen" datepicker-options="macAddressCtrl.dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="macAddressCtrl.openDataPicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+    </div>
+</setting-detail-section>

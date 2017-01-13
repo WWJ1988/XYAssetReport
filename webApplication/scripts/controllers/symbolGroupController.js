@@ -6,10 +6,8 @@ define(['lodash', 'jquery'], function (_, $) {
         vm.hasRowSelected = false;
         vm.selectedRow = {};
         vm.newData = null;
-        vm.allSecurities = [];
+        vm.unselectedSecurities = [];
         vm.selectedSecurities = [];
-        vm.selectedCheckedSecurityData = {};
-        vm.selectedUncheckedSecurityData = {};
 
         vm.addSymbolGroup = function () {
             vm.enableGridAction = false;
@@ -49,60 +47,12 @@ define(['lodash', 'jquery'], function (_, $) {
 
         }
 
-        vm.selectCheckedSecurity = function (security, event) {
-            $(vm.selectedCheckedSecurityData.element).removeClass('data-picker-content-item-selected');
-            $(event.target).addClass('data-picker-content-item-selected');
-            vm.selectedCheckedSecurityData.security = security;
-            vm.selectedCheckedSecurityData.element = event.target;
-            vm.selectedCheckedSecurityData.isSelected = true;
-        }
-
-        vm.selectUncheckedSecurity = function (security, event) {
-            $(vm.selectedUncheckedSecurityData.element).removeClass('data-picker-content-item-selected');
-            $(event.target).addClass('data-picker-content-item-selected');
-            vm.selectedUncheckedSecurityData.security = security;
-            vm.selectedUncheckedSecurityData.element = event.target;
-            vm.selectedUncheckedSecurityData.isSelected = true;
-        }
-
-        vm.moveToLeft = function () {
-            vm.selectedRow.SecurityInGroup.push(vm.selectedUncheckedSecurityData.security.SecurityID);
-            initializeGroupEditor();
-            clearSelection();
-        }
-
-        vm.moveToRight = function () {
-            var index = _.findIndex(vm.selectedRow.SecurityInGroup, function (securityId) {
-                return securityId == vm.selectedCheckedSecurityData.security.SecurityID;
-            });
-            if (index != -1) {
-                vm.selectedRow.SecurityInGroup.splice(index, 1);
-                initializeGroupEditor();
-                clearSelection();
-            }
-        }
-
-        vm.moveAllToLeft = function () {
-            vm.selectedRow.SecurityInGroup = _.map(vm.allSecurities, function (security) {
-                return security.SecurityID;
-            });
-
-            initializeGroupEditor();
-            clearSelection();
-        }
-
-        vm.moveAllToRight = function () {
-            vm.selectedRow.SecurityInGroup = [];
-            initializeGroupEditor();
-            clearSelection();
-        }
-
         function initialize() {
             initializeSecurities();
             initializeGrid();
             dataService.setCurrentSettingPage("券池组设置");
-            dataService.getSymbolGroups(function (res) {
-                vm.gridOption.data = res.data;
+            dataService.getSymbolGroups.success(function (data) {
+                vm.gridOption.data = data;
             });
         }
 
@@ -123,7 +73,6 @@ define(['lodash', 'jquery'], function (_, $) {
                     vm.gridApi.selection.on.rowSelectionChanged($scope, function (row) {
                         vm.selectedRow = row.entity;
                         vm.hasRowSelected = true;
-                        clearSelection();
                         initializeGroupEditor();
                         if (vm.newData != null && vm.selectedRow != vm.newData) {
                             vm.enableGridAction = true;
@@ -136,8 +85,8 @@ define(['lodash', 'jquery'], function (_, $) {
         }
 
         function initializeSecurities() {
-            dataService.getSymbols(function (res) {
-                securityCache = res.data;
+            dataService.getSymbols.success(function (data) {
+                securityCache = data;
             });
         }
 
@@ -155,14 +104,7 @@ define(['lodash', 'jquery'], function (_, $) {
             }
 
             vm.selectedSecurities = selectedSecurities;
-            vm.allSecurities = allSecurities;
-        }
-
-        function clearSelection() {
-            $(vm.selectedUncheckedSecurityData.element).removeClass('data-picker-content-item-selected');
-            $(vm.selectedCheckedSecurityData.element).removeClass('data-picker-content-item-selected');
-            vm.selectedUncheckedSecurityData = {};
-            vm.selectedCheckedSecurityData = {};
+            vm.unselectedSecurities = allSecurities;
         }
 
         initialize();

@@ -19,42 +19,5 @@
         </div>
     </div>
     <hr />
-    <div class="data-picker">
-        <div class="data-picker-content">
-            <ul>
-                <li ng-repeat="selectedItem in symbolGroupCtrl.selectedSecurities" ng-click="symbolGroupCtrl.selectCheckedSecurity(selectedItem, $event)">
-                    {{selectedItem.SecurityName}}
-                </li>
-            </ul>
-        </div>
-        <div class="data-picker-action">
-            <div>
-                <button ng-disabled="symbolGroupCtrl.allSecurities.length == 0" ng-click="symbolGroupCtrl.moveAllToLeft()">
-                    <span class="glyphicon glyphicon-backward"></span>
-                    </button>
-            </div>
-            <div>
-                <button ng-disabled="!symbolGroupCtrl.selectedUncheckedSecurityData.isSelected" ng-click="symbolGroupCtrl.moveToLeft()">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </button>
-            </div>
-            <div>
-                <button ng-disabled="!symbolGroupCtrl.selectedCheckedSecurityData.isSelected" ng-click="symbolGroupCtrl.moveToRight()">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </button>
-            </div>
-            <div>
-                <button ng-disabled="symbolGroupCtrl.selectedSecurities.length == 0" ng-click="symbolGroupCtrl.moveAllToRight()">
-                    <span class="glyphicon glyphicon-forward"></span>
-                </button>
-            </div>
-        </div>
-        <div class="data-picker-content">
-            <ul>
-                <li ng-repeat="security in symbolGroupCtrl.allSecurities" ng-click="symbolGroupCtrl.selectUncheckedSecurity(security, $event)">
-                    {{security.SecurityName}}
-                </li>
-            </ul>
-        </div>
-    </div>
+    <picker selected-data="symbolGroupCtrl.selectedSecurities" unselected-data="symbolGroupCtrl.unselectedSecurities" display-name="SecurityName"></picker>
 </setting-detail-section>

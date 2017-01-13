@@ -1,0 +1,20 @@
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle multi-select-btn" ng-click="toggleSelect()" ng-disabled="disabled">
+        <span class="pull-left multi-select-header" ng-bind="header" ng-title="header"></span>
+        <span class="caret pull-right"></span>
+    </button>
+    <div class="dropdown-menu multi-select" ng-show="isOpen" style="display: block;" role="listbox" aria-hidden="{{!isOpen}}">
+        <div ng-if="enableFilter" class="form-group filter-container">
+            <input class="form-control" type="text" ng-model="searchText[displayName]" placeholder="{{ filterPlaceholder }}" />
+            <span class="glyphicon glyphicon-remove-circle form-control-feedback" ng-click="clearFilter()"></span>
+        </div>
+        <ul class="multi-select-content">
+            <li class="multi-select-item">
+                <div class="checkbox"><label><input type="checkbox" ng-click="checkAll()" ng-model="isAllSelected">{{checkAllLabel}}</label></div>
+            </li>
+            <li class="multi-select-item" ng-repeat="item in items | filter:searchText">
+                <div class="checkbox"><label><input type="checkbox" ng-model="item.checked" ng-click="select(item);">{{item[displayName]}}</label></div>
+            </li>
+        </ul>
+    </div>
+</div>

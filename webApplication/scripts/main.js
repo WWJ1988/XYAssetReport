@@ -1,16 +1,18 @@
 ﻿define(["angular",
     "angularAnimate",
+    "angularResource",
     "uiRoute",
     "bootstrap",
     "uiBootstrapTpls",
     "uiGrid",
+    "uiSelect",
     "ngStorage",
     "ActivityMonitor",
     "services",
     "directives",
     "controllers"], function () {
 
-        var mainModule = angular.module("webapp", ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ui.grid', 'ui.grid.selection', 'ngStorage', 'ActivityMonitor', 'services', 'directives', 'controllers']);
+        var mainModule = angular.module("webapp", ['ui.router', 'ngAnimate', 'ngResource', 'ui.bootstrap', 'ui.grid', 'ui.grid.selection', 'ui.select', 'ngStorage', 'ActivityMonitor', 'services', 'directives', 'controllers']);
 
         mainModule.run(["$rootScope", "$localStorage", function ($rootScope, $localStorage) {
             if ($localStorage.token) {
@@ -77,6 +79,16 @@
                     url: '/department',
                     templateUrl: '../views/templates/department.html',
                     controller: 'departmentController as departmentCtrl'
+                })
+                .state("setting.macAddress", {
+                    url: "/macAddress",
+                    templateUrl: "../views/templates/macAddress.html",
+                    controller: "macAddressController as macAddressCtrl"
+                })
+                .state("setting.shareHolder", {
+                    url: "/shareHolder",
+                    templateUrl: "../views/templates/shareHolder.html",
+                    controller: "shareHolderController as shareHolderCtrl"
                 })
         }]);
 

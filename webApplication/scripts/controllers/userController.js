@@ -65,9 +65,9 @@ define(['lodash'], function (_) {
         function initialize() {
             initializeGrid();
             dataService.setCurrentSettingPage("用户设置");
-            dataService.getUsers(function (res) {
-                vm.lookupData = res.data;
-                vm.gridOption.data = res.data.UserList;
+            dataService.getLookupData.success(function (data) {
+                vm.lookupData = data;
+                vm.gridOption.data = data.UserList;
                 setTraderData();
                 setSecurityData();
                 setCashAccountData();

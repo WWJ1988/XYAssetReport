@@ -6,12 +6,14 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "angular-resource": "^1.6.1",
     "angular-sanitize": "^1.5.9",
     "body-parser": "~1.0.0",
     "cookie-parser": "~1.0.1",
     "debug": "~0.7.4",
     "ejs": "*",
     "express": "~3.4.8",
+    "lodash": "^4.17.4",
     "morgan": "~1.0.0",
     "static-favicon": "~1.0.0"
   }
