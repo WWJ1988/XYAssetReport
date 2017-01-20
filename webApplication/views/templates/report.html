@@ -1,1 +1,132 @@
-{{text}}
+<div class="report-page-container">
+    <fill-filter filter-data-callback="summaryReportCtrl.filterData" export-data-handler="summaryReportCtrl.exportDataHandler()"
+        load-summary="true">
+    </fill-filter>
+    <hr />
+    <div class="report-page-content">
+        <uib-tabset>
+            <uib-tab heading="交易结果统计表" select="summaryReportCtrl.setTab(1,0)">
+                <uib-tabset>
+                    <uib-tab heading="统计表" select="summaryReportCtrl.setTab(1, 1)">
+                        <div ui-grid="summaryReportCtrl.orderSummaryData.summaryGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.orderSummaryData.selectedTabIndex==1"></div>
+                    </uib-tab>
+                    <uib-tab heading="部门统计表" select="summaryReportCtrl.setTab(2, 1)">
+                        <div ui-grid="summaryReportCtrl.orderSummaryData.departmentGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.orderSummaryData.selectedTabIndex==2"></div>
+                    </uib-tab>
+                    <uib-tab heading="交易员统计表" select="summaryReportCtrl.setTab(3, 1)">
+                        <div ui-grid="summaryReportCtrl.orderSummaryData.traderGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.orderSummaryData.selectedTabIndex==3"></div>
+                    </uib-tab>
+                    <uib-tab heading="证券统计表" select="summaryReportCtrl.setTab(4, 1)">
+                        <div ui-grid="summaryReportCtrl.orderSummaryData.securityGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.orderSummaryData.selectedTabIndex==4"></div>
+                    </uib-tab>
+                    <uib-tab heading="资金账号统计表" select="summaryReportCtrl.setTab(5, 1)">
+                        <div ui-grid="summaryReportCtrl.orderSummaryData.accountGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.orderSummaryData.selectedTabIndex==5"></div>
+                    </uib-tab>
+                    <uib-tab heading="券商统计表" select="summaryReportCtrl.setTab(6, 1)">
+                        <div ui-grid="summaryReportCtrl.orderSummaryData.brokerGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.orderSummaryData.selectedTabIndex==6"></div>
+                    </uib-tab>
+                    <uib-tab heading="股东编号统计表" select="summaryReportCtrl.setTab(7, 1)">
+                        <div ui-grid="summaryReportCtrl.orderSummaryData.shareHolderGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.orderSummaryData.selectedTabIndex==7"></div>
+                    </uib-tab>
+                </uib-tabset>
+            </uib-tab>
+            <uib-tab heading="盈亏统计表" select="summaryReportCtrl.setTab(2,0)">
+                <uib-tabset>
+                    <uib-tab heading="统计表" select="summaryReportCtrl.setTab(1, 2)">
+                        <div ui-grid="summaryReportCtrl.pnlData.summaryGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.selectedTabIndex==2 && summaryReportCtrl.pnlData.selectedTabIndex==1"></div>
+                    </uib-tab>
+                    <uib-tab heading="部门统计表" select="summaryReportCtrl.setTab(2, 2)">
+                        <div ui-grid="summaryReportCtrl.pnlData.departmentGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.selectedTabIndex==2 && summaryReportCtrl.pnlData.selectedTabIndex==2"></div>
+                    </uib-tab>
+                    <uib-tab heading="交易员统计表" select="summaryReportCtrl.setTab(3, 2)">
+                        <div ui-grid="summaryReportCtrl.pnlData.traderGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.selectedTabIndex==2 && summaryReportCtrl.pnlData.selectedTabIndex==3"></div>
+                    </uib-tab>
+                    <uib-tab heading="证券统计表" select="summaryReportCtrl.setTab(4, 2)">
+                        <div ui-grid="summaryReportCtrl.pnlData.securityGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.selectedTabIndex==2 && summaryReportCtrl.pnlData.selectedTabIndex==4"></div>
+                    </uib-tab>
+                    <uib-tab heading="资金账号统计表" select="summaryReportCtrl.setTab(5, 2)">
+                        <div ui-grid="summaryReportCtrl.pnlData.accountGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.selectedTabIndex==2 && summaryReportCtrl.pnlData.selectedTabIndex==5"></div>
+                    </uib-tab>
+                    <uib-tab heading="券商统计表" select="summaryReportCtrl.setTab(6, 2)">
+                        <div ui-grid="summaryReportCtrl.pnlData.brokerGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.selectedTabIndex==2 && summaryReportCtrl.pnlData.selectedTabIndex==6"></div>
+                    </uib-tab>
+                    <uib-tab heading="股东编号统计表" select="summaryReportCtrl.setTab(7, 2)">
+                        <div ui-grid="summaryReportCtrl.pnlData.shareHolderGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.selectedTabIndex==2 && summaryReportCtrl.pnlData.selectedTabIndex==7"></div>
+                    </uib-tab>
+                </uib-tabset>
+            </uib-tab>
+            <uib-tab heading="交易税费统计" select="summaryReportCtrl.setTab(3,0)">
+                <uib-tabset>
+                    <uib-tab heading="统计表" select="summaryReportCtrl.setTab(1, 3)">
+                        <div ui-grid="summaryReportCtrl.feeData.summaryGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.selectedTabIndex==3 && summaryReportCtrl.feeData.selectedTabIndex==1"></div>
+                    </uib-tab>
+                    <uib-tab heading="部门统计表" select="summaryReportCtrl.setTab(2, 3)">
+                        <div ui-grid="summaryReportCtrl.feeData.departmentGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.selectedTabIndex==3 && summaryReportCtrl.feeData.selectedTabIndex==2"></div>
+                    </uib-tab>
+                    <uib-tab heading="交易员统计表" select="summaryReportCtrl.setTab(3, 3)">
+                        <div ui-grid="summaryReportCtrl.feeData.traderGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.selectedTabIndex==3 && summaryReportCtrl.feeData.selectedTabIndex==3"></div>
+                    </uib-tab>
+                    <uib-tab heading="证券统计表" select="summaryReportCtrl.setTab(4, 3)">
+                        <div ui-grid="summaryReportCtrl.feeData.securityGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.selectedTabIndex==3 && summaryReportCtrl.feeData.selectedTabIndex==4"></div>
+                    </uib-tab>
+                    <uib-tab heading="资金账号统计表" select="summaryReportCtrl.setTab(5, 3)">
+                        <div ui-grid="summaryReportCtrl.feeData.accountGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.selectedTabIndex==3 && summaryReportCtrl.feeData.selectedTabIndex==5"></div>
+                    </uib-tab>
+                    <uib-tab heading="券商统计表" select="summaryReportCtrl.setTab(6, 3)">
+                        <div ui-grid="summaryReportCtrl.feeData.brokerGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.selectedTabIndex==3 && summaryReportCtrl.feeData.selectedTabIndex==6"></div>
+                    </uib-tab>
+                    <uib-tab heading="股东编号统计表" select="summaryReportCtrl.setTab(7, 3)">
+                        <div ui-grid="summaryReportCtrl.feeData.shareHolderGrid.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.selectedTabIndex==3 && summaryReportCtrl.feeData.selectedTabIndex==7"></div>
+                    </uib-tab>
+                </uib-tabset>
+            </uib-tab>
+            <uib-tab heading="股票市值盈亏统计" select="summaryReportCtrl.setTab(4,0)">
+                <div ui-grid="summaryReportCtrl.marketValueData.gridOption" class="my-grid" ui-grid-selection ng-if="summaryReportCtrl.selectedTabIndex==4"></div>
+            </uib-tab>
+            <uib-tab heading="交易员业绩统计" select="summaryReportCtrl.setTab(5,0)">
+                <uib-tabset>
+                    <uib-tab select="summaryReportCtrl.setTab(1,4)" ng-if="summaryReportCtrl.dailySummaryData.dayTab">
+                        <uib-tab-heading>
+                            日小结<span class="glyphicon glyphicon-remove tab-icon" ng-click="summaryReportCtrl.removeTab(1,4,$event);"></span>
+                        </uib-tab-heading>
+                        <div ui-grid="summaryReportCtrl.dailySummaryData.dayGrid.gridOption" class="my-grid" ui-grid-selection ui-grid-grouping ng-if="summaryReportCtrl.selectedTabIndex==5 && summaryReportCtrl.dailySummaryData.selectedTabIndex==1"></div>
+                    </uib-tab>
+                    <uib-tab select="summaryReportCtrl.setTab(2,4)" ng-if="summaryReportCtrl.dailySummaryData.weekTab">
+                        <uib-tab-heading>
+                            周小结<span class="glyphicon glyphicon-remove tab-icon" ng-click="summaryReportCtrl.removeTab(2,4,$event);"></span>
+                        </uib-tab-heading>
+                        <div ui-grid="summaryReportCtrl.dailySummaryData.weeklyGrid.gridOption" class="my-grid" ui-grid-selection ui-grid-grouping
+                            ng-if="summaryReportCtrl.selectedTabIndex==5 && summaryReportCtrl.dailySummaryData.selectedTabIndex==2"></div>
+                    </uib-tab>
+                    <uib-tab select="summaryReportCtrl.setTab(3,4)" ng-if="summaryReportCtrl.dailySummaryData.monthTab">
+                        <uib-tab-heading>
+                            月小结<span class="glyphicon glyphicon-remove tab-icon" ng-click="summaryReportCtrl.removeTab(3,4,$event);"></span>
+                        </uib-tab-heading>
+                        <div ui-grid="summaryReportCtrl.dailySummaryData.monthlyGrid.gridOption" class="my-grid" ui-grid-selection ui-grid-grouping
+                            ng-if="summaryReportCtrl.selectedTabIndex==5 && summaryReportCtrl.dailySummaryData.selectedTabIndex==3"></div>
+                    </uib-tab>
+                    <uib-tab select="summaryReportCtrl.setTab(4,4)" ng-if="summaryReportCtrl.dailySummaryData.yearTab">
+                        <uib-tab-heading>
+                            年小结<span class="glyphicon glyphicon-remove tab-icon" ng-click="summaryReportCtrl.removeTab(4,4,$event);"></span>
+                        </uib-tab-heading>
+                        <div ui-grid="summaryReportCtrl.dailySummaryData.yearGrid.gridOption" class="my-grid" ui-grid-selection ui-grid-grouping
+                            ng-if="summaryReportCtrl.selectedTabIndex==5 && summaryReportCtrl.dailySummaryData.selectedTabIndex==4"></div>
+                    </uib-tab>
+                    <uib-tab class="report-tab-addon" ng-if="summaryReportCtrl.showAddTab();">
+                        <uib-tab-heading>
+                            <div class="dropdown report-tab-menu" ng-click="summaryReportCtrl.setTabMenuStatus($event);" ng-mouseleave="summaryReportCtrl.hideTabMenu();">
+                                <span class="glyphicon glyphicon-plus"></span>
+                                <ul class="dropdown-menu" ng-class="{'report-tab-dropdown-show':summaryReportCtrl.showTabMenu}">
+                                    <li ng-if="!summaryReportCtrl.dailySummaryData.dayTab"><a href="#" ng-click="summaryReportCtrl.addTab(1,$event);">日小结</a></li>
+                                    <li ng-if="!summaryReportCtrl.dailySummaryData.weekTab"><a href="#" ng-click="summaryReportCtrl.addTab(2,$event);">周小结</a></li>
+                                    <li ng-if="!summaryReportCtrl.dailySummaryData.monthTab"><a href="#" ng-click="summaryReportCtrl.addTab(3,$event);">月小结</a></li>
+                                    <li ng-if="!summaryReportCtrl.dailySummaryData.yearTab"><a href="#" ng-click="summaryReportCtrl.addTab(4,$event);">年小结</a></li>
+                                </ul>
+                            </div>
+                        </uib-tab-heading>
+                    </uib-tab>
+                </uib-tabset>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>

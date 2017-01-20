@@ -9,7 +9,9 @@ define(['angular',
     "controllers/departmentController",
     "controllers/macAddressController",
     "controllers/shareHolderController",
-    "controllers/dataController"], function (angular, services,
+    "controllers/dataController",
+    "controllers/detailController",
+    "controllers/summaryReportController"], function (angular, services,
         brokerController,
         symbolController,
         symbolGroupController,
@@ -19,32 +21,18 @@ define(['angular',
         departmentController,
         macAddressController,
         shareHolderController,
-        dataController) {
+        dataController,
+        detailController,
+        summaryReportController) {
         var controllersModule = angular.module("controllers", ['services']);
 
         controllersModule.controller("brokerController", brokerController);
 
-        controllersModule.controller("detailController", ["$scope", function ($scope) {
-            $scope.filterData = function (data) {
-
-            }
-
-            $scope.exportDataHandler = function () {
-
-            }
-        }]);
+        controllersModule.controller("detailController", detailController);
 
         controllersModule.controller('dataController', dataController);
 
-        controllersModule.controller('reportController', ["$scope", "dataService", function ($scope, dataService) {
-            var vm = this;
-
-            var tradingSwagger = function (res) {
-                $scope.text = res.data;
-            }
-
-            dataService.getTradingSwagger(tradingSwagger);
-        }]);
+        controllersModule.controller('summaryReportController', summaryReportController);
 
         controllersModule.controller('settingController', ["$scope", "dataService", function ($scope, dataService) {
             $scope.breadCrumbs = dataService.settingPages;

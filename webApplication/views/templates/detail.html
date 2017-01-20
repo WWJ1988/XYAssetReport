@@ -1,4 +1,10 @@
 <div class="detail-page-container">
-  <fill-filter filter-datacallback="filterData" export-data-handler="exportDataHandler()">
+  <fill-filter filter-data-callback="detailCtrl.filterData" export-data-handler="detailCtrl.exportDataHandler()" load-summary="false">
   </fill-filter>
+  <hr />
+  <div ui-grid="detailCtrl.fillGrid.gridOption" class="my-grid" ui-grid-selection></div>
+  <div>
+    <h3>零股明细</h3>
+    <div ui-grid="detailCtrl.oddShareGrid.gridOption" class="my-sub-grid" ui-grid-selection></div>
+  </div>
 </div>

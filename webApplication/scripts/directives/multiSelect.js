@@ -6,7 +6,7 @@ define([
         return {
             scope: {
                 header: "@",
-                disabled: "=",
+                disabled: "=?",
                 enableFilter: "=",
                 filterPlaceholder: "@",
                 checkAllLabel: "@",

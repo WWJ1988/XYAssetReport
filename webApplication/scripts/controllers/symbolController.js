@@ -48,7 +48,7 @@ define(['lodash'], function (_) {
         function initialize() {
             initializeGrid();
             dataService.setCurrentSettingPage("券池设置");
-            dataService.getSymbols.success(function (data) {
+            dataService.getSymbols().success(function (data) {
                 vm.gridOption.data = data;
             });
         }

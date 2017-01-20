@@ -51,7 +51,7 @@ define(['lodash', 'jquery'], function (_, $) {
             initializeSecurities();
             initializeGrid();
             dataService.setCurrentSettingPage("券池组设置");
-            dataService.getSymbolGroups.success(function (data) {
+            dataService.getSymbolGroups().success(function (data) {
                 vm.gridOption.data = data;
             });
         }
@@ -85,7 +85,7 @@ define(['lodash', 'jquery'], function (_, $) {
         }
 
         function initializeSecurities() {
-            dataService.getSymbols.success(function (data) {
+            dataService.getSymbols().success(function (data) {
                 securityCache = data;
             });
         }

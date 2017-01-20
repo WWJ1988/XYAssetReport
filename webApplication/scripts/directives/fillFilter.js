@@ -1,12 +1,14 @@
 define([
-    "lodash"
+    "lodash",
+    "../common/common"
 ], function (_) {
     'use strict';
     var fillFilter = [function () {
         return {
             scope: {
                 filterDataCallback: "=",
-                exportDataHandler: "&"
+                exportDataHandler: "&",
+                loadSummary: "@"
             },
             restrict: "E",
             replace: true,
@@ -40,33 +42,30 @@ define([
                         });
 
                     vm.startDateOptions = {
-                        formatYear: 'yy',
                         maxDate: new Date(2020, 5, 22),
-                        minDate: new Date(),
                         startingDay: 1
                     };
 
                     vm.endDateOptions = {
-                        formatYear: 'yy',
                         maxDate: new Date(2020, 5, 22),
-                        minDate: new Date(),
                         startingDay: 1
                     };
                 }
                 vm.QueryData = function () {
-                    var selectedDepartmentIds = _.map(_.filter(vm.departments, function (dep) {
+                    var filterQuery = {};
+                    filterQuery.SelectedDepartmentList = _.map(_.filter(vm.departments, function (dep) {
                         return dep.checked;
                     }), "DepartmentID");
-                    var selectedTraderIds = _.map(_.filter(vm.traders, function (tra) {
+                    filterQuery.SelectedTraderList = _.map(_.filter(vm.traders, function (tra) {
                         return tra.checked;
                     }), "UserID");
-                    var selectedCashAccountIds = _.map(_.filter(vm.cashAccounts, function (acc) {
+                    filterQuery.SelectedAccountList = _.map(_.filter(vm.cashAccounts, function (acc) {
                         return acc.checked;
                     }), "CashAccountID");
-                    var selectedBrokerIds = _.map(_.filter(vm.brokers, function (bro) {
+                    filterQuery.SelectedBrokerList = _.map(_.filter(vm.brokers, function (bro) {
                         return bro.checked;
-                    }), "BrokerID");
-                    var selectedShareHolderIds = _.map(_.filter(vm.shareHolders, function (hol) {
+                    }), "BrokerName");
+                    filterQuery.SelectedShareHolderList = _.map(_.filter(vm.shareHolders, function (hol) {
                         return hol.checked;
                     }), "ShareHolderID");
                     var selectedSecurityIds = [];
@@ -82,15 +81,43 @@ define([
                             }
                         }
                     });
-                    selectedSecurityIds = _.uniq(selectedSecurityIds);
+                    filterQuery.SelectedSecurityList = _.uniq(selectedSecurityIds);
+                    if (!vm.startDateTime) {
+                        filterQuery.BeginDateString = "0";
+                    }
+                    else {
+                        filterQuery.BeginDateString = vm.startDateTime.format("yyyyMMdd");
+                    }
+                    if (!vm.endDateTime) {
+                        filterQuery.EndDateString = "0";
+                    }
+                    else {
+                        filterQuery.EndDateString = vm.endDateTime.format("yyyyMMdd");
+                    }
+                    filterQuery.LoadSummary = $scope.loadSummary;
+
+                    dataService.queryFills(filterQuery)
+                        .success(function (data) {
+                            if ($scope.filterDataCallback) {
+                                $scope.filterDataCallback(data);
+                            }
+                        });
                 };
-                vm.ExportData = function () { };
+
+                vm.ExportData = function () {
+                    if ($scope.exportDataHandler) {
+                        $scope.exportDataHandler();
+                    }
+                };
+
                 vm.openStartDataPicker = function () {
                     vm.isStartDateOpen = true;
                 };
+
                 vm.openEndDataPicker = function () {
                     vm.isEndDateOpen = true;
                 };
+
                 initialize();
             }],
             controllerAs: "multiSelectCtrl"

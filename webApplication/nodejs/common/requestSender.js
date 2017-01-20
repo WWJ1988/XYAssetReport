@@ -20,3 +20,7 @@ exports.sendRequest = function (options, req, res) {
             });
         });
 };
+
+exports.sendGetReuqestWithQuery = function(options, req, res, queryData){
+
+}

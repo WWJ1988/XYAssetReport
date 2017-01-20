@@ -148,5 +148,8 @@ define(function () {
         this.getFills = function () {
             return $http.get("/api/fill");
         };
+        this.queryFills = function (params) {
+            return $http.get("/api/fill/query", { params: { filter: params } });
+        };
     }];
 });

@@ -12,7 +12,7 @@
     "directives",
     "controllers"], function () {
 
-        var mainModule = angular.module("webapp", ['ui.router', 'ngAnimate', 'ngResource', 'ui.bootstrap', 'ui.grid', 'ui.grid.selection', 'ui.select', 'ngStorage', 'ActivityMonitor', 'services', 'directives', 'controllers']);
+        var mainModule = angular.module("webapp", ['ui.router', 'ngAnimate', 'ngResource', 'ui.bootstrap', 'ui.grid', 'ui.grid.selection', 'ui.grid.grouping', 'ui.select', 'ngStorage', 'ActivityMonitor', 'services', 'directives', 'controllers']);
 
         mainModule.run(["$rootScope", "$localStorage", function ($rootScope, $localStorage) {
             if ($localStorage.token) {
@@ -47,7 +47,7 @@
                 .state('report', {
                     url: '/report',
                     templateUrl: '../views/templates/report.html',
-                    controller: 'reportController as reportCtrl'
+                    controller: 'summaryReportController as summaryReportCtrl'
                 })
                 .state('setting', {
                     url: '/setting',

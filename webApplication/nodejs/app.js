@@ -79,6 +79,7 @@ app.get("/api/shareHolder", shareHolder.shareHolderService.getShareHolders);
 app.post("/api/shareHolder", shareHolder.shareHolderService.saveShareHolder);
 app.delete("/api/shareHolder", shareHolder.shareHolderService.deleteShareHolder);
 
+app.get("/api/fill/query", fill.fillService.queryFills);
 app.get("/api/fill", fill.fillService.getFills);
 app.post("/api/fill", fill.fillService.saveFill);
 app.delete("/api/fill", fill.fillService.deleteFill);

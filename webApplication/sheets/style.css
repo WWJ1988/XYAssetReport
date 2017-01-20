@@ -337,7 +337,7 @@ hr {
 
 .my-grid {
 	width: 100%;
-	min-height: 600px;
+	min-height: 550px;
 	overflow: hidden;
 }
 
@@ -348,6 +348,19 @@ hr {
 .data-page-container hr{
 	margin-top:10px;
 	margin-bottom: 10px;
+}
+
+ .detail-page-container hr, .report-page-container hr{
+	margin-top:-10px;
+	margin-bottom: 10px;
+ }
+
+ .detail-page-container .my-grid{
+	 min-height: 500px;
+ }
+
+.detail-page-container .my-sub-grid{
+	min-height:100px;
 }
 
 .data-page-container .form-control,.data-page-container .btn{
@@ -400,33 +413,49 @@ hr {
 
 .multi-select-header{
 	max-width:100px;
-	word-wrap: break-word;
+	height:20px;
 	overflow:hidden;
 	text-overflow: ellipsis;
+	word-wrap: normal
 }
 
 .multi-select-btn .caret{
-	margin-top:5px;
+	margin-top:8px;
 	margin-left:5px;
 }
 
 .fill-filter-row{
 	margin-top:10px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
-.fill-filter-row>div{
-	float:left;
-	width:23%;
+.fill-filter-row>div>label{
+	width:80px;
+	text-align: right;
 }
 
-.fill-filter-row>div:last-child{
-	float:left;
-	width:8%;
+.fill-filter-row .btn{
+	padding:0px !important;
+	padding-left:10px !important;
+	padding-right:10px !important;
+	padding-top:2px !important;
+	padding-bottom:2px !important;
+	line-height: 20px !important;
+	font-size:12px !important;
+}
+
+.filter-date{
+	width:221px;
+}
+
+.filter-date>label{
+	width:81px;
+	text-align:right;
+	display: table-cell;
 }
 
 .filter-date>input{
-	width:148px !important;
+	width:140px !important;
 	line-height: 28px;
 	margin-left:0px;
 	margin-right: 0px;
@@ -448,4 +477,70 @@ hr {
 	position: absolute;
     top: 4px;
     right: 8px;
+	cursor:pointer;
 }
+
+@media(min-width:770px){
+	.fill-filter-row>div{
+		float:left;
+		width:40%;
+		margin-bottom:10px;
+	}
+
+	.fill-filter-row>div:last-child{
+		width:20%;
+		text-align: center;
+	}
+}
+
+@media(min-width:1122px){
+	.fill-filter-row>div{
+		width:23%;
+	}
+
+	.fill-filter-row>div:last-child{
+		width:8%;
+	}
+}
+
+.report-page-container .tab-content .nav-tabs>li.active>a{
+	background-color:#b5deff;
+	border-bottom: 1px solid #ddd !important;
+}
+
+.report-page-content>div>.tab-content{
+	padding-top:5px;
+}
+
+.report-page-content .ui-grid-tree-header-row{
+	color:red !important;
+}
+
+.report-page-content .tab-icon{
+	margin-left:10px;
+}
+
+.report-tab-menu .dropdown-menu{
+	min-width:100px !important;
+}
+
+.report-tab-addon{
+	margin-right:15px !important;
+}
+
+.report-tab-addon>a{
+	padding-left:0px !important;
+	padding-right:0px !important;
+}
+
+.report-tab-addon .dropdown{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.report-tab-dropdown-show{
+	display:block !important;
+}
+/*.report-page-content .ui-grid-tree-header-row:nth-child(3n){
+	color:red !important;
+}*/
