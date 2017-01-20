@@ -45,9 +45,64 @@ define([
     }
   }
 
+  function fetchXML(datas) {
+    var wrkbookXML = '<?xml version="1.0"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">' +
+      '<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office"><Author>Axel Richter</Author></DocumentProperties>' +
+      '<OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">' +
+      '<AllowPNG/>' +
+      '<RemovePersonalInformation/>' +
+      '</OfficeDocumentSettings>' +
+      '<ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">' +
+      '<WindowHeight>15020</WindowHeight>' +
+      '<WindowWidth>25360</WindowWidth>' +
+      '<WindowTopX>2660</WindowTopX>' +
+      '<WindowTopY>0</WindowTopY>' +
+      '<ProtectStructure>False</ProtectStructure>' +
+      '<ProtectWindows>False</ProtectWindows>' +
+      '</ExcelWorkbook>' +
+      '<Styles>' +
+      '<Style ss:ID="Currency"><NumberFormat ss:Format="Currency"></NumberFormat></Style>' +
+      '<Style ss:ID="Date"><NumberFormat ss:Format="Medium Date"></NumberFormat></Style>' +
+      '<Style ss:ID="Title"><Font ss:Bold="1"></Font></Style>' +
+      '</Styles>';
+
+    for (var i = 0; i < datas.length; i++) {
+      var data = datas[i];
+      var columnDefs = data.columnDefs;
+      var exportData = data.exportData;
+      var sheetName = data.sheetName;
+
+      wrkbookXML += '<Worksheet ss:Name="' + sheetName + '"><Table>';
+
+      var rowXML = "";
+      var header = '<Row ss:StyleID="Title">';
+      for (var k = 0; k < columnDefs.length; k++) {
+        rowXML += '<Column ss:AutoFitWidth="1" ss:Width="150" />';
+        header += '<Cell><Data ss:Type="String">' + columnDefs[k].displayName + "</Data></Cell>";
+      }
+      header += "</Row>";
+      rowXML += header;
+
+      for (var j = 0; j < exportData.length; j++) {
+        rowXML += "<Row>";
+        for (var m = 0; m < columnDefs.length; m++) {
+          rowXML += '<Cell><Data ss:Type="String">' + exportData[j][columnDefs[m].field] + "</Data></Cell>";
+        }
+        rowXML += '</Row>';
+      }
+
+      wrkbookXML += rowXML;
+      wrkbookXML += '</Table><AutoFilter xmlns="urn:schemas-microsoft-com:office:excel" x:Range="R1C1:R22C5"></AutoFilter></Worksheet>';
+    }
+    wrkbookXML += '</Workbook>';
+
+    return wrkbookXML;
+  }
+
   var common = {};
 
   common.formatAsExcel = function (columnDefs, exportData, sheetName) {
+    return fetchXML([{ columnDefs: columnDefs, exportData: exportData, sheetName: sheetName }]);
     var self = this;
     var excel = "<table>";
     excel += "<tr>";
@@ -121,7 +176,7 @@ define([
     var D = document;
     var a = D.createElement('a');
     //var strMimeType = 'application/octet-stream;charset=utf-8';
-    var strMimeType = 'application/vnd.ms-excel;charset=utf-8';
+    var strMimeType = 'application/octet-stream';
     var rawFile;
     var ieVersion = isIE();
 

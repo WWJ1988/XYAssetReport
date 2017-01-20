@@ -121,7 +121,7 @@ define([
 
         vm.exportDataHandler = function () {
             var content = common.formatAsExcel(vm.dailySummaryData.dayGrid.gridOption.columnDefs, vm.dailySummaryData.dayGrid.gridOption.data, "day summary");
-            common.downloadFile("test.xls", content, "X", true, true);
+            common.downloadFile("test.xls", content);
         };
 
         vm.showGroup = function (col, row) {
