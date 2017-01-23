@@ -13,23 +13,33 @@ define([
         vm.importGrid = {};
         vm.stockFillGrid = {};
         vm.validationGrid = {};
+        vm.allData = [];
 
         vm.selectBroker = function () {
-
-        }
+            vm.importGrid.gridOption.data = _.filter(vm.allData, function (data) {
+                return data.BrokerID == vm.selectedBrokerId;
+            });
+        };
 
         vm.setTab = function (index) {
             $timeout(function () {
                 vm.selectedTabIndex = index;
             }, 50);
-        }
+        };
 
         vm.removeImportedFill = function (fillData) {
             var result = confirm("是否要删除该数据？");
             if (result) {
-                alert("删除数据成功");
+                dataService.deleteFill(fillData.entity)
+                    .success(function () {
+                        _.remove(vm.importGrid.gridOption.data, function (data) {
+                            return data == fillData.entity;
+                        });
+                        vm.importGrid.gridApi.grid.modifyRows(vm.importGrid.gridOption.data);
+                    });
+
             }
-        }
+        };
 
         function initialize() {
             initializeImportDataGrid();
@@ -42,7 +52,7 @@ define([
 
             dataService.getFills()
                 .success(function (data) {
-                    vm.importGrid.gridOption.data = data;
+                    vm.allData = data;
                 });
         }
 

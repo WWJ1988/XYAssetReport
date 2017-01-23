@@ -8,8 +8,9 @@ exports.fillService = {
     },
     deleteFill: function (req, res) {
         request.sendRequest({
-            url: "http://localhost:8899/api/Fill/" + req.body.fillId,
-            method: "DELETE"
+            url: "http://localhost:8899/api/Fill/Delete",
+            method: "DELETE",
+            json: req.body.fill
         }, req, res);
     },
     saveFill: function (req, res) {

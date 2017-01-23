@@ -1,6 +1,9 @@
 <div class="data-page-container">
 	<div class="container-fluid">
-		<div class="col-md-12 overflow-hidden">
+		<div class="col-md-2">
+			<p><input type="file" name="xlfile" id="xlf" /> ... or click here to select a file</p>
+		</div>
+		<div class="col-md-10 overflow-hidden">
 			<button class="btn btn-default" ng-disabled="!dataCtrl.enableSaveToDB">存入数据库</button>
 			<button class="btn btn-default" ng-disabled="!dataCtrl.enableClearData">清空数据</button>
 			<button class="btn btn-default" ng-disabled="dataCtrl.selectedBrokerId==-1">导入数据</button>

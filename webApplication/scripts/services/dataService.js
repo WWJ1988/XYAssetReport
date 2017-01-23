@@ -151,5 +151,13 @@ define(function () {
         this.queryFills = function (params) {
             return $http.get("/api/fill/query", { params: { filter: params } });
         };
+        this.deleteFill = function (fill) {
+             return $http({
+                method: "DELETE",
+                url: "/api/fill",
+                data: { fill: fill },
+                headers: { 'Content-Type': 'application/json;charset=utf-8' }
+            });
+        };
     }];
 });
