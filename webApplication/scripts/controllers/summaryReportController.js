@@ -51,6 +51,7 @@ define([
             monthlyGrid: {},
             yearGrid: {}
         };
+        vm.exportData = {};
 
         vm.setTab = function (index, type) {
             $timeout(function () {
@@ -111,17 +112,59 @@ define([
 
             vm.marketValueData.gridOption.data = data.PositionList;
 
-            vm.dailySummaryData.dayGrid.gridOption.data = getSumList(data.DailySummaryList, generateDayItemKey);
-            vm.dailySummaryData.weeklyGrid.gridOption.data = getSumList(data.DailySummaryList, generateWeekItemKey);
-            vm.dailySummaryData.monthlyGrid.gridOption.data = getSumList(data.DailySummaryList, generateMonthItemKey);
-            vm.dailySummaryData.yearGrid.gridOption.data = getSumList(data.DailySummaryList, generateYearItemKey);
+            vm.dailySummaryData.dayGrid.gridOption.data = getSumList(data.DailySummaryList, generateDayItemKey, "dayData");
+            vm.dailySummaryData.weeklyGrid.gridOption.data = getSumList(data.DailySummaryList, generateWeekItemKey, "weekData");
+            vm.dailySummaryData.monthlyGrid.gridOption.data = getSumList(data.DailySummaryList, generateMonthItemKey, "monthData");
+            vm.dailySummaryData.yearGrid.gridOption.data = getSumList(data.DailySummaryList, generateYearItemKey, "yearData");
 
             var singleFeeRate = data.singleFeeRate;
         };
 
         vm.exportDataHandler = function () {
-            var content = common.formatAsExcel(vm.dailySummaryData.dayGrid.gridOption.columnDefs, vm.dailySummaryData.dayGrid.gridOption.data, "day summary");
-            common.downloadFile("test.xls", content);
+            if (vm.selectedTabIndex == 1) {
+                var exportData = getExportData(vm.orderSummaryData, "交易结果统计表");
+                var content = common.formatAsExcel([
+                    exportData
+                ]);
+                common.downloadFile("交易结果统计表.xls", content);
+            }
+            else if (vm.selectedTabIndex == 2) {
+                var exportData = getExportData(vm.pnlData, "盈亏统计表");
+                var content = common.formatAsExcel([
+                    exportData
+                ]);
+                common.downloadFile("盈亏统计表.xls", content);
+            }
+            else if (vm.selectedTabIndex == 3) {
+                var exportData = getExportData(vm.feeData, "交易税费统计表");
+                var content = common.formatAsExcel([
+                    exportData
+                ]);
+                common.downloadFile("交易税费统计表.xls", content);
+            }
+            else if (vm.selectedTabIndex == 4) {
+                var content = common.formatAsExcel([
+                    { columnDefs: vm.marketValueData.gridOption.columnDefs, exportDatas: vm.marketValueData.gridOption.data, sheetName: "股票市值盈亏统计表" }
+                ]);
+                common.downloadFile("股票市值盈亏统计表.xls", content);
+            }
+            else if (vm.selectedTabIndex == 5) {
+                var exportData = [];
+                if (vm.dailySummaryData.dayTab) {
+                    exportData.push({ columnDefs: vm.dailySummaryData.dayGrid.gridOption.columnDefs, exportDatas: vm.exportData["dayData"], sheetName: "日小结" });
+                }
+                if (vm.dailySummaryData.weekTab) {
+                    exportData.push({ columnDefs: vm.dailySummaryData.dayGrid.gridOption.columnDefs, exportDatas: vm.exportData["weekData"], sheetName: "周小结" });
+                }
+                if (vm.dailySummaryData.monthTab) {
+                    exportData.push({ columnDefs: vm.dailySummaryData.dayGrid.gridOption.columnDefs, exportDatas: vm.exportData["monthData"], sheetName: "月小结" });
+                }
+                if (vm.dailySummaryData.yearTab) {
+                    exportData.push({ columnDefs: vm.dailySummaryData.dayGrid.gridOption.columnDefs, exportDatas: vm.exportData["yearData"], sheetName: "年小结" });
+                }
+                var content = common.formatAsExcel(exportData, true);
+                common.downloadFile("交易员业绩统计表.xls", content);
+            }
         };
 
         vm.showGroup = function (col, row) {
@@ -180,14 +223,46 @@ define([
             vm.showTabMenu = false;
         }
 
+        function getExportData(data, sheetName) {
+            var grid;
+            switch (data.selectedTabIndex) {
+                case 1:
+                    grid = data.summaryGrid;
+                    break;
+                case 2:
+                    grid = data.departmentGrid;
+                    break;
+                case 3:
+                    grid = data.traderGrid;
+                    break;
+                case 4:
+                    grid = data.securityGrid;
+                    break;
+                case 5:
+                    grid = data.accountGrid;
+                    break;
+                case 6:
+                    grid = data.brokerGrid;
+                    break;
+                default:
+                    grid = data.shareHolderGrid;
+                    break;
+            }
+            return {
+                columnDefs: grid.gridOption.columnDefs,
+                exportDatas: grid.gridOption.data,
+                sheetName: sheetName
+            };
+        }
+
         function initializeOrderSummaryGrid() {
             var columnDefs = [
-                { field: "TotalFillAmount", displayName: "总成交数量", width: 100 },
-                { field: "TotalOrderCount", displayName: "总交易笔数", width: 100 },
-                { field: "LongOrderCount", displayName: "多头笔数", width: 100 },
-                { field: "ShortOrderCount", displayName: "空头笔数", width: 100 },
-                { field: "ProfitOrderCount", displayName: "盈利笔数", width: 100 },
-                { field: "LossOrderCount", displayName: "损失笔数", width: 100 }
+                { field: "TotalFillAmount", displayName: "总成交数量", width: 100, type: "Currency" },
+                { field: "TotalOrderCount", displayName: "总交易笔数", width: 100, type: "Currency" },
+                { field: "LongOrderCount", displayName: "多头笔数", width: 100, type: "Currency" },
+                { field: "ShortOrderCount", displayName: "空头笔数", width: 100, type: "Currency" },
+                { field: "ProfitOrderCount", displayName: "盈利笔数", width: 100, type: "Currency" },
+                { field: "LossOrderCount", displayName: "损失笔数", width: 100, type: "Currency" }
             ];
             InitializeGrid(vm.orderSummaryData.summaryGrid, columnDefs);
 
@@ -216,17 +291,17 @@ define([
                 { field: "BrokerName", displayName: "券商", width: 100 },
                 { field: "SecurityID", displayName: "证券代码", width: 100 },
                 { field: "SecurityName", displayName: "证券名称", width: 100 },
-                { field: "HoldingAmount", displayName: "参考持股", width: 100 },
-                { field: "SellableAmount", displayName: "可用股份", width: 100 },
-                { field: "CostPrice", displayName: "成本价", width: 100 },
-                { field: "CurrentPrice", displayName: "当前价", width: 100 },
-                { field: "CurrentCost", displayName: "当前成本", width: 100 },
-                { field: "MarketValue", displayName: "最新市值", width: 100 },
-                { field: "FloatingPnl", displayName: "浮动盈亏", width: 100 },
-                { field: "PnlPercentage", displayName: "盈亏比例", width: 100 },
-                { field: "LockAmount", displayName: "冻结数量", width: 100 },
-                { field: "ZaiTuGuFen", displayName: "在途股份", width: 100 },
-                { field: "ResidualAmount", displayName: "股份余额", width: 100 },
+                { field: "HoldingAmount", displayName: "参考持股", width: 100, type: "Currency" },
+                { field: "SellableAmount", displayName: "可用股份", width: 100, type: "Currency" },
+                { field: "CostPrice", displayName: "成本价", width: 100, type: "Currency" },
+                { field: "CurrentPrice", displayName: "当前价", width: 100, type: "Currency" },
+                { field: "CurrentCost", displayName: "当前成本", width: 100, type: "Currency" },
+                { field: "MarketValue", displayName: "最新市值", width: 100, type: "Currency" },
+                { field: "FloatingPnl", displayName: "浮动盈亏", width: 100, type: "Currency" },
+                { field: "PnlPercentage", displayName: "盈亏比例", width: 100, type: "Currency" },
+                { field: "LockAmount", displayName: "冻结数量", width: 100, type: "Currency" },
+                { field: "ZaiTuGuFen", displayName: "在途股份", width: 100, type: "Currency" },
+                { field: "ResidualAmount", displayName: "股份余额", width: 100, type: "Currency" },
                 { field: "CashAccountID", displayName: "资金账号", width: 100 }
             ];
             InitializeGrid(vm.marketValueData, columnDefs);
@@ -234,14 +309,14 @@ define([
 
         function initializePnlGrid() {
             var columnDefs = [
-                { field: "ProfitLoss", displayName: "盈亏总额", width: 100 },
-                { field: "TotalFillAmount", displayName: "总成交数量", width: 100 },
-                { field: "TotalFillMoneyAmount", displayName: "总成交金额", width: 100 },
-                { field: "MaxFillMoneyAmount", displayName: "最大成交金额", width: 100 },
-                { field: "AverageFillMoneyAmount", displayName: "平均成交金额", width: 100 },
-                { field: "TotalFee", displayName: "总费用", width: 100 },
-                { field: "MaxFillAmount", displayName: "最大成交量", width: 100 },
-                { field: "AverageFillAmount", displayName: "平均成交量", width: 100 }
+                { field: "ProfitLoss", displayName: "盈亏总额", width: 100, type: "Currency" },
+                { field: "TotalFillAmount", displayName: "总成交数量", width: 100, type: "Currency" },
+                { field: "TotalFillMoneyAmount", displayName: "总成交金额", width: 100, type: "Currency" },
+                { field: "MaxFillMoneyAmount", displayName: "最大成交金额", width: 100, type: "Currency" },
+                { field: "AverageFillMoneyAmount", displayName: "平均成交金额", width: 100, type: "Currency" },
+                { field: "TotalFee", displayName: "总费用", width: 100, type: "Currency" },
+                { field: "MaxFillAmount", displayName: "最大成交量", width: 100, type: "Currency" },
+                { field: "AverageFillAmount", displayName: "平均成交量", width: 100, type: "Currency" }
             ];
             InitializeGrid(vm.pnlData.summaryGrid, columnDefs);
 
@@ -266,12 +341,12 @@ define([
 
         function initializeFeeGrid() {
             var columnDefs = [
-                { field: "TotalExchangeFee", displayName: "总手续费", width: 100 },
-                { field: "TotalStampTax", displayName: "总印花税", width: 100 },
-                { field: "TotalTransfterDuty", displayName: "总过户费", width: 100 },
-                { field: "TotalExtraCharge", displayName: "总附加费", width: 100 },
-                { field: "TotalExchangeCustodianFee", displayName: "交易清算费", width: 100 },
-                { field: "TotalFee", displayName: "总费用", width: 100 }
+                { field: "TotalExchangeFee", displayName: "总手续费", width: 100, type: "Currency" },
+                { field: "TotalStampTax", displayName: "总印花税", width: 100, type: "Currency" },
+                { field: "TotalTransfterDuty", displayName: "总过户费", width: 100, type: "Currency" },
+                { field: "TotalExtraCharge", displayName: "总附加费", width: 100, type: "Currency" },
+                { field: "TotalExchangeCustodianFee", displayName: "交易清算费", width: 100, type: "Currency" },
+                { field: "TotalFee", displayName: "总费用", width: 100, type: "Currency" }
             ];
             InitializeGrid(vm.feeData.summaryGrid, columnDefs);
 
@@ -300,6 +375,7 @@ define([
                 {
                     field: "TotalPnl",
                     displayName: "总盈亏",
+                    type: "Currency",
                     width: 150,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
                     customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
@@ -307,6 +383,7 @@ define([
                 {
                     field: "FillAmount",
                     displayName: "成交总量",
+                    type: "Currency",
                     width: 100,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
                     customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
@@ -314,6 +391,7 @@ define([
                 {
                     field: "TraderPerformance",
                     displayName: "交易员成绩",
+                    type: "Currency",
                     width: 120,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
                     customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
@@ -321,6 +399,7 @@ define([
                 {
                     field: "FillMoneyAmount",
                     displayName: "成交金额",
+                    type: "Currency",
                     width: 120,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
                     customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
@@ -328,6 +407,7 @@ define([
                 {
                     field: "BrokerFee",
                     displayName: "券商手续费",
+                    type: "Currency",
                     width: 120,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
                     customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
@@ -335,18 +415,21 @@ define([
                 {
                     field: "CompanyFee",
                     displayName: "公司手续费",
+                    type: "Currency",
                     width: 120, treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
                     customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
                 },
                 {
                     field: "LiangRongFee",
                     displayName: "两融费",
+                    type: "Currency",
                     width: 100, treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
                     customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
                 },
                 {
                     field: "TransfterDuty",
                     displayName: "过户费",
+                    type: "Currency",
                     width: 120,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
                     customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
@@ -354,6 +437,7 @@ define([
                 {
                     field: "StampTax",
                     displayName: "印花税",
+                    type: "Currency",
                     width: 120,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
                     customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
@@ -361,22 +445,23 @@ define([
                 {
                     field: "StipulatedFee",
                     displayName: "规费",
+                    type: "Currency",
                     width: 120,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
                     customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
                 }
             ];
 
-            var dayColumnDefs = _.concat([{ field: "CreateDateHeader", displayName: "日期", width: 200, grouping: { groupPriority: 0 }, cellTemplate: gridGroupTemplate }], columnDefs);
+            var dayColumnDefs = _.concat([{ field: "CreateDateHeader", displayName: "日期", width: 200, grouping: { groupPriority: 0 }, cellTemplate: gridGroupTemplate, cellMerge: true }], columnDefs);
             InitializeGrid(vm.dailySummaryData.dayGrid, dayColumnDefs);
 
-            var weekColumnDefs = _.concat([{ field: "CreateDateHeader", displayName: "周小结", width: 220, grouping: { groupPriority: 0 }, cellTemplate: gridGroupTemplate }], columnDefs);
+            var weekColumnDefs = _.concat([{ field: "CreateDateHeader", displayName: "周小结", width: 220, grouping: { groupPriority: 0 }, cellTemplate: gridGroupTemplate, cellMerge: true }], columnDefs);
             InitializeGrid(vm.dailySummaryData.weeklyGrid, weekColumnDefs);
 
-            var monthColumnDefs = _.concat([{ field: "CreateDateHeader", displayName: "月小结", width: 200, grouping: { groupPriority: 0 }, cellTemplate: gridGroupTemplate }], columnDefs);
+            var monthColumnDefs = _.concat([{ field: "CreateDateHeader", displayName: "月小结", width: 200, grouping: { groupPriority: 0 }, cellTemplate: gridGroupTemplate, cellMerge: true }], columnDefs);
             InitializeGrid(vm.dailySummaryData.monthlyGrid, monthColumnDefs);
 
-            var yearColumnDefs = _.concat([{ field: "CreateDateHeader", displayName: "年小结", width: 200, grouping: { groupPriority: 0 }, cellTemplate: gridGroupTemplate }], columnDefs);
+            var yearColumnDefs = _.concat([{ field: "CreateDateHeader", displayName: "年小结", width: 200, grouping: { groupPriority: 0 }, cellTemplate: gridGroupTemplate, cellMerge: true }], columnDefs);
             InitializeGrid(vm.dailySummaryData.yearGrid, yearColumnDefs);
         }
 
@@ -563,7 +648,7 @@ define([
             return -1;
         }
 
-        function getSumList(data, generateKey) {
+        function getSumList(data, generateKey, exportDataName) {
             var dataKeys = [];
             var traderSumDictionary = {};
             var investorSumDictionary = {};
@@ -583,6 +668,7 @@ define([
                 }
             });
 
+            vm.exportData[exportDataName] = [];
             var sumList = [];
             dataKeys = _.uniq(dataKeys);
             _.forEach(dataKeys, function (dataKey) {
@@ -590,28 +676,43 @@ define([
                 huiZongItem.TraderName = "汇总";
                 huiZongItem.CreateDateHeader = dataKey.replace("小结", "汇总");
                 var data = traderSumDictionary[dataKey];
+                var groupData = {};
                 if (data) {
+                    groupData.traderData = [];
                     for (var key in data) {
                         sumList.push(data[key]);
+                        groupData.traderData.push(data[key]);
                     }
+                    var summaryData = traderHuiZongSumDictionary[dataKey];
+                    groupData.traderSummaryData = [summaryData];
                     sumSummaryDataAmount(huiZongItem, traderHuiZongSumDictionary[dataKey]);
                 }
                 var data = investorSumDictionary[dataKey];
                 if (data) {
+                    groupData.investorData = [];
                     for (var key in data) {
                         sumList.push(data[key]);
+                        groupData.investorData.push(data[key]);
                     }
+                    var summaryData = investorHuiZongSumDictionary[dataKey];
+                    groupData.investorSummaryData = [summaryData];
                     sumSummaryDataAmount(huiZongItem, investorHuiZongSumDictionary[dataKey]);
                 }
                 var data = managerSumDictionary[dataKey];
                 if (data) {
+                    groupData.managerData = [];
                     for (var key in data) {
                         sumList.push(data[key]);
+                        groupData.managerData.push(data[key]);
                     }
+                    var summaryData = managerHuiZongSumDictionary[dataKey];
+                    groupData.managerSummaryData = [summaryData];
                     sumSummaryDataAmount(huiZongItem, managerHuiZongSumDictionary[dataKey]);
                 }
                 if (traderSumDictionary[dataKey] || investorSumDictionary[dataKey] || managerSumDictionary[dataKey]) {
                     sumList.push(huiZongItem);
+                    groupData.summaryData = [huiZongItem];
+                    vm.exportData[exportDataName].push(groupData);
                 }
             });
             return sumList;

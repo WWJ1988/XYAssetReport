@@ -1,5 +1,6 @@
 define([
-], function () {
+    "../common/common"
+], function (common) {
     'use strict';
     var detailController = ["$scope", "dataService", function ($scope, dataService) {
         var vm = this;
@@ -11,7 +12,11 @@ define([
         }
 
         vm.exportDataHandler = function () {
-
+            var exportData = { columnDefs: vm.fillGrid.gridOption.columnDefs, exportDatas: vm.fillGrid.gridOption.data, sheetName: "交易明细统计表" }
+            var content = common.formatAsExcel([
+                exportData
+            ]);
+            common.downloadFile("交易明细统计表.xls", content);
         }
 
         function initialize() {
@@ -21,18 +26,18 @@ define([
                 { field: "TraderName", displayName: "交易员", width: 100 },
                 { field: "CreateDate", displayName: "发生日期", width: 100 },
                 { field: "BrokerName", displayName: "券商", width: 100 },
-                { field: "FillPrice", displayName: "成交价格", width: 100 },
-                { field: "FillAmount", displayName: "成交数量", width: 100 },
-                { field: "FillMoneyAmount", displayName: "成交金额", width: 100 },
+                { field: "FillPrice", displayName: "成交价格", width: 100, type: "Currency" },
+                { field: "FillAmount", displayName: "成交数量", width: 100, type: "Currency" },
+                { field: "FillMoneyAmount", displayName: "成交金额", width: 100, type: "Currency" },
                 { field: "OperationName", displayName: "业务名称", width: 150 },
-                { field: "SecurityResidualAmount", displayName: "股份余额", width: 100 },
-                { field: "ExchangeFee", displayName: "手续费", width: 100 },
-                { field: "StampTax", displayName: "印花税", width: 100 },
-                { field: "TransfterDuty", displayName: "过户税", width: 100 },
-                { field: "ExtraCharge", displayName: "附加费", width: 100 },
-                { field: "ExchangeCustodianFee", displayName: "交易所清算费用", width: 100 },
-                { field: "TotalChargeMoneyAmount", displayName: "发生金额", width: 100 },
-                { field: "CashAccountResidual", displayName: "资金本次余额", width: 100 },
+                { field: "SecurityResidualAmount", displayName: "股份余额", width: 100, type: "Currency" },
+                { field: "ExchangeFee", displayName: "手续费", width: 100, type: "Currency" },
+                { field: "StampTax", displayName: "印花税", width: 100, type: "Currency" },
+                { field: "TransfterDuty", displayName: "过户税", width: 100, type: "Currency" },
+                { field: "ExtraCharge", displayName: "附加费", width: 100, type: "Currency" },
+                { field: "ExchangeCustodianFee", displayName: "交易所清算费用", width: 100, type: "Currency" },
+                { field: "TotalChargeMoneyAmount", displayName: "发生金额", width: 100, type: "Currency" },
+                { field: "CashAccountResidual", displayName: "资金本次余额", width: 100, type: "Currency" },
                 { field: "ShareHolderID", displayName: "股东编号", width: 100 },
                 { field: "CashAccountID", displayName: "资金账号", width: 100 },
                 { field: "SecurityID", displayName: "证券代码", width: 100 },

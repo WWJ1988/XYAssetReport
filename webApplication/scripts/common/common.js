@@ -45,21 +45,19 @@ define([
     }
   }
 
-  function fetchXML(datas) {
+  function getStyleString(type, value) {
+    switch (type) {
+      case "Currency":
+        return '><Data ss:Type="Number">' + value + "</Data></Cell>";
+    }
+    
+    return '><Data ss:Type="String">' + value + "</Data></Cell>"
+  }
+
+  var common = {};
+
+  common.formatAsExcel = function (datas, isComplexExport) {
     var wrkbookXML = '<?xml version="1.0"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">' +
-      '<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office"><Author>Axel Richter</Author></DocumentProperties>' +
-      '<OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">' +
-      '<AllowPNG/>' +
-      '<RemovePersonalInformation/>' +
-      '</OfficeDocumentSettings>' +
-      '<ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">' +
-      '<WindowHeight>15020</WindowHeight>' +
-      '<WindowWidth>25360</WindowWidth>' +
-      '<WindowTopX>2660</WindowTopX>' +
-      '<WindowTopY>0</WindowTopY>' +
-      '<ProtectStructure>False</ProtectStructure>' +
-      '<ProtectWindows>False</ProtectWindows>' +
-      '</ExcelWorkbook>' +
       '<Styles>' +
       '<Style ss:ID="Currency"><NumberFormat ss:Format="Currency"></NumberFormat></Style>' +
       '<Style ss:ID="Date"><NumberFormat ss:Format="Medium Date"></NumberFormat></Style>' +
@@ -69,7 +67,7 @@ define([
     for (var i = 0; i < datas.length; i++) {
       var data = datas[i];
       var columnDefs = data.columnDefs;
-      var exportData = data.exportData;
+      var exportDatas = data.exportDatas;
       var sheetName = data.sheetName;
 
       wrkbookXML += '<Worksheet ss:Name="' + sheetName + '"><Table>';
@@ -83,81 +81,117 @@ define([
       header += "</Row>";
       rowXML += header;
 
-      for (var j = 0; j < exportData.length; j++) {
-        rowXML += "<Row>";
-        for (var m = 0; m < columnDefs.length; m++) {
-          rowXML += '<Cell><Data ss:Type="String">' + exportData[j][columnDefs[m].field] + "</Data></Cell>";
+      for (var index = 0; index < exportDatas.length; index++) {
+        var exportData = exportDatas[index];
+        if (!isComplexExport) {
+          rowXML += "<Row>";
+          for (var m = 0; m < columnDefs.length; m++) {
+            rowXML += '<Cell';
+            rowXML += getStyleString(columnDefs[m].type, exportData[columnDefs[m].field]);
+          }
+          rowXML += '</Row>';
         }
-        rowXML += '</Row>';
+        else {
+          for (var dataKey in exportData) {
+            var separatData = exportData[dataKey];
+            if (separatData.length > 0) {
+              var firstData = separatData[0];
+              rowXML += "<Row>";
+              var mergedColumnName = "";
+              for (var m = 0; m < columnDefs.length; m++) {
+                rowXML += '<Cell';
+                if (columnDefs[m].cellMerge && separatData.length > 1) {
+                  mergedColumnName = columnDefs[m];
+                  rowXML += ' ss:MergeDown="' + (separatData.length - 1).toString() + '"';
+                }
+                rowXML += getStyleString(columnDefs[m].type, firstData[columnDefs[m].field]);
+              }
+              rowXML += '</Row>';
+
+              for (var j = 1; j < separatData.length; j++) {
+                rowXML += "<Row>";
+                var isColumnAfterMergeColumn = false;
+                for (var m = 0; m < columnDefs.length; m++) {
+                  if (mergedColumnName == columnDefs[m]) {
+                    isColumnAfterMergeColumn = true;
+                  }
+                  else {
+                    rowXML += '<Cell';
+                    if (isColumnAfterMergeColumn) {
+                      rowXML += ' ss:Index="' + (m + 1).toString() + '"';
+                      isColumnAfterMergeColumn = false;
+                    }
+                    rowXML += getStyleString(columnDefs[m].type, separatData[j][columnDefs[m].field]);
+                  }
+                }
+                rowXML += '</Row>';
+              }
+            }
+          }
+        }
       }
 
       wrkbookXML += rowXML;
-      wrkbookXML += '</Table><AutoFilter xmlns="urn:schemas-microsoft-com:office:excel" x:Range="R1C1:R22C5"></AutoFilter></Worksheet>';
+      wrkbookXML += '</Table><AutoFilter xmlns="urn:schemas-microsoft-com:office:excel" x:Range="R1C1:R22C' + columnDefs.length + '"></AutoFilter></Worksheet>';
     }
     wrkbookXML += '</Workbook>';
 
     return wrkbookXML;
   }
+  // var self = this;
+  // var excel = "<table>";
+  // excel += "<tr>";
+  // for (var i = 0; i < columnDefs.length; i++) {
+  //   excel += "<td>" + columnDefs[i].displayName + "</td>";
+  // }
+  // excel += '</tr>';
 
-  var common = {};
+  // for (var j = 0; j < exportData.length; j++) {
+  //   excel += "<tr>";
+  //   for (var i = 0; i < columnDefs.length; i++) {
+  //     excel += "<td>" + exportData[j][columnDefs[i].field] + "</td>";
+  //   }
+  //   excel += '</tr>';
+  // }
+  // excel += '</table>'
 
-  common.formatAsExcel = function (columnDefs, exportData, sheetName) {
-    return fetchXML([{ columnDefs: columnDefs, exportData: exportData, sheetName: sheetName }]);
-    var self = this;
-    var excel = "<table>";
-    excel += "<tr>";
-    for (var i = 0; i < columnDefs.length; i++) {
-      excel += "<td>" + columnDefs[i].displayName + "</td>";
-    }
-    excel += '</tr>';
+  // var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
+  // excelFile += "<head>";
+  // excelFile += "<!--[if gte mso 9]>";
+  // excelFile += "<xml>";
+  // excelFile += "<x:ExcelWorkbook>";
+  // excelFile += "<x:ExcelWorksheets>";
+  // excelFile += "<x:ExcelWorksheet>";
+  // excelFile += "<x:Name>";
+  // excelFile += "{Sheet1}";
+  // excelFile += "</x:Name>";
+  // excelFile += "<x:WorksheetOptions>";
+  // excelFile += "<x:DisplayGridlines/>";
+  // excelFile += "</x:WorksheetOptions>";
+  // excelFile += "</x:ExcelWorksheet>";
+  // excelFile += "</x:ExcelWorksheets>";
+  // excelFile += "<x:ExcelWorksheet>";
+  // excelFile += "<x:Name>";
+  // excelFile += "{Sheet2}";
+  // excelFile += "</x:Name>";
+  // excelFile += "<x:WorksheetOptions>";
+  // excelFile += "<x:DisplayGridlines/>";
+  // excelFile += "</x:WorksheetOptions>";
+  // excelFile += "</x:ExcelWorksheet>";
+  // excelFile += "</x:ExcelWorksheets>";
+  // excelFile += "</x:ExcelWorkbook>";
+  // excelFile += "</xml>";
+  // excelFile += "<![endif]-->";
+  // excelFile += "</head>";
+  // excelFile += "<body>";
+  // excelFile += excel;
+  // excelFile += "</body>";
+  // excelFile += "<body>";
+  // excelFile += excel;
+  // excelFile += "</body>";
+  // excelFile += "</html>";
 
-    for (var j = 0; j < exportData.length; j++) {
-      excel += "<tr>";
-      for (var i = 0; i < columnDefs.length; i++) {
-        excel += "<td>" + exportData[j][columnDefs[i].field] + "</td>";
-      }
-      excel += '</tr>';
-    }
-    excel += '</table>'
-
-    var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
-    excelFile += "<head>";
-    excelFile += "<!--[if gte mso 9]>";
-    excelFile += "<xml>";
-    excelFile += "<x:ExcelWorkbook>";
-    excelFile += "<x:ExcelWorksheets>";
-    excelFile += "<x:ExcelWorksheet>";
-    excelFile += "<x:Name>";
-    excelFile += "{Sheet1}";
-    excelFile += "</x:Name>";
-    excelFile += "<x:WorksheetOptions>";
-    excelFile += "<x:DisplayGridlines/>";
-    excelFile += "</x:WorksheetOptions>";
-    excelFile += "</x:ExcelWorksheet>";
-    excelFile += "</x:ExcelWorksheets>";
-    excelFile += "<x:ExcelWorksheet>";
-    excelFile += "<x:Name>";
-    excelFile += "{Sheet2}";
-    excelFile += "</x:Name>";
-    excelFile += "<x:WorksheetOptions>";
-    excelFile += "<x:DisplayGridlines/>";
-    excelFile += "</x:WorksheetOptions>";
-    excelFile += "</x:ExcelWorksheet>";
-    excelFile += "</x:ExcelWorksheets>";
-    excelFile += "</x:ExcelWorkbook>";
-    excelFile += "</xml>";
-    excelFile += "<![endif]-->";
-    excelFile += "</head>";
-    excelFile += "<body>";
-    excelFile += excel;
-    excelFile += "</body>";
-    excelFile += "<body>";
-    excelFile += excel;
-    excelFile += "</body>";
-    excelFile += "</html>";
-
-    return excelFile;
-  };
+  // return excelFile;
 
   /**
           * @ngdoc function
