@@ -1,17 +1,14 @@
+var request = require("../common/requestSender");
 exports.getFunctions = function (req, res) {
-    var request = require("request");
-    request({
+    request.sendRequest({
         url: "http://localhost:8899/api/UserFunction/",
-        method: "GET",
-        headers: req.headers
-    }).on('response', function (response) {
-        var data = "";
-        response.setEncoding('utf8');
-        response.on('data', function (responseData) {
-            data += responseData;
-        });
-        response.on('end', function () {
-            res.status(response.statusCode).send(data);
-        });
-    });
-}
+        method: "GET"
+    }, req, res);
+};
+
+exports.getFunctionsByUserName = function (req, res) {
+    request.sendRequest({
+        url: "http://localhost:8899/api/UserFunction/GetByUserName",
+        method: "GET"
+    }, req, res);
+};

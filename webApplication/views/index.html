@@ -13,7 +13,7 @@
 					<div class="col-md-6">
 						<ul class="nav navbar-nav">
 							<li>
-								<a ui-sref="data" class="topbar-header">
+								<a class="topbar-header">
 									<img src="../sheets/imgs/report.png" />资产报表
 								</a>
 							</li>
@@ -38,6 +38,9 @@
 		<div ng-if="!isLogin">
 			<div ui-view></div>
 		</div>
+	</div>
+	<div class="loading-container" id="loadingContainer">
+		<img src="../sheets/imgs/loading.gif" />
 	</div>
 </body>
 

@@ -49,6 +49,7 @@ app.post('/api/login', login.postLogin);
 app.post('/api/login/health', login.checkHealth);
 
 app.get("/api/userFunction", userFunction.getFunctions);
+app.get("/api/userFunction/getByUserName", userFunction.getFunctionsByUserName);
 
 app.get("/api/user", userService.user.getUser);
 app.post("/api/user", userService.user.saveUser);

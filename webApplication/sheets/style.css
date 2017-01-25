@@ -19,6 +19,26 @@ body {
 	height: 100%;
 }
 
+.loading-container{
+	height:100%;
+	width:100%;
+	position: fixed;
+	top: 0px;
+	left:0px;
+	background-color: black;
+	filter:alpha(opacity=50);  
+    -moz-opacity:0.5;  
+    -khtml-opacity: 0.5;  
+    opacity: 0.5;  
+	display:none;
+}
+
+.loading-container img{
+	position: absolute;
+	top:50%;
+	left:50%;
+}
+
 input[type="radio"], input[type="checkbox"]{
 	margin-top:0px !important;
 }

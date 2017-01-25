@@ -121,50 +121,52 @@ define([
         };
 
         vm.exportDataHandler = function () {
-            if (vm.selectedTabIndex == 1) {
-                var exportData = getExportData(vm.orderSummaryData, "交易结果统计表");
-                var content = common.formatAsExcel([
-                    exportData
-                ]);
-                common.downloadFile("交易结果统计表.xls", content);
-            }
-            else if (vm.selectedTabIndex == 2) {
-                var exportData = getExportData(vm.pnlData, "盈亏统计表");
-                var content = common.formatAsExcel([
-                    exportData
-                ]);
-                common.downloadFile("盈亏统计表.xls", content);
-            }
-            else if (vm.selectedTabIndex == 3) {
-                var exportData = getExportData(vm.feeData, "交易税费统计表");
-                var content = common.formatAsExcel([
-                    exportData
-                ]);
-                common.downloadFile("交易税费统计表.xls", content);
-            }
-            else if (vm.selectedTabIndex == 4) {
-                var content = common.formatAsExcel([
-                    { columnDefs: vm.marketValueData.gridOption.columnDefs, exportDatas: vm.marketValueData.gridOption.data, sheetName: "股票市值盈亏统计表" }
-                ]);
-                common.downloadFile("股票市值盈亏统计表.xls", content);
-            }
-            else if (vm.selectedTabIndex == 5) {
-                var exportData = [];
-                if (vm.dailySummaryData.dayTab) {
-                    exportData.push({ columnDefs: vm.dailySummaryData.dayGrid.gridOption.columnDefs, exportDatas: vm.exportData["dayData"], sheetName: "日小结" });
+            dataService.setLoading(function () {
+                if (vm.selectedTabIndex == 1) {
+                    var exportData = getExportData(vm.orderSummaryData, "交易结果统计表");
+                    var content = common.formatAsExcel([
+                        exportData
+                    ]);
+                    common.downloadFile("交易结果统计表.xls", content);
                 }
-                if (vm.dailySummaryData.weekTab) {
-                    exportData.push({ columnDefs: vm.dailySummaryData.dayGrid.gridOption.columnDefs, exportDatas: vm.exportData["weekData"], sheetName: "周小结" });
+                else if (vm.selectedTabIndex == 2) {
+                    var exportData = getExportData(vm.pnlData, "盈亏统计表");
+                    var content = common.formatAsExcel([
+                        exportData
+                    ]);
+                    common.downloadFile("盈亏统计表.xls", content);
                 }
-                if (vm.dailySummaryData.monthTab) {
-                    exportData.push({ columnDefs: vm.dailySummaryData.dayGrid.gridOption.columnDefs, exportDatas: vm.exportData["monthData"], sheetName: "月小结" });
+                else if (vm.selectedTabIndex == 3) {
+                    var exportData = getExportData(vm.feeData, "交易税费统计表");
+                    var content = common.formatAsExcel([
+                        exportData
+                    ]);
+                    common.downloadFile("交易税费统计表.xls", content);
                 }
-                if (vm.dailySummaryData.yearTab) {
-                    exportData.push({ columnDefs: vm.dailySummaryData.dayGrid.gridOption.columnDefs, exportDatas: vm.exportData["yearData"], sheetName: "年小结" });
+                else if (vm.selectedTabIndex == 4) {
+                    var content = common.formatAsExcel([
+                        { columnDefs: vm.marketValueData.gridOption.columnDefs, exportDatas: vm.marketValueData.gridOption.data, sheetName: "股票市值盈亏统计表" }
+                    ]);
+                    common.downloadFile("股票市值盈亏统计表.xls", content);
                 }
-                var content = common.formatAsExcel(exportData, true);
-                common.downloadFile("交易员业绩统计表.xls", content);
-            }
+                else if (vm.selectedTabIndex == 5) {
+                    var exportData = [];
+                    if (vm.dailySummaryData.dayTab) {
+                        exportData.push({ columnDefs: vm.dailySummaryData.dayGrid.gridOption.columnDefs, exportDatas: vm.exportData["dayData"], sheetName: "日小结" });
+                    }
+                    if (vm.dailySummaryData.weekTab) {
+                        exportData.push({ columnDefs: vm.dailySummaryData.dayGrid.gridOption.columnDefs, exportDatas: vm.exportData["weekData"], sheetName: "周小结" });
+                    }
+                    if (vm.dailySummaryData.monthTab) {
+                        exportData.push({ columnDefs: vm.dailySummaryData.dayGrid.gridOption.columnDefs, exportDatas: vm.exportData["monthData"], sheetName: "月小结" });
+                    }
+                    if (vm.dailySummaryData.yearTab) {
+                        exportData.push({ columnDefs: vm.dailySummaryData.dayGrid.gridOption.columnDefs, exportDatas: vm.exportData["yearData"], sheetName: "年小结" });
+                    }
+                    var content = common.formatAsExcel(exportData, true);
+                    common.downloadFile("交易员业绩统计表.xls", content);
+                }
+            });
         };
 
         vm.showGroup = function (col, row) {

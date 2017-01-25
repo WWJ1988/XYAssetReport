@@ -21,7 +21,7 @@ define(function () {
                         errorhandler(error);
                     }
                 });
-        }
+        };
 
         vm.checkHealth = function (successHandler, errorHandler) {
             if ($localStorage.token) {
@@ -39,12 +39,12 @@ define(function () {
             else if (errorHandler) {
                 errorHandler("");
             }
-        }
+        };
 
         vm.logout = function () {
             delete $localStorage.token;
             vm.userName = "";
-        }
+        };
     }];
 
     return userService;

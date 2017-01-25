@@ -50,7 +50,7 @@ define([
       case "Currency":
         return '><Data ss:Type="Number">' + value + "</Data></Cell>";
     }
-    
+
     return '><Data ss:Type="String">' + value + "</Data></Cell>"
   }
 
@@ -138,74 +138,7 @@ define([
 
     return wrkbookXML;
   }
-  // var self = this;
-  // var excel = "<table>";
-  // excel += "<tr>";
-  // for (var i = 0; i < columnDefs.length; i++) {
-  //   excel += "<td>" + columnDefs[i].displayName + "</td>";
-  // }
-  // excel += '</tr>';
 
-  // for (var j = 0; j < exportData.length; j++) {
-  //   excel += "<tr>";
-  //   for (var i = 0; i < columnDefs.length; i++) {
-  //     excel += "<td>" + exportData[j][columnDefs[i].field] + "</td>";
-  //   }
-  //   excel += '</tr>';
-  // }
-  // excel += '</table>'
-
-  // var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
-  // excelFile += "<head>";
-  // excelFile += "<!--[if gte mso 9]>";
-  // excelFile += "<xml>";
-  // excelFile += "<x:ExcelWorkbook>";
-  // excelFile += "<x:ExcelWorksheets>";
-  // excelFile += "<x:ExcelWorksheet>";
-  // excelFile += "<x:Name>";
-  // excelFile += "{Sheet1}";
-  // excelFile += "</x:Name>";
-  // excelFile += "<x:WorksheetOptions>";
-  // excelFile += "<x:DisplayGridlines/>";
-  // excelFile += "</x:WorksheetOptions>";
-  // excelFile += "</x:ExcelWorksheet>";
-  // excelFile += "</x:ExcelWorksheets>";
-  // excelFile += "<x:ExcelWorksheet>";
-  // excelFile += "<x:Name>";
-  // excelFile += "{Sheet2}";
-  // excelFile += "</x:Name>";
-  // excelFile += "<x:WorksheetOptions>";
-  // excelFile += "<x:DisplayGridlines/>";
-  // excelFile += "</x:WorksheetOptions>";
-  // excelFile += "</x:ExcelWorksheet>";
-  // excelFile += "</x:ExcelWorksheets>";
-  // excelFile += "</x:ExcelWorkbook>";
-  // excelFile += "</xml>";
-  // excelFile += "<![endif]-->";
-  // excelFile += "</head>";
-  // excelFile += "<body>";
-  // excelFile += excel;
-  // excelFile += "</body>";
-  // excelFile += "<body>";
-  // excelFile += excel;
-  // excelFile += "</body>";
-  // excelFile += "</html>";
-
-  // return excelFile;
-
-  /**
-          * @ngdoc function
-          * @name downloadFile
-          * @methodOf  ui.grid.exporter.service:uiGridExporterService
-          * @description Triggers download of a csv file.  Logic provided
-          * by @cssensei (from his colleagues at https://github.com/ifeelgoods) in issue #2391
-          * @param {string} fileName the filename we'd like our file to be
-          * given
-          * @param {string} csvContent the csv content that we'd like to
-          * download as a file
-          * @param {boolean} exporterOlderExcelCompatibility whether or not we put a utf-16 BOM on the from (\uFEFF)
-           * @param {boolean} exporterIsExcelCompatible whether or not we add separator header ('sep=X')
-          */
   common.downloadFile = function (fileName, csvContent, columnSeparator, exporterOlderExcelCompatibility, exporterIsExcelCompatible) {
     var D = document;
     var a = D.createElement('a');
@@ -281,6 +214,20 @@ define([
     }
 
     return isIE;
+  };
+
+  common.showLoading = function () {
+    var loading = document.getElementById("loadingContainer");
+    if (loading) {
+      loading.style.display = "block";
+    }
+  };
+
+  common.hideLoading = function () {
+    var loading = document.getElementById("loadingContainer");
+    if (loading) {
+      loading.style.display = "none";
+    }
   };
 
   return common;

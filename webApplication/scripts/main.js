@@ -34,6 +34,10 @@
                     templateUrl: '../views/templates/login.html',
                     controller: 'loginController as loginCtrl'
                 })
+                .state('noPermission', {
+                    url:'/noPermission',
+                    templateUrl:'../views/templates/noPermission.html'
+                })
                 .state('data', {
                     url: '/data',
                     templateUrl: '../views/templates/data.html',

@@ -1,4 +1,6 @@
-define(function () {
+define([
+    "../common/common"
+], function (common) {
     return ["$http", function ($http) {
         this.settingPages = ['系统设置'];
         this.getTradingSwagger = function (callback) {
@@ -27,6 +29,18 @@ define(function () {
 
         this.setCurrentSettingPage = function (currentPageName) {
             this.settingPages[1] = currentPageName;
+        };
+
+        this.setLoading = function (action) {
+            try {
+                common.showLoading();
+                if (action) {
+                    action();
+                }
+            }
+            finally {
+                common.hideLoading();
+            }
         };
 
         this.getSymbols = function (callback) {
@@ -94,6 +108,10 @@ define(function () {
             });
         };
 
+        this.getFunctionsByUserName = function () {
+            return $http.get("/api/userFunction/getByUserName");
+        };
+
         this.getDepartments = function () {
             return $http.get("/api/department");
         };
@@ -152,7 +170,7 @@ define(function () {
             return $http.get("/api/fill/query", { params: { filter: params } });
         };
         this.deleteFill = function (fill) {
-             return $http({
+            return $http({
                 method: "DELETE",
                 url: "/api/fill",
                 data: { fill: fill },
