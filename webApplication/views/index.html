@@ -2,32 +2,33 @@
 <html>
 
 <head>
-	<%-include header.html%>
+	<title></title>
+	<meta charset="utf-8">
+	<link href="../sheets/third/bootstrap.min.css" rel="stylesheet">
+	<link href="../sheets/third/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="../sheets/third/font-awesome.min.css" rel="stylesheet">
+	<link href="../sheets/third/ui-bootstrap-csp.css" rel="stylesheet">
+	<link href="../sheets/third/ui-grid.min.css" rel="stylesheet">
+	<link href="../sheets/third/select.min.css" rel="stylesheet">
+	<link href="../sheets/style.css" rel="stylesheet">
+	<script src="../scripts/thirdparty/require.js" data-main="../scripts/config.js"></script>
 </head>
 
 <body>
 	<div style="height: 100%">
 		<div ng-if="isLogin" ng-controller="mainController as mainCtrl" style="height: 100%">
 			<nav class="topbar navbar navbar-default navbar-fixed-top" role="navigation">
-				<div class="container-fluid">
-					<div class="col-md-6">
-						<ul class="nav navbar-nav">
-							<li>
-								<a class="topbar-header">
-									<img src="../sheets/imgs/report.png" />资产报表
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-6">
-						<ul class="nav navbar-nav navbar-right">
-							<user-info logout="mainCtrl.logout()"></user-info>
-							<li>
-								<a class="item-clickable"><span class="glyphicon glyphicon-question-sign"></span></a>
-							</li>
-						</ul>
-					</div>
-				</div>
+				<ul class="nav navbar-nav">
+					<li class="pull-left">
+						<a class="topbar-header">
+							<img src="../sheets/imgs/report.png" />资产报表
+						</a>
+					</li>
+					<li class="pull-right">
+						<a class="item-clickable"><span class="glyphicon glyphicon-question-sign"></span></a>
+					</li>
+					<user-info logout="mainCtrl.logout()" class="pull-right"></user-info>
+				</ul>
 			</nav>
 			<left-bar></left-bar>
 			<div class="main-content">

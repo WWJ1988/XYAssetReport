@@ -86,6 +86,19 @@ hr {
 .topbar {
 	background-color: #0e90d2;
 	overflow: visible;
+	background-image: none;
+}
+
+.topbar .nav{
+	width:100%;
+}
+
+.navbar-nav .open .dropdown-menu{
+	position: absolute !important;
+}
+
+.navbar-nav{
+	margin:0px !important;
 }
 
 .item-clickable {
@@ -119,7 +132,7 @@ hr {
 
 .user-info{
 	position:relative;
-	width:100px;
+	min-width:100px;
 }
 
 .user-info-text{
