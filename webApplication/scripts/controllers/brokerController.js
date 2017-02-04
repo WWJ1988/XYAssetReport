@@ -99,8 +99,8 @@ define(['lodash'], function (_) {
 
         function initializeColumnTables() {
             var columnDefs = [
-                { field: "BrokerColumnName", displayName: "标准表头" },
-                { field: "StandardColumnName", displayName: "自定义表头" },
+                { field: "StandardColumnName", displayName: "标准表头" },
+                { field: "BrokerColumnName", displayName: "自定义表头" },
                 { field: "IsEnabled", displayName: "是否启用" }
             ];
 
