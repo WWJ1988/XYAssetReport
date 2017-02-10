@@ -19,6 +19,10 @@ body {
 	height: 100%;
 }
 
+.text-align-right{
+	text-align: right;
+}
+
 .loading-container{
 	height:100%;
 	width:100%;
@@ -49,6 +53,24 @@ input[type="radio"], input[type="checkbox"]{
 
 hr {
 	border-color: #6ebfb8
+}
+
+.modal-body .row{
+	margin-bottom:10px;
+}
+
+.modal-body .row>div:first-child{
+	text-align: right;
+}
+
+.modal-body .row label{
+	height:34px;
+	line-height: 34px;
+}
+
+.modal-body .datepicker-addon{
+	top: 7px;
+    right: 25px;
 }
 
 .overflow-hidden{
@@ -250,6 +272,13 @@ hr {
 	float: right;
 }
 
+.setting-grid-error-message{
+	float: left;
+    line-height: 40px;
+    color: red;
+    font-size: 14px;
+}
+
 .grid-checkbox-cell{
 	text-align: center;
 	height:100%;
@@ -388,15 +417,11 @@ hr {
 	margin-bottom: 10px;
  }
 
- .detail-page-container .my-grid{
-	 min-height: 500px;
- }
-
 .detail-page-container .my-sub-grid{
 	min-height:100px;
 }
 
-.data-page-container .form-control,.data-page-container .btn{
+.data-page-container .form-control,.data-page-container .btn, .detail-page-content .form-control{
 	height:28px;
 	font-size: 12px;
 	padding:3px 8px;

@@ -17,6 +17,7 @@ var macAddress = require('./routes/macAddress');
 var lookupData = require('./routes/lookupData');
 var shareHolder = require("./routes/shareHolder");
 var fill = require("./routes/fill");
+var fee = require("./routes/fee");
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.post('/api/login/health', login.checkHealth);
 
 app.get("/api/userFunction", userFunction.getFunctions);
 app.get("/api/userFunction/getByUserName", userFunction.getFunctionsByUserName);
+app.post("/api/userFunction",userFunction.saveFunctions);
 
 app.get("/api/user", userService.user.getUser);
 app.post("/api/user", userService.user.saveUser);
@@ -59,6 +61,7 @@ app.get('/api/broker', broker.brokerService.getBrokers);
 app.delete('/api/broker', broker.brokerService.deleteBroker);
 app.post('/api/broker', broker.brokerService.saveBroker);
 app.get("/api/columnMap", broker.brokerService.getColumnMaps);
+app.post("/api/Broker/UpdateColumnMap", broker.brokerService.updateColumnMaps);
 
 app.get('/api/security', security.securityService.getSecurities);
 app.delete('/api/security', security.securityService.deleteSecurity);
@@ -80,9 +83,12 @@ app.get("/api/shareHolder", shareHolder.shareHolderService.getShareHolders);
 app.post("/api/shareHolder", shareHolder.shareHolderService.saveShareHolder);
 app.delete("/api/shareHolder", shareHolder.shareHolderService.deleteShareHolder);
 
-app.get("/api/fill/query", fill.fillService.queryFills);
+app.post("/api/fill/query", fill.fillService.queryFills);
 app.get("/api/fill", fill.fillService.getFills);
 app.post("/api/fill", fill.fillService.saveFill);
 app.delete("/api/fill", fill.fillService.deleteFill);
+
+app.post("/api/fee", fee.saveFee);
+app.delete("/api/fee", fee.deleteFee);
 
 module.exports = app;

@@ -24,5 +24,12 @@ exports.brokerService = {
             url: "http://localhost:8899/api/ColumnMap/",
             method: "GET"
         }, req, res);
+    },
+    updateColumnMaps: function (req, res) {
+        request.sendRequest({
+            url: "http://localhost:8899/api/Broker/UpdateColumnMap",
+            method: "POST",
+            json: req.body.columnMaps
+        }, req, res);
     }
 }

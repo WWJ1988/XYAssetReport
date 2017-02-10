@@ -1,13 +1,13 @@
 ﻿<setting-grid-section title="券商列表" add-event="brokerCtrl.addBroker()" delete-event="brokerCtrl.deleteBroker()" enable-add="brokerCtrl.enableGridAction"
 	delete-enable="brokerCtrl.hasRowSelected" grid-option="brokerCtrl.gridOption">
 </setting-grid-section>
-<setting-detail-section save-event="brokerCtrl.saveBroker()" cancel-event="brokerCtrl.cancel()" action-enable="brokerCtrl.enableGridAction">
+<setting-detail-section save-event="brokerCtrl.saveBroker()" cancel-event="brokerCtrl.cancel()" action-enable="brokerCtrl.canSaveData">
 	<div class="row">
 		<div class="col-md-3">
 			<label>券商名称：</label>
 		</div>
 		<div class="col-md-9">
-			<input type="text" class="form-control" ng-model="brokerCtrl.selectedRow.BrokerName" />
+			<input type="text" class="form-control" ng-model="brokerCtrl.selectedRow.BrokerName" ng-disabled="!vm.newData"/>
 		</div>
 	</div>
 	<div class="row">
@@ -15,23 +15,23 @@
 			<label>券商名称：</label>
 		</div>
 		<div class="col-md-9">
-			<textarea class="form-control" rows="4" ng-model="brokerCtrl.selectedRow.BrokerNote" />
+			<textarea class="form-control" rows="4" ng-model="brokerCtrl.selectedRow.BrokerNote" ng-disabled="!vm.newData" />
 		</div>
 	</div>
 	<hr style="margin-top:5px;margin-bottom:5px;"/>
 	<div>
         <uib-tabset>
             <uib-tab heading="委托配置" select="brokerCtrl.setTab(1)">
-                <div ui-grid="brokerCtrl.weituo.gridOption" class="my-sub-grid" ui-grid-selection ng-if="brokerCtrl.selectedTabIndex==1"></div>
+                <div ui-grid="brokerCtrl.weituo.gridOption" class="my-sub-grid" ui-grid-edit ui-grid-row-edit ui-grid-selection ng-if="brokerCtrl.selectedTabIndex==1"></div>
             </uib-tab>
             <uib-tab heading="交割单配置" select="brokerCtrl.setTab(2)">
-                <div ui-grid="brokerCtrl.jiaoge.gridOption" class="my-sub-grid" ui-grid-selection ng-if="brokerCtrl.selectedTabIndex==2"></div>
+                <div ui-grid="brokerCtrl.jiaoge.gridOption" class="my-sub-grid" ui-grid-edit ui-grid-row-edit ui-grid-selection ng-if="brokerCtrl.selectedTabIndex==2"></div>
             </uib-tab>
             <uib-tab heading="资金流水配置" select="brokerCtrl.setTab(3)">
-                <div ui-grid="brokerCtrl.zijinliushui.gridOption" class="my-sub-grid" ui-grid-selection ng-if="brokerCtrl.selectedTabIndex==3"></div>
+                <div ui-grid="brokerCtrl.zijinliushui.gridOption" class="my-sub-grid" ui-grid-edit ui-grid-row-edit ui-grid-selection ng-if="brokerCtrl.selectedTabIndex==3"></div>
             </uib-tab>
             <uib-tab heading="资金股份配置" select="brokerCtrl.setTab(4)">
-               <div ui-grid="brokerCtrl.zijingufen.gridOption" class="my-sub-grid" ui-grid-selection ng-if="brokerCtrl.selectedTabIndex==4"></div>
+               <div ui-grid="brokerCtrl.zijingufen.gridOption" class="my-sub-grid" ui-grid-edit ui-grid-row-edit ui-grid-selection ng-if="brokerCtrl.selectedTabIndex==4"></div>
             </uib-tab>
         </uib-tabset>
     </div>

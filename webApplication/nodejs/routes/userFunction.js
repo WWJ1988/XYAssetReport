@@ -12,3 +12,11 @@ exports.getFunctionsByUserName = function (req, res) {
         method: "GET"
     }, req, res);
 };
+
+exports.saveFunctions = function (req, res) {
+    request.sendRequest({
+        url: "http://localhost:8899/api/UserFunction/",
+        method: "POST",
+        json: { UserID: req.body.userId, UserFunctionList: req.body.functions }
+    }, req, res);
+};

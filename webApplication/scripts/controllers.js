@@ -54,5 +54,30 @@ define(['angular',
 
         controllersModule.controller("shareHolderController", shareHolderController);
 
+        controllersModule.controller('ModalInstanceCtrl', function ($uibModalInstance, data) {
+            var vm = this;
+            vm.data = data;
+
+            vm.ok = function () {
+                var closeWindow = true;
+                if (data.ok) {
+                    closeWindow = data.ok(vm.data);
+                }
+                if (closeWindow) {
+                    $uibModalInstance.close(vm.data);
+                }
+            };
+
+            vm.cancel = function () {
+                var closeWindow = true;
+                if (data.cancel) {
+                    closeWindow = data.cancel(vm.data);
+                }
+                if (closeWindow) {
+                    $uibModalInstance.dismiss('cancel');
+                }
+            };
+        });
+
         return controllersModule;
     });

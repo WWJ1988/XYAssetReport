@@ -259,12 +259,12 @@ define([
 
         function initializeOrderSummaryGrid() {
             var columnDefs = [
-                { field: "TotalFillAmount", displayName: "总成交数量", width: 100, type: "Currency" },
-                { field: "TotalOrderCount", displayName: "总交易笔数", width: 100, type: "Currency" },
-                { field: "LongOrderCount", displayName: "多头笔数", width: 100, type: "Currency" },
-                { field: "ShortOrderCount", displayName: "空头笔数", width: 100, type: "Currency" },
-                { field: "ProfitOrderCount", displayName: "盈利笔数", width: 100, type: "Currency" },
-                { field: "LossOrderCount", displayName: "损失笔数", width: 100, type: "Currency" }
+                { field: "TotalFillAmount", displayName: "总成交数量", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "TotalOrderCount", displayName: "总交易笔数", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "LongOrderCount", displayName: "多头笔数", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "ShortOrderCount", displayName: "空头笔数", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "ProfitOrderCount", displayName: "盈利笔数", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "LossOrderCount", displayName: "损失笔数", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  }
             ];
             InitializeGrid(vm.orderSummaryData.summaryGrid, columnDefs);
 
@@ -293,17 +293,17 @@ define([
                 { field: "BrokerName", displayName: "券商", width: 100 },
                 { field: "SecurityID", displayName: "证券代码", width: 100 },
                 { field: "SecurityName", displayName: "证券名称", width: 100 },
-                { field: "HoldingAmount", displayName: "参考持股", width: 100, type: "Currency" },
-                { field: "SellableAmount", displayName: "可用股份", width: 100, type: "Currency" },
-                { field: "CostPrice", displayName: "成本价", width: 100, type: "Currency" },
-                { field: "CurrentPrice", displayName: "当前价", width: 100, type: "Currency" },
-                { field: "CurrentCost", displayName: "当前成本", width: 100, type: "Currency" },
-                { field: "MarketValue", displayName: "最新市值", width: 100, type: "Currency" },
-                { field: "FloatingPnl", displayName: "浮动盈亏", width: 100, type: "Currency" },
-                { field: "PnlPercentage", displayName: "盈亏比例", width: 100, type: "Currency" },
-                { field: "LockAmount", displayName: "冻结数量", width: 100, type: "Currency" },
-                { field: "ZaiTuGuFen", displayName: "在途股份", width: 100, type: "Currency" },
-                { field: "ResidualAmount", displayName: "股份余额", width: 100, type: "Currency" },
+                { field: "HoldingAmount", displayName: "参考持股", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "SellableAmount", displayName: "可用股份", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "CostPrice", displayName: "成本价", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "CurrentPrice", displayName: "当前价", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "CurrentCost", displayName: "当前成本", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "MarketValue", displayName: "最新市值", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "FloatingPnl", displayName: "浮动盈亏", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "PnlPercentage", displayName: "盈亏比例", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "LockAmount", displayName: "冻结数量", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "ZaiTuGuFen", displayName: "在途股份", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "ResidualAmount", displayName: "股份余额", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
                 { field: "CashAccountID", displayName: "资金账号", width: 100 }
             ];
             InitializeGrid(vm.marketValueData, columnDefs);
@@ -311,14 +311,14 @@ define([
 
         function initializePnlGrid() {
             var columnDefs = [
-                { field: "ProfitLoss", displayName: "盈亏总额", width: 100, type: "Currency" },
-                { field: "TotalFillAmount", displayName: "总成交数量", width: 100, type: "Currency" },
-                { field: "TotalFillMoneyAmount", displayName: "总成交金额", width: 100, type: "Currency" },
-                { field: "MaxFillMoneyAmount", displayName: "最大成交金额", width: 100, type: "Currency" },
-                { field: "AverageFillMoneyAmount", displayName: "平均成交金额", width: 100, type: "Currency" },
-                { field: "TotalFee", displayName: "总费用", width: 100, type: "Currency" },
-                { field: "MaxFillAmount", displayName: "最大成交量", width: 100, type: "Currency" },
-                { field: "AverageFillAmount", displayName: "平均成交量", width: 100, type: "Currency" }
+                { field: "ProfitLoss", displayName: "盈亏总额", width: 100, type: "number", cellFilter: 'number: 2', cellClass: "text-align-right" },
+                { field: "TotalFillAmount", displayName: "总成交数量", width: 100, type: "number", cellFilter: 'number: 2', cellClass: "text-align-right" },
+                { field: "TotalFillMoneyAmount", displayName: "总成交金额", width: 100, type: "number", cellFilter: 'number: 2', cellClass: "text-align-right" },
+                { field: "MaxFillMoneyAmount", displayName: "最大成交金额", width: 100, type: "number", cellFilter: 'number: 2', cellClass: "text-align-right" },
+                { field: "AverageFillMoneyAmount", displayName: "平均成交金额", width: 100, type: "number", cellFilter: 'number: 2', cellClass: "text-align-right" },
+                { field: "TotalFee", displayName: "总费用", width: 100, type: "number", cellFilter: 'number: 2', cellClass: "text-align-right" },
+                { field: "MaxFillAmount", displayName: "最大成交量", width: 100, type: "number", cellFilter: 'number: 2', cellClass: "text-align-right" },
+                { field: "AverageFillAmount", displayName: "平均成交量", width: 100, type: "number", cellFilter: 'number: 2', cellClass: "text-align-right" }
             ];
             InitializeGrid(vm.pnlData.summaryGrid, columnDefs);
 
@@ -343,12 +343,12 @@ define([
 
         function initializeFeeGrid() {
             var columnDefs = [
-                { field: "TotalExchangeFee", displayName: "总手续费", width: 100, type: "Currency" },
-                { field: "TotalStampTax", displayName: "总印花税", width: 100, type: "Currency" },
-                { field: "TotalTransfterDuty", displayName: "总过户费", width: 100, type: "Currency" },
-                { field: "TotalExtraCharge", displayName: "总附加费", width: 100, type: "Currency" },
-                { field: "TotalExchangeCustodianFee", displayName: "交易清算费", width: 100, type: "Currency" },
-                { field: "TotalFee", displayName: "总费用", width: 100, type: "Currency" }
+                { field: "TotalExchangeFee", displayName: "总手续费", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "TotalStampTax", displayName: "总印花税", width: 100, type: "Currency" , cellFilter: 'number: 2', cellClass: "text-align-right" },
+                { field: "TotalTransfterDuty", displayName: "总过户费", width: 100, type: "Currency" , cellFilter: 'number: 2', cellClass: "text-align-right" },
+                { field: "TotalExtraCharge", displayName: "总附加费", width: 100, type: "Currency" , cellFilter: 'number: 2', cellClass: "text-align-right" },
+                { field: "TotalExchangeCustodianFee", displayName: "交易清算费", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  },
+                { field: "TotalFee", displayName: "总费用", width: 100, type: "Currency", cellFilter: 'number: 2', cellClass: "text-align-right"  }
             ];
             InitializeGrid(vm.feeData.summaryGrid, columnDefs);
 
@@ -380,7 +380,7 @@ define([
                     type: "Currency",
                     width: 150,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
-                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
+                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn, cellFilter: 'number: 2', cellClass: "text-align-right" 
                 },
                 {
                     field: "FillAmount",
@@ -388,7 +388,7 @@ define([
                     type: "Currency",
                     width: 100,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
-                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
+                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn, cellFilter: 'number: 2', cellClass: "text-align-right" 
                 },
                 {
                     field: "TraderPerformance",
@@ -396,7 +396,7 @@ define([
                     type: "Currency",
                     width: 120,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
-                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
+                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn, cellFilter: 'number: 2', cellClass: "text-align-right" 
                 },
                 {
                     field: "FillMoneyAmount",
@@ -404,7 +404,7 @@ define([
                     type: "Currency",
                     width: 120,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
-                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
+                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn, cellFilter: 'number: 2', cellClass: "text-align-right" 
                 },
                 {
                     field: "BrokerFee",
@@ -412,21 +412,21 @@ define([
                     type: "Currency",
                     width: 120,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
-                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
+                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn, cellFilter: 'number: 2', cellClass: "text-align-right" 
                 },
                 {
                     field: "CompanyFee",
                     displayName: "公司手续费",
                     type: "Currency",
                     width: 120, treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
-                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
+                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn, cellFilter: 'number: 2', cellClass: "text-align-right" 
                 },
                 {
                     field: "LiangRongFee",
                     displayName: "两融费",
                     type: "Currency",
                     width: 100, treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
-                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
+                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn, cellFilter: 'number: 2', cellClass: "text-align-right" 
                 },
                 {
                     field: "TransfterDuty",
@@ -434,7 +434,7 @@ define([
                     type: "Currency",
                     width: 120,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
-                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
+                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn, cellFilter: 'number: 2', cellClass: "text-align-right" 
                 },
                 {
                     field: "StampTax",
@@ -442,7 +442,7 @@ define([
                     type: "Currency",
                     width: 120,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
-                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
+                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn, cellFilter: 'number: 2', cellClass: "text-align-right" 
                 },
                 {
                     field: "StipulatedFee",
@@ -450,7 +450,7 @@ define([
                     type: "Currency",
                     width: 120,
                     treeAggregationType: uiGridGroupingConstants.aggregation.SUM,
-                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn
+                    customTreeAggregationFinalizerFn: customTreeAggregationFinalizerFn, cellFilter: 'number: 2', cellClass: "text-align-right" 
                 }
             ];
 

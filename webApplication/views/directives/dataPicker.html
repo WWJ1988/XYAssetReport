@@ -30,7 +30,7 @@
     </div>
     <div class="data-picker-content">
         <ul>
-            <li ng-repeat="unselectedItem in unselectedData" ng-click="selectUncheckedItem(unselectedItem, $event)">
+            <li ng-repeat="unselectedItem in unselectedData track by unselectedItem[trackId]" ng-click="selectUncheckedItem(unselectedItem, $event)">
                 {{unselectedItem[displayName]}}
             </li>
         </ul>

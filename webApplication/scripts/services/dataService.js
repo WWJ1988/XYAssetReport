@@ -112,6 +112,10 @@ define([
             return $http.get("/api/userFunction/getByUserName");
         };
 
+        this.saveFunctions = function (userId, functions) {
+            return $http.post("/api/userFunction", { userId: userId, functions: functions });
+        };
+
         this.getDepartments = function () {
             return $http.get("/api/department");
         };
@@ -136,6 +140,9 @@ define([
                 url: "/api/columnMap"
             });
         };
+        this.saveColumnMaps = function (columnMaps) {
+            return $http.post("/api/Broker/UpdateColumnMap", { columnMaps: columnMaps });
+        }
         this.getMacAddress = function () {
             return $http.get("/api/macAddress");
         };
@@ -167,13 +174,24 @@ define([
             return $http.get("/api/fill");
         };
         this.queryFills = function (params) {
-            return $http.get("/api/fill/query", { params: { filter: params } });
+            return $http.post("/api/fill/query", { filter: params });
         };
         this.deleteFill = function (fill) {
             return $http({
                 method: "DELETE",
                 url: "/api/fill",
                 data: { fill: fill },
+                headers: { 'Content-Type': 'application/json;charset=utf-8' }
+            });
+        };
+        this.saveFee = function (fee) {
+            return $http.post("/api/fee", { fee: fee });
+        };
+        this.deleteFee = function (fee) {
+            return $http({
+                method: "DELETE",
+                url: "/api/fee",
+                data: { fee: fee },
                 headers: { 'Content-Type': 'application/json;charset=utf-8' }
             });
         };

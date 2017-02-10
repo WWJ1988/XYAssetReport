@@ -1,10 +1,13 @@
 <div class="col-md-6 setting-detail-container">
+	<div class="setting-grid-error-message">
+		{{errorMessage}}
+	</div>
 	<div class="setting-grid-action">
-		<button class="btn" title="保存" ng-click="save()" ng-disabled="actionEnable">
+		<button class="btn" title="保存" ng-click="save()" ng-disabled="!actionEnable">
 				<span class="glyphicon glyphicon-plus-sign"></span>
 				保存
 			</button>
-		<button class="btn" title="取消" ng-click="cancel()" ng-disabled="actionEnable">
+		<button class="btn" title="取消" ng-click="cancel()" ng-disabled="!actionEnable">
 				<span class="glyphicon glyphicon-remove-sign"></span>
 				取消
 			</button>

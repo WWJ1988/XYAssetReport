@@ -27,7 +27,8 @@ define(function () {
             scope: {
                 saveEvent: "&",
                 cancelEvent: "&",
-                actionEnable: "="
+                actionEnable: "=",
+                errorMessage: "=?"
             },
             restrict: "E",
             replace: true,

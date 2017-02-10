@@ -23,8 +23,8 @@ exports.fillService = {
     queryFills: function (req, res) {
         request.sendRequest({
             url: "http://localhost:8899/api/Fill/Query",
-            method: "GET",
-            json: JSON.parse(req.query.filter)
+            method: "POST",
+            json: req.body.filter
         }, req, res);
     }
 }

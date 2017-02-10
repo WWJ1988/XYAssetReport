@@ -17,7 +17,7 @@ define(function () {
                         successHandler();
                     }
                 }).error(function (error) {
-                    if (errorhandler) {
+                    if (errorHandler) {
                         errorhandler(error);
                     }
                 });

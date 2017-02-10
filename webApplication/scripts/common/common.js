@@ -48,6 +48,7 @@ define([
   function getStyleString(type, value) {
     switch (type) {
       case "Currency":
+      case "number":
         return '><Data ss:Type="Number">' + value + "</Data></Cell>";
     }
 

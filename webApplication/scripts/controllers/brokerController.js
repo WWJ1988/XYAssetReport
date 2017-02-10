@@ -1,5 +1,5 @@
 define(['lodash'], function (_) {
-    return ["$scope", "$timeout", "dataService", function ($scope, $timeout, dataService) {
+    return ["$scope", "$timeout", "$q", "dataService", function ($scope, $timeout, $q, dataService) {
         'use strict';
 
         var vm = this;
@@ -13,9 +13,11 @@ define(['lodash'], function (_) {
         vm.jiaoge = {};
         vm.zijinliushui = {};
         vm.zijingufen = {};
+        vm.canSaveData = false;
 
         vm.addBroker = function () {
             vm.enableGridAction = false;
+            vm.canSaveData = true;
             vm.newData = {
                 "BrokerID": 0,
                 "BrokerName": "",
@@ -25,7 +27,7 @@ define(['lodash'], function (_) {
             vm.gridOption.data.push(vm.newData);
             vm.gridApi.grid.modifyRows(vm.gridOption.data);
             vm.gridApi.selection.selectRow(vm.newData);
-        }
+        };
 
         vm.deleteBroker = function () {
             dataService.deleteBroker(vm.selectedRow.BrokerID).success(function () {
@@ -39,20 +41,85 @@ define(['lodash'], function (_) {
                     vm.gridApi.selection.selectRow(vm.gridOption.data[nextSelectedIndex])
                 }
             });
-        }
+        };
 
         vm.saveBroker = function () {
-            dataService.saveBroker(vm.newData).success(function (data) {
-                vm.gridOption.data[vm.gridOption.data.length - 1].BrokerID = data.BrokerID;
-                vm.gridApi.grid.modifyRows(vm.gridOption.data);
-                vm.enableGridAction = true;
-                vm.newData = null;
-            });
-        }
+            if (vm.newData) {
+                dataService.saveBroker(vm.newData).success(function (data) {
+                    vm.gridOption.data[vm.gridOption.data.length - 1].BrokerID = data.BrokerID;
+                    vm.gridApi.grid.modifyRows(vm.gridOption.data);
+                    vm.enableGridAction = true;
+                    vm.newData = null;
+                    vm.canSaveData = false;
+                });
+            }
+            else {
+                var brokerColumns = _.filter(vm.columnCache, function (columnData) {
+                    return columnData.BrokerID == vm.selectedRow.BrokerID;
+                });
+                var changedColumns = [];
+                _.forEach(brokerColumns, function (columnData) {
+                    var changedColumn = null;
+                    switch (columnData.ColumnMapType) {
+                        case "Order":
+                            changedColumn = findChangedColumn(columnData, vm.weituo.gridOption.data);
+                            break;
+                        case "FillFromBroker":
+                            changedColumn = findChangedColumn(columnData, vm.jiaoge.gridOption.data);
+                            break;
+                        case "FillFromTrading":
+                            changedColumn = findChangedColumn(columnData, vm.zijinliushui.gridOption.data);
+                            break;
+                        case "Position":
+                            changedColumn = findChangedColumn(columnData, vm.zijingufen.gridOption.data);
+                            break;
+                    }
+                    if (changedColumn) {
+                        columnData.IsEnabled = changedColumn.IsEnabled;
+                        columnData.BrokerColumnName = changedColumn.BrokerColumnName;
+                        changedColumns.push(changedColumn);
+                    }
+                });
+                if (changedColumns.length > 0) {
+                    dataService.saveColumnMaps(changedColumns).success(function () {
+                        vm.enableGridAction = true;
+                        vm.canSaveData = false;
+                    });
+                }
+            }
+        };
 
         vm.cancel = function () {
+            vm.canSaveData = false;
+            groupColumnData();
+        };
 
-        }
+        vm.dataChanged = function (type) {
+            vm.canSaveData = true;
+        };
+
+        vm.templateSaveColumns = function (rowEntity) {
+            var promise = $q.defer();
+            vm.canSaveData = true;
+            switch (rowEntity.ColumnMapType) {
+                case "Order":
+                    vm.weituo.gridApi.rowEdit.setSavePromise(rowEntity, promise.promise);
+                    break;
+                case "FillFromBroker":
+                    vm.jiaoge.gridApi.rowEdit.setSavePromise(rowEntity, promise.promise);
+                    break;
+                case "FillFromTrading":
+                    vm.zijinliushui.gridApi.rowEdit.setSavePromise(rowEntity, promise.promise);
+                    break;
+                default:
+                    vm.zijingufen.gridApi.rowEdit.setSavePromise(rowEntity, promise.promise);
+                    break;
+            }
+
+            $timeout(function () {
+                promise.resolve();
+            });
+        };
 
         function initialize() {
             initializeGrid();
@@ -84,6 +151,11 @@ define(['lodash'], function (_) {
                 onRegisterApi: function (gridApi) {
                     vm.gridApi = gridApi;
                     vm.gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                        if (row.entity == vm.selectedRow && !row.isSelected) {
+                            row.isSelected = true;
+                            return;
+                        }
+                        vm.cancel();
                         vm.selectedRow = row.entity;
                         vm.hasRowSelected = true;
                         groupColumnData();
@@ -99,9 +171,9 @@ define(['lodash'], function (_) {
 
         function initializeColumnTables() {
             var columnDefs = [
-                { field: "StandardColumnName", displayName: "标准表头" },
-                { field: "BrokerColumnName", displayName: "自定义表头" },
-                { field: "IsEnabled", displayName: "是否启用" }
+                { field: "StandardColumnName", displayName: "标准表头", enableCellEdit: false },
+                { field: "BrokerColumnName", displayName: "自定义表头", enableCellEdit: true },
+                { field: "IsEnabled", displayName: "是否启用", cellTemplate: '<div class="grid-checkbox-cell"><input type="checkbox" ng-model="row.entity.IsEnabled" ng-click="grid.appScope.brokerCtrl.dataChanged()"</div>' }
             ];
 
             initializeColumnGrid(vm.weituo, columnDefs);
@@ -119,6 +191,18 @@ define(['lodash'], function (_) {
                 multiSelect: false,
                 modifierKeysToMultiSelect: false,
                 columnDefs: columnDefs,
+                onRegisterApi: function (gridApi) {
+                    data.gridApi = gridApi;
+                    data.gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                        if (row.entity == data.selectedRow && !row.isSelected) {
+                            row.isSelected = true;
+                            return;
+                        }
+
+                        data.selectedRow = row.entity;
+                    });
+                    data.gridApi.rowEdit.on.saveRow($scope, vm.templateSaveColumns);
+                }
             };
         }
 
@@ -130,18 +214,19 @@ define(['lodash'], function (_) {
                 var zijingufenData = [];
                 _.forEach(vm.columnCache, function (columnData) {
                     if (columnData.BrokerID == vm.selectedRow.BrokerID) {
-                        switch (columnData.ColumnMapType) {
+                        var clonedColumnData = _.cloneDeep(columnData);
+                        switch (clonedColumnData.ColumnMapType) {
                             case "Order":
-                                weituoData.push(columnData);
+                                weituoData.push(clonedColumnData);
                                 break;
                             case "FillFromBroker":
-                                jiaogeData.push(columnData);
+                                jiaogeData.push(clonedColumnData);
                                 break;
                             case "FillFromTrading":
-                                zinjinliushuiData.push(columnData);
+                                zinjinliushuiData.push(clonedColumnData);
                                 break;
                             case "Position":
-                                zijingufenData.push(columnData);
+                                zijingufenData.push(clonedColumnData);
                                 break;
                         }
                     }
@@ -151,6 +236,16 @@ define(['lodash'], function (_) {
                 vm.zijinliushui.gridOption.data = zinjinliushuiData;
                 vm.zijingufen.gridOption.data = zijingufenData;
             }
+        }
+
+        function findChangedColumn(originalColumn, gridData) {
+            return _.find(gridData, function (data) {
+                if (data.StandardColumnName == originalColumn.StandardColumnName) {
+                    return data.BrokerColumnName != originalColumn.BrokerColumnName || data.IsEnabled != originalColumn.IsEnabled;
+                }
+
+                return false;
+            });
         }
 
         vm.setTab = function (index) {

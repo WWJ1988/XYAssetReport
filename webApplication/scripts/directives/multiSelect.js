@@ -17,6 +17,7 @@ define([
             replace: true,
             templateUrl: "../views/directives/multiSelect.html",
             link: function (scope, element, attr) {
+                scope.maxIndex = 500;
                 var clickHandler = function (event) {
                     if (elementMatchesAnyInArray(event.target, element.find(event.target.tagName)))
                         return;
@@ -24,6 +25,7 @@ define([
                     element.removeClass('open');
                     scope.isOpen = false;
                     $document.unbind('click', clickHandler);
+                    scope.maxIndex = 500;
                     scope.$apply();
                 };
                 var elementMatchesAnyInArray = function (element, elementArray) {
@@ -87,6 +89,10 @@ define([
                 };
                 scope.select = function () {
                     setAllChckedStatus();
+                };
+                scope.scrollChange = function (top) {
+                    scope.maxIndex = 500 + top / 20;
+                    scope.$apply();
                 };
             },
             controllerAs: ""

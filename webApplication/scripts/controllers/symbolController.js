@@ -3,19 +3,24 @@ define(['lodash'], function (_) {
         var vm = this;
         vm.enableGridAction = true;
         vm.hasRowSelected = false;
+        vm.canSaveData = false;
         vm.selectedRow = {};
         vm.newData = null;
+        vm.oldValue = null;
+        var userWatcher = null;
 
         vm.addSymbol = function () {
             vm.enableGridAction = false;
+            vm.canSaveData = true;
             vm.newData = {
-                "SecurityID": "",
-                "SecurityName": "",
-                "HoldingAmount": 0,
-                "ExchangeName": "深交所"
+                SecurityID: "",
+                SecurityName: "",
+                HoldingAmount: 0,
+                ExchangeName: "深交所",
+                IsCreate: true
             };
 
-            vm.gridOption.data.push(vm.newData);
+            vm.gridOption.data = _.concat(vm.newData, vm.gridOption.data);
             vm.gridApi.grid.modifyRows(vm.gridOption.data);
             vm.gridApi.selection.selectRow(vm.newData);
         }
@@ -29,20 +34,25 @@ define(['lodash'], function (_) {
                 vm.gridApi.grid.modifyRows(vm.gridOption.data);
                 if (vm.gridOption.data.length > 0) {
                     var nextSelectedIndex = index == vm.gridOption.data.length ? index - 1 : index;
-                    vm.gridApi.selection.selectedRow(vm.gridOption.data[nextSelectedIndex])
+                    vm.gridApi.selection.selectRow(vm.gridOption.data[nextSelectedIndex])
                 }
             });
         }
 
         vm.saveSymbol = function () {
-            dataService.saveSymbol(vm.newData).success(function (res) {
+            var saveData = vm.newData ? vm.newData : vm.selectedRow;
+            dataService.saveSymbol(saveData).success(function (res) {
                 vm.enableGridAction = true;
                 vm.newData = null;
+                vm.canSaveData = false;
             });
         }
 
         vm.cancel = function () {
-
+            if (vm.oldValue) {
+                _.assign(vm.selectedRow, vm.oldValue);
+            }
+            vm.canSaveData = false;
         }
 
         function initialize() {
@@ -50,6 +60,9 @@ define(['lodash'], function (_) {
             dataService.setCurrentSettingPage("券池设置");
             dataService.getSymbols().success(function (data) {
                 vm.gridOption.data = data;
+            });
+            $scope.$on("$destroy", function () {
+                releaseWatcher();
             });
         }
 
@@ -70,18 +83,47 @@ define(['lodash'], function (_) {
                 onRegisterApi: function (gridApi) {
                     vm.gridApi = gridApi;
                     vm.gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                        if (row.entity == vm.selectedRow && !row.isSelected) {
+                            row.isSelected = true;
+                            return;
+                        }
+                        releaseWatcher();
+                        vm.cancel();
                         vm.selectedRow = row.entity;
                         vm.hasRowSelected = true;
+                        vm.oldValue = _.cloneDeep(row.entity);
                         if (vm.newData != null && vm.selectedRow != vm.newData) {
                             vm.enableGridAction = true;
                             vm.gridOption.data.splice(vm.gridOption.data.length - 1, 1);
                             vm.newData = null;
                         }
+                        setWatcher();
                     });
                 }
             };
         }
 
+        function setWatcher() {
+            userWatcher = $scope.$watch("symbolCtrl.selectedRow", function (newValue, oldValue) {
+                if (!oldValue["$$hashKey"]) {
+                    oldValue["$$hashKey"] = newValue["$$hashKey"];
+                }
+                if (newValue == oldValue) {
+                    vm.canSaveData = false;
+                }
+                else {
+                    vm.canSaveData = true;
+                    vm.errorMessage = "";
+                }
+
+            }, true);
+        }
+
+        function releaseWatcher() {
+            if (userWatcher) {
+                userWatcher();
+            }
+        }
         initialize();
     }];
 

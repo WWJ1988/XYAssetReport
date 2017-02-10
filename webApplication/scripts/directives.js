@@ -7,7 +7,8 @@ define(['angular',
     'directives/dataPicker',
     'directives/fillFilter',
     'directives/multiSelect',
-    'directives/onFileChange'], function (angular, leftbar, expander, userInfo, settingFramework, tree, dataPicker, fillFilter, multiSelect, onFileChange) {
+    'directives/onFileChange',
+    'directives/myScroller'], function (angular, leftbar, expander, userInfo, settingFramework, tree, dataPicker, fillFilter, multiSelect, onFileChange, myScroller) {
         var directivesModule = angular.module("directives", []);
 
         directivesModule.directive("leftBar", leftbar);
@@ -20,6 +21,7 @@ define(['angular',
         directivesModule.directive("fillFilter", fillFilter);
         directivesModule.directive("multiselect", multiSelect);
         directivesModule.directive("onFileChange", onFileChange);
+        directivesModule.directive("myScroller", myScroller);
 
         return directivesModule;
     });

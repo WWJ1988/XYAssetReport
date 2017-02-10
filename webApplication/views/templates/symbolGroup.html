@@ -1,23 +1,15 @@
 <setting-grid-section title="券池组列表" add-event="symbolGroupCtrl.addSymbolGroup()" delete-event="symbolGroupCtrl.deleteSymbolGroup()"
     enable-add="symbolGroupCtrl.enableGridAction" delete-enable="symbolGroupCtrl.hasRowSelected" grid-option="symbolGroupCtrl.gridOption">
 </setting-grid-section>
-<setting-detail-section save-event="symbolGroupCtrl.saveSymbolGroup()" cancel-event="symbolGroupCtrl.cancel()" action-enable="symbolGroupCtrl.enableGridAction">
+<setting-detail-section save-event="symbolGroupCtrl.saveSymbolGroup()" cancel-event="symbolGroupCtrl.cancel()" action-enable="symbolGroupCtrl.canSaveData">
     <div class="row">
         <div class="col-md-3">
-            <label>证券代码：</label>
-        </div>
-        <div class="col-md-9">
-            <input type="text" class="form-control" ng-model="symbolGroupCtrl.selectedRow.SecurityGroupID" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3">
-            <label>证券名称：</label>
+            <label>证券名称组：</label>
         </div>
         <div class="col-md-9">
             <input type="text" class="form-control" ng-model="symbolGroupCtrl.selectedRow.SecurityGroupName" />
         </div>
     </div>
     <hr />
-    <picker selected-data="symbolGroupCtrl.selectedSecurities" unselected-data="symbolGroupCtrl.unselectedSecurities" display-name="SecurityName"></picker>
+    <picker selected-data="symbolGroupCtrl.selectedSecurities" track-id="SecurityID" unselected-data="symbolGroupCtrl.unselectedSecurities" display-name="SecurityName" changed-handler="symbolGroupCtrl.selectedDataChanged"></picker>
 </setting-detail-section>

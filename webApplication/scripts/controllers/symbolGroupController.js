@@ -8,18 +8,24 @@ define(['lodash', 'jquery'], function (_, $) {
         vm.newData = null;
         vm.unselectedSecurities = [];
         vm.selectedSecurities = [];
+        vm.canSaveData = false;
+        vm.oldValue = null;
+        var userWatcher;
+        var selectedSecurityGroupWatcher;
 
         vm.addSymbolGroup = function () {
             vm.enableGridAction = false;
             vm.newData = {
-                "SecurityGroupID": "",
-                "SecurityGroupName": "",
-                "SecurityInGroup": []
+                SecurityGroupID: -1,
+                SecurityGroupName: "",
+                SecurityInGroup: [],
+                Action: "Create"
             };
 
             vm.gridOption.data.push(vm.newData);
             vm.gridApi.grid.modifyRows(vm.gridOption.data);
             vm.gridApi.selection.selectRow(vm.newData);
+            vm.canSaveData = true;
         }
 
         vm.deleteSymbolGroup = function () {
@@ -31,21 +37,45 @@ define(['lodash', 'jquery'], function (_, $) {
                 vm.gridApi.grid.modifyRows(vm.gridOption.data);
                 if (vm.gridOption.data.length > 0) {
                     var nextSelectedIndex = index == vm.gridOption.data.length ? index - 1 : index;
-                    vm.gridApi.selection.selectedRow(vm.gridOption.data[nextSelectedIndex])
+                    vm.gridApi.selection.selectRow(vm.gridOption.data[nextSelectedIndex])
                 }
             });
         }
 
         vm.saveSymbolGroup = function () {
-            dataService.saveSymbolGroup(vm.newData).success(function (res) {
-                vm.enableGridAction = true;
-                vm.newData = null;
-            });
+            if (vm.newData) {
+                dataService.saveSymbolGroup(vm.newData).success(function (res) {
+                    vm.enableGridAction = true;
+                    vm.newData = null;
+                    vm.canSaveData = false;
+                });
+            }
+            else {
+                vm.selectedRow.SecurityInGroup = [];
+                _.forEach(vm.selectedSecurities, function (selectedSecurity) {
+                    vm.selectedRow.SecurityInGroup.push(selectedSecurity.SecurityID);
+                });
+                dataService.saveSymbolGroup(vm.selectedRow).success(function (res) {
+                    vm.enableGridAction = true;
+                    vm.newData = null;
+                    vm.canSaveData = false;
+                });
+            }
         }
 
         vm.cancel = function () {
-
+            releaseWatcher();
+            vm.canSaveData = false;
+            if (vm.oldValue) {
+                vm.selectedRow.SecurityGroupName = vm.oldValue.SecurityGroupName;
+            }
+            initializeGroupEditor();
+            setWatcher();
         }
+
+        vm.selectedDataChanged = function () {
+            vm.canSaveData = true;
+        };
 
         function initialize() {
             initializeSecurities();
@@ -53,6 +83,9 @@ define(['lodash', 'jquery'], function (_, $) {
             dataService.setCurrentSettingPage("券池组设置");
             dataService.getSymbolGroups().success(function (data) {
                 vm.gridOption.data = data;
+            });
+            $scope.$on("$destroy", function () {
+                releaseWatcher();
             });
         }
 
@@ -71,14 +104,24 @@ define(['lodash', 'jquery'], function (_, $) {
                 onRegisterApi: function (gridApi) {
                     vm.gridApi = gridApi;
                     vm.gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                        if (row.entity == vm.selectedRow && !row.isSelected) {
+                            row.isSelected = true;
+                            return;
+                        }
+
                         vm.selectedRow = row.entity;
                         vm.hasRowSelected = true;
+                        releaseWatcher();
                         initializeGroupEditor();
+                        vm.oldValue = {
+                            SecurityGroupName: vm.selectedRow.SecurityGroupName
+                        };
                         if (vm.newData != null && vm.selectedRow != vm.newData) {
                             vm.enableGridAction = true;
                             vm.gridOption.data.splice(vm.gridOption.data.length - 1, 1);
                             vm.newData = null;
                         }
+                        setWatcher();
                     });
                 }
             };
@@ -105,6 +148,21 @@ define(['lodash', 'jquery'], function (_, $) {
 
             vm.selectedSecurities = selectedSecurities;
             vm.unselectedSecurities = allSecurities;
+        }
+
+        function setWatcher() {
+            userWatcher = $scope.$watch("symbolGroupCtrl.selectedRow.SecurityGroupName", function (newValue, oldValue) {
+                if (newValue != oldValue) {
+                    vm.canSaveData = true;
+                    vm.errorMessage = "";
+                }
+            });
+        }
+
+        function releaseWatcher() {
+            if (userWatcher) {
+                userWatcher();
+            }
         }
 
         initialize();

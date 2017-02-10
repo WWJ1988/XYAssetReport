@@ -1,88 +1,155 @@
 <setting-grid-section title="用户列表" add-event="userCtrl.addUser()" delete-event="userCtrl.deleteUser()" enable-add="userCtrl.enableGridAction"
     delete-enable="userCtrl.hasRowSelected" grid-option="userCtrl.gridOption">
-</setting-grid-section>
-<setting-detail-section class="col-customer" save-event="userCtrl.saveUser()" cancel-event="userCtrl.cancel()" action-enable="userCtrl.enableGridAction">
-    <div class="row">
-        <div class="col-md-2">
-            <label>用户名：</label>
+    </setting-grid-section>
+    <setting-detail-section class="col-customer" save-event="userCtrl.saveUser()" cancel-event="userCtrl.cancel()" action-enable="userCtrl.canSaveData"
+        error-message="userCtrl.errorMessage">
+        <div class="row">
+            <div class="col-md-2">
+                <label>用户名：</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" ng-model="userCtrl.selectedRow.UserName" ng-disabled="!userCtrl.isNewData" />
+            </div>
+            <div class="col-md-2">
+                <label>真实姓名：</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" ng-model="userCtrl.selectedRow.UserRealName" />
+            </div>
         </div>
-        <div class="col-md-4">
-            <input type="text" class="form-control" ng-model="userCtrl.selectedRow.UserName" />
-        </div>
-        <div class="col-md-2">
-            <label>真实姓名：</label>
-        </div>
-        <div class="col-md-4">
-            <input type="text" class="form-control" ng-model="userCtrl.selectedRow.UserRealName" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            <label>登录密码：</label>
-        </div>
-        <div class="col-md-4">
-            <input type="password" class="form-control" ng-model="userCtrl.selectedRow.UserPassword" />
-        </div>
-        <div class="col-md-2">
-            <label>所属部门：</label>
-        </div>
-        <div class="col-md-4">
-            <select class="form-control" ng-model="userCtrl.selectedRow.DepartmentID">
-                <option ng-repeat="department in userCtrl.lookupData.DepartmentList" ng-value="department.DepartmentID" ng-selected="department.DepartmentID == userCtrl.selectedRow.DepartmentID" >
-                    {{department.DepartmentName}}
-                </option>
+        <div class="row">
+            <div class="col-md-2">
+                <label>登录密码：</label>
+            </div>
+            <div class="col-md-4">
+                <input type="password" class="form-control" ng-model="userCtrl.selectedRow.UserPassword" ng-disabled="!userCtrl.isNewData"
+                />
+            </div>
+            <div class="col-md-2">
+                <label>所属部门：</label>
+            </div>
+            <div class="col-md-4">
+                <select class="form-control" ng-model="userCtrl.selectedRow.DepartmentID" ng-options="department.DepartmentID as department.DepartmentName for department in userCtrl.lookupData.DepartmentList">
             </select>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            <label>用户类型：</label>
+        <div class="row" ng-if="userCtrl.isNewData">
+            <div class="col-md-2">
+                <label>确认密码：</label>
+            </div>
+            <div class="col-md-4">
+                <input type="password" class="form-control" ng-model="userCtrl.selectedRow.confirmPassword" />
+            </div>
         </div>
-        <div class="col-md-4">
-            <select class="form-control" ng-model="userCtrl.selectedRow.UserType">
+        <div class="row">
+            <div class="col-md-2">
+                <label>用户类型：</label>
+            </div>
+            <div class="col-md-4">
+                <select class="form-control" ng-model="userCtrl.selectedRow.UserType">
                 <option value="管理员">管理员</option>
                 <option value="交易员">交易员</option>
                 <option value="投资人">投资人</option>
             </select>
-        </div>
-        <div class="col-md-4 col-md-offset-2">
-            <div class="checkbox">
-                <label>
+            </div>
+            <div class="col-md-4 col-md-offset-2">
+                <div class="checkbox">
+                    <label>
                     <input type="checkbox" ng-model="userCtrl.selectedRow.IsEnabled" > 是否启用
                 </label>
+                </div>
             </div>
         </div>
-    </div>
-    <hr style="margin-top:5px;margin-bottom:5px;"/>
-    <div class="user-permission-setting-container">
-        <uib-tabset>
-            <uib-tab heading="税费结构" select="userCtrl.setTab(1)">
-                <div class="sub-grid-top-action">
-                    <button class="btn" title="添加" ng-click="userCtrl.addFee()">
+        <hr style="margin-top:5px;margin-bottom:5px;" />
+        <div class="user-permission-setting-container">
+            <uib-tabset>
+                <uib-tab heading="税费结构" select="userCtrl.setTab(1)">
+                    <div class="sub-grid-top-action">
+                        <button class="btn" title="添加" ng-click="userCtrl.addFee()" ng-disabled="!userCtrl.hasRowSelected">
                                     <span class="glyphicon glyphicon-plus"></span>
                                     添加
                                 </button>
+                    </div>
+                    <div ui-grid="userCtrl.feeData.gridOption" class="my-sub-grid" ui-grid-edit ui-grid-row-edit ui-grid-selection ng-if="userCtrl.selectedTabIndex==1"></div>
+                </uib-tab>
+                <uib-tab heading="功能">
+                    <tree data="userCtrl.functions" is-top-level="true" child-item-changed-handler="userCtrl.functionChanged" is-disabled="!userCtrl.hasRowSelected"></tree>
+                </uib-tab>
+                <uib-tab heading="交易员" select="userCtrl.setTab(3)">
+                    <div ui-grid="userCtrl.traderData.gridOption" class="my-sub-grid" ui-grid-selection ng-if="userCtrl.selectedTabIndex==3"></div>
+                </uib-tab>
+                <uib-tab heading="券池" select="userCtrl.setTab(4)">
+                    <div ui-grid="userCtrl.securityData.gridOption" class="my-sub-grid" ui-grid-selection ng-if="userCtrl.selectedTabIndex==4"></div>
+                </uib-tab>
+                <uib-tab heading="资金账号" select="userCtrl.setTab(5)">
+                    <div ui-grid="userCtrl.accountData.gridOption" class="my-sub-grid" ui-grid-selection ng-if="userCtrl.selectedTabIndex==5"></div>
+                </uib-tab>
+                <uib-tab heading="券商" select="userCtrl.setTab(6)">
+                    <div ui-grid="userCtrl.brokerData.gridOption" class="my-sub-grid" ui-grid-selection ng-if="userCtrl.selectedTabIndex==6"></div>
+                </uib-tab>
+                <uib-tab heading="股东编号" select="userCtrl.setTab(7)">
+                    <div ui-grid="userCtrl.shareHolderData.gridOption" class="my-sub-grid" ui-grid-selection ng-if="userCtrl.selectedTabIndex==7"></div>
+                </uib-tab>
+            </uib-tabset>
+        </div>
+        </setting-detail-section>
+
+        <script type="text/ng-template" id="userModalContent.html">
+            <div class="modal-header">
+                <h3 class="modal-title">新增税率</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="control-label">交易员：</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" ng-model="feeCtrl.data.fee.UserRealName" disabled="disabled" />
+                    </div>
                 </div>
-                <div ui-grid="userCtrl.feeData.gridOption" class="my-sub-grid" ui-grid-selection ng-if="userCtrl.selectedTabIndex==1"></div>
-            </uib-tab>
-            <uib-tab heading="功能">
-                <tree data="userCtrl.functions" is-top-level="true" is-disabled ="!userCtrl.hasRowSelected"></tree>
-            </uib-tab>
-            <uib-tab heading="交易员" select="userCtrl.setTab(3)">
-                <div ui-grid="userCtrl.traderData.gridOption" class="my-sub-grid" ui-grid-selection ng-if="userCtrl.selectedTabIndex==3"></div>
-            </uib-tab>
-            <uib-tab heading="券池" select="userCtrl.setTab(4)">
-                <div ui-grid="userCtrl.securityData.gridOption" class="my-sub-grid" ui-grid-selection ng-if="userCtrl.selectedTabIndex==4"></div>
-            </uib-tab>
-            <uib-tab heading="资金账号" select="userCtrl.setTab(5)">
-                <div ui-grid="userCtrl.accountData.gridOption" class="my-sub-grid" ui-grid-selection ng-if="userCtrl.selectedTabIndex==5"></div>
-            </uib-tab>
-            <uib-tab heading="券商" select="userCtrl.setTab(6)">
-               <div ui-grid="userCtrl.brokerData.gridOption" class="my-sub-grid" ui-grid-selection ng-if="userCtrl.selectedTabIndex==6"></div>
-            </uib-tab>
-            <uib-tab heading="股东编号" select="userCtrl.setTab(7)">
-                <div ui-grid="userCtrl.shareHolderData.gridOption" class="my-sub-grid" ui-grid-selection ng-if="userCtrl.selectedTabIndex==7"></div>
-            </uib-tab>
-        </uib-tabset>
-    </div>
-</setting-detail-section>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="control-label">资金账号：</label>
+                    </div>
+                    <div class="col-md-8">
+                        <select class="form-control" ng-model="feeCtrl.data.fee.CashAccountID" ng-options="shareHolder.ShareHolderID as shareHolder.ShareHolderDesc for shareHolder in feeCtrl.data.shareHolders">
+                            </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="control-label">开始日期：</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" ng-model="feeCtrl.data.fee.BeginDate" is-open="feeCtrl.data.isBeginDateOpen"
+                            close-text="Close" />
+                        <span class="datepicker-addon" ng-click="feeCtrl.data.openBeginDataPicker()"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="control-label">结束日期：</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" ng-model="feeCtrl.data.fee.EndDate" is-open="feeCtrl.data.isEndDateOpen"
+                            close-text="Close" />
+                        <span class="datepicker-addon" ng-click="feeCtrl.data.openEndDataPicker()"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="control-label">税率：</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" ng-model="feeCtrl.data.fee.FeeRate" />
+                    </div>
+                </div>
+                <p class="col-md-12" ng-if="feeCtrl.data.errorMessage">
+                    <label class="control-label text-danger">{{feeCtrl.data.errorMessage}}</label>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="feeCtrl.ok()">OK</button>
+                <button class="btn btn-warning" type="button" ng-click="feeCtrl.cancel()">Cancel</button>
+            </div>
+        </script>

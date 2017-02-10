@@ -1,49 +1,22 @@
-var request = require("request");
-
+var request = require("../common/requestSender");
 exports.user = {
     getUser: function (req, res) {
-        request({
+        request.sendRequest({
             url: "http://localhost:8899/api/User/",
             method: "GET",
-            headers: req.headers
-        }).on("response", function (response) {
-            var data = "";
-            response.setEncoding('utf8');
-            response.on('data', function (resData) {
-                data += resData;
-            });
-            response.on('end', function () {
-                res.status(response.statusCode).send(data);
-            });
-        })
+        }, req, res);
     },
     deleteUser: function (req, res) {
-        request({
+        request.sendRequest({
             url: "http://localhost:8899/api/User/" + req.body.userId,
             method: "DELETE",
-            headers: req.headers
-        }).on('response', function (response) {
-            response.setEncoding('utf8');
-            response.on('end', function () {
-                res.status(response.statusCode).send(response);
-            });
-        });
+        }, req, res);
     },
     saveUser: function (req, res) {
-        request({
-            url: "http://localhost:8899/api/Security",
+        request.sendRequest({
+            url: "http://localhost:8899/api/User",
             method: "POST",
-            headers: req.headers,
-            json: req.body.security
-        }).on('response', function (response) {
-            var data = "";
-            response.setEncoding('utf8');
-            response.on('data', function (resData) {
-                data += resData;
-            });
-            response.on('end', function () {
-                res.status(response.statusCode).send(data);
-            });
-        });
+            json: req.body.user
+        }, req, res);
     }
 }

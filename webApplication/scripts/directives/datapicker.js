@@ -8,7 +8,9 @@ define([
             scope: {
                 selectedData: "=",
                 unselectedData: "=",
-                displayName: "@"
+                displayName: "@",
+                trackId: "@",
+                changedHandler: "=?"
             },
             restrict: "E",
             replace: true,
@@ -38,6 +40,7 @@ define([
                         return unselectedItem == scope.selectedUncheckedDataItem.item;
                     });
                     clearSelection();
+                    handlChangedEvent();
                 }
 
                 scope.moveToRight = function () {
@@ -46,18 +49,21 @@ define([
                         return selectedItem == scope.selectedCheckedDataItem.item;
                     });
                     clearSelection();
+                    handlChangedEvent();
                 }
 
                 scope.moveAllToLeft = function () {
                     scope.selectedData.push.apply(scope.selectedData, scope.unselectedData);
                     scope.unselectedData = [];
                     clearSelection();
+                    handlChangedEvent();
                 }
 
                 scope.moveAllToRight = function () {
                     scope.unselectedData.push.apply(scope.unselectedData, scope.selectedData);
                     scope.selectedData = [];
                     clearSelection();
+                    handlChangedEvent();
                 }
 
                 function clearSelection() {
@@ -65,6 +71,12 @@ define([
                     $(scope.selectedUncheckedDataItem.element).removeClass('data-picker-content-item-selected');
                     scope.selectedCheckedDataItem = {};
                     scope.selectedUncheckedDataItem = {};
+                }
+
+                function handlChangedEvent() {
+                    if (scope.changedHandler) {
+                        scope.changedHandler();
+                    }
                 }
 
                 function setWatch() {
