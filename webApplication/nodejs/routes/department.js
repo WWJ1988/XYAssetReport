@@ -1,49 +1,22 @@
-var request = require("request");
-
+var request = require("../common/requestSender");
 exports.departmentService = {
     getDepartments: function (req, res) {
-        request({
+        request.sendRequest({
             url: "http://localhost:8899/api/Department/",
-            method: "GET",
-            headers: req.headers
-        }).on("response", function (response) {
-            var data = "";
-            response.setEncoding('utf8');
-            response.on('data', function (resData) {
-                data += resData;
-            });
-            response.on('end', function () {
-                res.status(response.statusCode).send(data);
-            });
-        })
+            method: "GET"
+        }, req, res);
     },
     deleteDepartment: function (req, res) {
-        request({
+        request.sendRequest({
             url: "http://localhost:8899/api/Department/" + req.body.departmentId,
-            method: "DELETE",
-            headers: req.headers
-        }).on('response', function (response) {
-            response.setEncoding('utf8');
-            response.on('end', function () {
-                res.status(response.statusCode).send(response);
-            });
-        });
+            method: "DELETE"
+        }, req, res);
     },
     saveDepartment: function (req, res) {
-        request({
+        request.sendRequest({
             url: "http://localhost:8899/api/Department/",
             method: "POST",
-            headers: req.headers,
             json: req.body.department
-        }).on('response', function (response) {
-            var data = "";
-            response.setEncoding('utf8');
-            response.on('data', function (resData) {
-                data += resData;
-            });
-            response.on('end', function () {
-                res.status(response.statusCode).send(data);
-            });
-        });
+        }, req, res);
     }
 }

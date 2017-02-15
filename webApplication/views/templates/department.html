@@ -1,7 +1,7 @@
 <setting-grid-section title="部门列表" add-event="departmentCtrl.addDepartment()" delete-event="departmentCtrl.deleteDepartment()"
     enable-add="departmentCtrl.enableGridAction" delete-enable="departmentCtrl.hasRowSelected" grid-option="departmentCtrl.gridOption">
 </setting-grid-section>
-<setting-detail-section save-event="departmentCtrl.saveDepartment()" cancel-event="departmentCtrl.cancel()" action-enable="departmentCtrl.enableGridAction">
+<setting-detail-section save-event="departmentCtrl.saveDepartment()" cancel-event="departmentCtrl.cancel()" action-enable="departmentCtrl.canSaveData">
     <div class="row">
         <div class="col-md-3">
             <label>部门名称：</label>
@@ -11,5 +11,5 @@
         </div>
     </div>
     <hr />
-    <picker selected-data="departmentCtrl.selectedUsers" track-id="DepartmentID" unselected-data="departmentCtrl.unsetDepartmentUsers" display-name="UserName"></picker>
+    <picker selected-data="departmentCtrl.selectedUsers" track-id="UserID" unselected-data="departmentCtrl.unsetDepartmentUsers" display-name="UserName" changed-handler="departmentCtrl.userListChanged"></picker>
 </setting-detail-section>
