@@ -1,0 +1,13 @@
+{
+    "typescript.check.tscVersion": false,
+    "window.zoomLevel": 0,
+    "window.openFoldersInNewWindow": "on",
+    "files.exclude": 
+    {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/.map":true
+    }
+}
