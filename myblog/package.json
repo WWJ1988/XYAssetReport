@@ -19,7 +19,8 @@
     "bootstrap": "~3.3.7"
   },
   "devDependencies": {
-    "typescript": "~2.0.10"
+    "typescript": "~2.0.10",
+    "@types/node": "^6.0.46"
   },
   "scripts": {
     "build": "tsc -p src/"
