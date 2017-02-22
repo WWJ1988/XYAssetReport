@@ -1,7 +1,7 @@
 (function (global) {
     System.config({
         paths: {
-            'npm:': 'XYAssetReport/a2-test/node_modules/'
+            'npm:': 'node_modules/'
         },
         map: {
             app: 'app',
@@ -28,15 +28,6 @@
                 defaultExtension: 'js'
             },
             src: {
-                defaultExtension: 'js'
-            },
-            XYAssetReport: {
-                defaultExtension: 'js'
-            },
-            "app.module": {
-                defaultExtension: 'js'
-            },
-            "app.component": {
                 defaultExtension: 'js'
             }
         }

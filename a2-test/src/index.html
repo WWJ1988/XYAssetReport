@@ -6,12 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
-    <script src="../../../XYAssetReport/a2-test/node_modules/core-js/client/shim.min.js"></script>
-    <script src="../../../XYAssetReport/a2-test/node_modules/zone.js/dist/zone.js"></script>
-    <script src="../../../XYAssetReport/a2-test/node_modules/systemjs/dist/system.src.js"></script>
-    <script src="../../../XYAssetReport/a2-test/src/systemjs.config.js"></script>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="src/sheets/main.css" rel="stylesheet">
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="src/systemjs.config.js"></script>
     <script>
-        System.import('../../../XYAssetReport/a2-test/src/main.js').catch(function (err) {
+        System.import('src/main.js').catch(function (err) {
             console.error(err);
         });
     </script>

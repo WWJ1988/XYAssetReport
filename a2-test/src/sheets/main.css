@@ -1,0 +1,36 @@
+html {
+	color: #000;
+	height: 100%;
+}
+
+body, ul, ol, li, div, a {
+	padding: 0;
+	margin: 0;
+}
+
+ul, ol {
+	list-style: none;
+}
+
+body {
+	padding-left: 30px;
+    padding-right: 30px;
+	font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-image: url(imgs/bg5.jpg);
+    background-repeat: repeat;
+}
+
+.main-title {
+    color:red;
+}
+
+.main-nav li {
+    float: right;
+    margin-right: 30px;
+}
+
+.main-nav li a {
+    color: #540404;
+    font-weight: bold;
+    font-size: 1.2em;
+}
