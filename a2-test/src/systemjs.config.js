@@ -1,7 +1,7 @@
 (function (global) {
     System.config({
         paths: {
-            'npm:': 'node_modules/'
+            'npm:': 'XYAssetReport/a2-test/node_modules/'
         },
         map: {
             app: 'app',
