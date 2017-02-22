@@ -27,7 +27,10 @@
             rxjs: {
                 defaultExtension: 'js'
             },
-            src:{
+            src: {
+                defaultExtension: 'js'
+            },
+            XYAssetReport: {
                 defaultExtension: 'js'
             }
         }
