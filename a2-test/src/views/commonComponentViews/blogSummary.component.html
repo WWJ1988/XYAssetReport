@@ -1,0 +1,11 @@
+<div class="blog">
+    <div class="blog-title">
+        <a [routerLink]="['/blogDetail', blog.id]">{{blog.title}}</a>
+    </div>
+    <div class="blog-content">
+        {{blog.summary}}
+    </div>
+    <div class="blog-footer">
+        {{blog.author}}
+    </div>
+</div>

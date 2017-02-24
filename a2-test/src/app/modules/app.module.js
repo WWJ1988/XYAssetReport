@@ -11,14 +11,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
+var app_routing_module_1 = require("../routers/app.routing.module");
 var app_component_1 = require("../components/app.component");
+var home_component_1 = require("../components/home.component");
+var learn_component_1 = require("../components/learn.component");
+var life_component_1 = require("../components/life.component");
+var message_component_1 = require("../components/message.component");
+var widget_component_1 = require("../components/commonComponents/widget.component");
+var blogSummary_component_1 = require("../components/commonComponents/blogSummary.component");
+var blogDetail_component_1 = require("../components/blogDetail.component");
+var data_service_1 = require("../services/data.service");
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-            declarations: [app_component_1.AppComponent],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, app_routing_module_1.AppRoutingModule],
+            declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, learn_component_1.LearnComponent, life_component_1.LifeComponent, message_component_1.MessageComponent, widget_component_1.WidgetComponent, blogSummary_component_1.BlogSummaryComponent, blogDetail_component_1.BlogDetailComponent],
+            providers: [data_service_1.DataService],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

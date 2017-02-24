@@ -1,9 +1,11 @@
 import { Component } from "@angular/core"
 
 @Component({
-    moduleId: module.id,
+    moduleId: __filename,
+    //moduleId: module.id,
     selector: "my-app",
-    templateUrl:"../../views/app.component.html"
+    //template:"<router-outlet></router-outlet>",
+    templateUrl: "../../views/app.component.html"
 })
 export class AppComponent {
 

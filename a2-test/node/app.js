@@ -15,5 +15,8 @@ app.use(express.static(path.join(path.parse(__dirname).dir)));
 app.use(cookieParser());
 
 app.get('/', index.index);
+app.get('*', function (req, res) {
+    res.redirect('/');
+});
 
 module.exports = app;
