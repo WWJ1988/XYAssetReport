@@ -20,7 +20,7 @@ export class BlogDetailComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.params
-            .switchMap((params: Params) => this.dataService.getBlogById(+params["id"]))
+            .switchMap((params: Params) => this.dataService.getBlogById(+params["id"], +params["type"]))
             .subscribe(blog => this.blog = blog);
     }
 }

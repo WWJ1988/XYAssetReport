@@ -34,8 +34,19 @@ var DataService = (function () {
     DataService.prototype.getBlogs = function () {
         return blogs;
     };
-    DataService.prototype.getBlogById = function (id) {
+    DataService.prototype.getBlogById = function (id, type) {
         return Promise.resolve(_.find(blogs, function (blog) { return blog.id === id; }));
+    };
+    DataService.prototype.getBlog = function () {
+        return {
+            id: 2,
+            title: "Second Blog",
+            content: "This is my Second blog",
+            summary: "Second blog...",
+            author: "neil",
+            date: new Date(),
+            type: 1
+        };
     };
     DataService = __decorate([
         core_1.Injectable(), 

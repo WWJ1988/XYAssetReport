@@ -22,7 +22,7 @@ var BlogDetailComponent = (function () {
     BlogDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params
-            .switchMap(function (params) { return _this.dataService.getBlogById(+params["id"]); })
+            .switchMap(function (params) { return _this.dataService.getBlogById(+params["id"], +params["type"]); })
             .subscribe(function (blog) { return _this.blog = blog; });
     };
     BlogDetailComponent = __decorate([

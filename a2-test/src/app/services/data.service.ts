@@ -41,11 +41,22 @@ const blogs: Blog[] = [
 ];
 
 @Injectable()
-export class DataService {
+export class DataService implements BlogInterfaces.IDataService {
     getBlogs(): Blog[] {
         return blogs;
     }
-    getBlogById(id: number): Promise<Blog> {
+    getBlogById(id: number, type: number): Promise<Blog> {
         return Promise.resolve(_.find(blogs, (blog) => { return blog.id === id }));
+    }
+    getBlog(): blogModels.IBlog {
+        return {
+            id: 2,
+            title: "Second Blog",
+            content: "This is my Second blog",
+            summary: "Second blog...",
+            author: "neil",
+            date: new Date(),
+            type: 1
+        };
     }
 }
