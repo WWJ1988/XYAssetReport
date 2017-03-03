@@ -43,5 +43,6 @@
     "angular2"
   ],
   "author": "neil",
-  "license": "MIT"
+  "license": "MIT",
+  "types":"./src/app/thirdModules/index.d.ts"
 }

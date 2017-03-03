@@ -1,0 +1,27 @@
+.wwj-framework-rbar-container{
+    width: 95%;
+    margin: 0 auto;
+    overflow: hidden;
+    min-width: 800px;
+    background-image: url(imgs/bj.png);
+    background-repeat: no-repeat;
+}
+
+.wwj-framework-rbar-content{
+    width:100%;
+    float:left;
+    margin-left: -230px;
+    min-width: 500px;
+    overflow: hidden;
+}
+
+.wwj-framework-rbar-content-container{
+    margin-left: 230px;
+    float: none;
+    width: auto;
+}
+
+.wwj-framework-rbar-right-bar {
+    width: 200px;
+    float: right;
+}

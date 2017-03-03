@@ -1,0 +1,18 @@
+<div class="wwj-framework-lnav-container">
+    <div class="wwj-framework-lnav-header">
+        <ng-content select=".wwj-framework-header"></ng-content>
+    </div>
+    <div class="wwj-framework-lnav-bar">
+        <ng-content select=".wwj-framework-bar"></ng-content>
+    </div>
+    <div class="wwj-framework-lnav-main">
+        <div class="wwj-framework-lnav-content">
+            <div class="wwj-framework-lnav-content-container" [style.height]="(wwjHeight | async)">
+                <ng-content select=".wwj-framework-content"></ng-content>
+            </div>
+        </div>
+    </div>
+    <div class="wwj-framework-lnav-footer">
+        <ng-content select=".wwj-framework-footer"></ng-content>
+    </div>
+</div>

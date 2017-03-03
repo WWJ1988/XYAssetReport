@@ -1,4 +1,4 @@
-<div class="main-container">
+<!--<div class="main-container">
     <h1 class="main-title">春暖花开</h1>
     <nav class="main-nav">
         <ul>
@@ -34,4 +34,114 @@
             </div>
         </my-widget>
     </div>
-</div>
+</div>-->
+<!--<wwj-framework-lbar>
+    <div class="wwj-framework-header">
+        <h1 class="main-title">春暖花开</h1>
+        <nav class="main-nav">
+            <ul>
+                <li>
+                    <a routerLink="/message">留言</a>
+                </li>
+                <li>
+                    <a routerLink="/life">生活</a>
+                </li>
+                <li>
+                    <a routerLink="/learn">学习</a>
+                </li>
+                <li>
+                    <a routerLink="/home">首页</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="wwj-framework-left-bar">
+        <my-widget>
+            <div class="widget-title">Title</div>
+            <div class="widget-content">
+                Content
+            </div>
+        </my-widget>
+        <my-widget>
+            <div class="widget-content">
+                Another widget without title
+            </div>
+        </my-widget>
+    </div>
+    <div class="wwj-framework-content">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="wwj-framework-footer">
+
+    </div>
+</wwj-framework-lbar>
+<wwj-framework-rbar>
+    <div class="wwj-framework-header">
+        <h1 class="main-title">春暖花开</h1>
+        <nav class="main-nav">
+            <ul>
+                <li>
+                    <a routerLink="/message">留言</a>
+                </li>
+                <li>
+                    <a routerLink="/life">生活</a>
+                </li>
+                <li>
+                    <a routerLink="/learn">学习</a>
+                </li>
+                <li>
+                    <a routerLink="/home">首页</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="wwj-framework-right-bar">
+        <my-widget>
+            <div class="widget-title">Title</div>
+            <div class="widget-content">
+                Content
+            </div>
+        </my-widget>
+        <my-widget>
+            <div class="widget-content">
+                Another widget without title
+            </div>
+        </my-widget>
+    </div>
+    <div class="wwj-framework-content">
+        <div style="background-color: white; height:200px;"></div>
+    </div>
+    <div class="wwj-framework-footer">
+
+    </div>
+</wwj-framework-rbar>-->
+<wwj-framework-lnav>
+    <div class="wwj-framework-header">
+        <wwj-lrnav [items]="navItems">
+        </wwj-lrnav>
+    </div>
+    <div class="wwj-framework-bar">
+        <nav>
+            <ul>
+                <li style="margin-bottom:20px;">
+                    <a routerLink="/message">留言</a>
+                </li>
+                <li style="margin-bottom:20px;">
+                    <a routerLink="/life">生活</a>
+                </li>
+                <li style="margin-bottom:20px;">
+                    <a routerLink="/learn">学习</a>
+                </li>
+                <li style="margin-bottom:20px;">
+                    <a routerLink="/home">首页</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="wwj-framework-content" style="height: 1000px;">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="wwj-framework-footer">
+
+    </div>
+</wwj-framework-lnav>

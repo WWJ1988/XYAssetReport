@@ -2,6 +2,9 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from "../routers/app.routing.module";
+import { FrameworkModule } from "../thirdModules/frameworkModule/framework.module";
+import { WwjCommonComponentsModule } from "../thirdModules/commonComponents/common-components.module";
+import { CommonModule } from "@angular/common";
 
 import { AppComponent } from "../components/app.component";
 import { HomeComponent } from "../components/home.component";
@@ -15,7 +18,7 @@ import { BlogDetailComponent } from "../components/blogDetail.component";
 import { DataService } from "../services/data.service";
 
 @NgModule({
-    imports: [BrowserModule, FormsModule, AppRoutingModule],
+    imports: [BrowserModule, FormsModule, AppRoutingModule, FrameworkModule, CommonModule, WwjCommonComponentsModule],
     declarations: [AppComponent, HomeComponent, LearnComponent, LifeComponent, MessageComponent, WidgetComponent, BlogSummaryComponent, BlogDetailComponent],
     providers: [DataService],
     bootstrap: [AppComponent]

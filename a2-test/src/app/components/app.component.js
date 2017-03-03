@@ -8,9 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+/// <reference path="../thirdmodules/index.d.ts" />
 var core_1 = require("@angular/core");
 var AppComponent = (function () {
     function AppComponent() {
+        this.navItems = {
+            leftItems: [
+                { title: "首页", state: "home" },
+                { title: "学习", state: "learn" },
+                { title: "生活", state: "life" },
+                { title: "留言", state: "message" }
+            ],
+            rightItems: [
+                { title: "首页", state: "home" },
+                { title: "学习", state: "learn" },
+                { title: "生活", state: "life" },
+                { title: "留言", state: "message" }
+            ]
+        };
     }
     AppComponent = __decorate([
         core_1.Component({
