@@ -1,1 +1,0 @@
-{"version":3,"file":"life.component.js","sourceRoot":"","sources":["life.component.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,qBAA0B,eAE1B,CAAC,CAFwC;AAOzC;IAAA;IAEA,CAAC;IAPD;QAAC,gBAAS,CAAC;YACP,QAAQ,EAAE,MAAM,CAAC,EAAE;YACnB,QAAQ,EAAE,SAAS;YACnB,WAAW,EAAE,iCAAiC;SACjD,CAAC;;qBAAA;IAGF,oBAAC;AAAD,CAAC,AAFD,IAEC;AAFY,qBAAa,gBAEzB,CAAA"}
