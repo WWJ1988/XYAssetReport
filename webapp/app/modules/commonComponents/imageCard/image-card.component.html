@@ -1,0 +1,13 @@
+<div class="tlr-image-card" *ngIf="imageCard">
+    <div class="tlr-image-card-image" [routerLink]="imageCard.State">
+        <a><img [src]="imageCard.ImageUrl" /></a>
+    </div>
+    <div class="tlr-image-card-content">
+        <h3>
+            <a>{{imageCard.Title}}</a>
+        </h3>
+        <p>
+            {{imageCard.Description}}
+        </p>
+    </div>
+</div>

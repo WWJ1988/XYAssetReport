@@ -1,0 +1,1 @@
+{"version":3,"file":"bussiness.component.js","sourceRoot":"","sources":["bussiness.component.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,qBAA0B,eAAe,CAAC,CAAA;AAQ1C;IAAA;IACA,CAAC;IAPD;QAAC,gBAAS,CAAC;YACP,QAAQ,EAAE,MAAM,CAAC,EAAE;YACnB,QAAQ,EAAE,eAAe;YACzB,WAAW,EAAE,4BAA4B;YACzC,SAAS,EAAE,CAAC,2BAA2B,CAAC;SAC3C,CAAC;;0BAAA;IAEF,yBAAC;AAAD,CAAC,AADD,IACC;AADY,0BAAkB,qBAC9B,CAAA"}

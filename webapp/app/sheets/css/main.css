@@ -1,0 +1,22 @@
+html {
+	height: 100%;
+}
+
+body {
+	font: 12px "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+    background-color: #F7F0E6;
+}
+
+body, ul, ol, li, div, a {
+	padding: 0;
+	margin: 0;
+}
+
+ul, ol {
+	list-style: none;
+}
+
+a{
+	text-decoration: none !important;
+	cursor: pointer !important;
+}

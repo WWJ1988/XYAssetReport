@@ -1,0 +1,49 @@
+.tlr-app{
+    width: 95%;
+    margin: 0 auto;
+    overflow: hidden;
+    min-width: 800px;
+    background-image: url(app/sheets/imgs/bj.png);
+    background-repeat: no-repeat;
+}
+
+.tlr-content{
+    width:100%;
+    float:left;
+    margin-left: -230px;
+    min-width: 500px;
+    overflow: hidden;
+}
+
+.tlr-main{
+    margin-left: 230px;
+    float: none;
+    width: auto;
+}
+
+.tlr-right-bar {
+    width: 200px;
+    float: right;
+}
+
+.tlr-title {
+    color:red;
+    margin-bottom: 50px;
+}
+
+.tlr-nav{
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.tlr-nav li {
+    float: right;
+    margin-right: 30px;
+}
+
+.tlr-nav li a {
+    color: #540404;
+    font-weight: bold;
+    font-size: 1.2em;
+    cursor: pointer;
+}
