@@ -10,13 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var oa_module_1 = require("./OA/oa.module");
+var daikuan_module_1 = require("./daikuan/daikuan.module");
 var CustomerSideBusinessModule = (function () {
     function CustomerSideBusinessModule() {
     }
     CustomerSideBusinessModule = __decorate([
         core_1.NgModule({
-            imports: [oa_module_1.OAModule],
-            exports: [oa_module_1.OAModule]
+            imports: [oa_module_1.OAModule, daikuan_module_1.DaikuanModule],
+            exports: [oa_module_1.OAModule, daikuan_module_1.DaikuanModule]
         }), 
         __metadata('design:paramtypes', [])
     ], CustomerSideBusinessModule);

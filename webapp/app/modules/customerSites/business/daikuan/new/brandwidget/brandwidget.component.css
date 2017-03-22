@@ -1,0 +1,96 @@
+.tlr-daikuan-new-content-header-left-bar-brand-container{
+    position: relative;
+}
+
+.tlr-daikuan-new-content-header-left-bar-brand{
+    height: 160px;
+    overflow: hidden;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.tlr-daikuan-new-content-header-left-bar-brand-detail{
+    position: absolute;
+    top: 0;
+    left: 280px;
+    height: 460px;
+    width: 900px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+}
+
+.tlr-daikuan-new-content-header-left-bar-filter-container{
+    height: 290px;
+}
+
+.tlr-daikuan-new-content-header-left-bar-filter-container:hover{
+    background-color: white;
+}
+
+.tlr-daikuan-new-content-header-left-bar-brand-container:hover .tlr-daikuan-new-content-header-left-bar-brand-detail{
+    display: block;
+}
+
+.tlr-daikuan-new-content-header-left-bar-filter{
+    padding-left: 20px;
+    height: 70px;
+    overflow: hidden;
+}
+
+.tlr-daikuan-new-content-header-left-bar-brand:hover{
+    background-color: white;
+}
+
+.tlr-daikuan-new-content-header-left-bar-menu-title{
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.tlr-daikuan-new-content-header-left-bar-menu-incon{
+    float: right;
+    font-size: .8em;
+    color: gray;
+}
+
+.tlr-daikuan-new-content-header-menu-item{
+    margin-right: 19px;
+    color: black !important;
+    line-height: 25px;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.tlr-daikuan-new-content-header-menu-item:hover{
+    color:orangered !important;
+}
+
+.tlr-brand-detail-menu-item-container{
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+
+.tlr-brand-menu-item-key{
+    color: orangered !important;
+    float: left;
+    margin-right: 13px;
+}
+
+.tlr-daikuan-new-content-header-detail-menu-item{
+        color: black !important;
+        line-height: 20px;
+        font-size: 12px !important;
+        margin-right: 10px;
+        white-space: nowrap;
+        float: left;
+}
+
+.tlr-daikuan-new-content-header-detail-menu-item:hover{
+    color:orangered !important;
+}
+
+.tlr-brand-menu-item-key-detail{
+    float: left;
+    width: 90%;
+}

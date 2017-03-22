@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMS.TradingService", "OMS.TradingService\OMS.TradingService.csproj", "{F35E40A2-9C37-40AC-8475-5B407CF7CFDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingServiceStart", "TradingServiceStart\TradingServiceStart.csproj", "{0113127D-89B5-4BB0-82C0-6E45A82604A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F35E40A2-9C37-40AC-8475-5B407CF7CFDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F35E40A2-9C37-40AC-8475-5B407CF7CFDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F35E40A2-9C37-40AC-8475-5B407CF7CFDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F35E40A2-9C37-40AC-8475-5B407CF7CFDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0113127D-89B5-4BB0-82C0-6E45A82604A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0113127D-89B5-4BB0-82C0-6E45A82604A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0113127D-89B5-4BB0-82C0-6E45A82604A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0113127D-89B5-4BB0-82C0-6E45A82604A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

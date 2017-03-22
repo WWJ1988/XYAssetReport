@@ -1,0 +1,58 @@
+.tlr-oa-login-bar-content{
+    width: 400px;
+	position: fixed;
+	border-radius: 0;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	color: white;
+  	height: 100%;  
+	padding:80px; 
+    background-color: #364651;
+    z-index: 100;
+}
+
+.form-control{
+    background-color: #FAFFBD;
+}
+
+.form-group{
+    margin-bottom: 30px;
+}
+
+.form-group label{
+    color: #666F63;
+}
+
+.btn{
+    max-height: 30px;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(110, 191, 184);
+    background: rgb(110, 191, 184);
+    margin-top: 20px;
+    color: #666F63;
+    width: 100%;
+}
+
+.tlr-oa-login-bar-content label{
+	padding-top:5px;
+	padding-bottom:5px;
+	font-size:1.2em;
+}
+
+.tlr-oa-login-bar-error{
+	color:red;
+	font-size:1.2em;
+}
+
+.tlr-oa-login-bar-background{
+    position: fixed;
+    z-index: 1;
+}
+
+.tlr-oa-login-bar-logo{
+    text-align: center;
+    margin-bottom: 60px;
+}

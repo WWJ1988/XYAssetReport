@@ -8,7 +8,5 @@ import { Component, Input } from "@angular/core";
 })
 export class WidgetComponent {
     @Input()
-    myClass: string;
-    @Input()
     hasTitle: boolean = true;
 }

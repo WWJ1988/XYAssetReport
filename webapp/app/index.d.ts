@@ -7,7 +7,7 @@ declare module Models {
         ImageUrl: string;
         Title: string;
         Description: string;
-        State:string;
+        State: string;
         [name: string]: string;
     }
 }

@@ -16,13 +16,23 @@ var router_1 = require("@angular/router");
 var oa_routing_1 = require("./oa.routing");
 var oa_component_1 = require("./oa.component");
 var oa_home_component_1 = require("./home/oa.home.component");
+var oa_login_component_1 = require("./login/oa-login.component");
+var oa_logistic_component_1 = require("./logistic/oa.logistic.component");
+var oa_order_component_1 = require("./order/oa.order.component");
+var oa_personal_component_1 = require("./personal/oa.personal.component");
+var oa_system_component_1 = require("./system/oa.system.component");
+var oa_vehicle_component_1 = require("./vehicle/oa.vehicle.component");
+var oa_order_n3demand_component_1 = require("./order/n3demand/oa.order.n3demand.component");
+var oa_order_instant_component_1 = require("./order/instant/oa.order.instant.component");
+var oa_order_finance_component_1 = require("./order/finance/oa.order.finance.component");
 var OAModule = (function () {
     function OAModule() {
     }
     OAModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, common_1.CommonModule, router_1.RouterModule, oa_routing_1.OARoutingModule],
-            declarations: [oa_component_1.OAComponent, oa_home_component_1.OAHomeComponent],
+            declarations: [oa_component_1.OAComponent, oa_home_component_1.OAHomeComponent, oa_login_component_1.OALoginComponent, oa_logistic_component_1.OALogisticComponent, oa_order_component_1.OAOrderComponent, oa_personal_component_1.OAPersonalComponent,
+                oa_system_component_1.OASystemComponent, oa_vehicle_component_1.OAVehicleComponent, oa_order_n3demand_component_1.OAOrderN3demandComponent, oa_order_instant_component_1.OAOrderInstantComponent, oa_order_finance_component_1.OAOrderFinanceComponent],
             exports: [oa_component_1.OAComponent]
         }), 
         __metadata('design:paramtypes', [])

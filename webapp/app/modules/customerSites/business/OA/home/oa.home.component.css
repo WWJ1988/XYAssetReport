@@ -1,0 +1,134 @@
+.tlr-oa{
+    min-width: 800px;
+    width: 100%;
+    background-color: white;
+}
+.tlr-oa-top-bar{
+    height: 80px;
+}
+.tlr-oa-nav{
+    float: left;
+    width: 100%;
+    height: 50px;
+}
+
+.tlr-oa-top-bar-message{
+    float: right;
+}
+
+.tlr-oa-breadcrumb{
+    clear: both;
+    background-color: #4d4d4d;
+    height: 30px;
+    line-height: 30px;
+    color: white;
+    padding-left: 10px;
+}
+
+.tlr-oa-breadcrumb-list{
+    display: inline-block;
+    margin-left: 20px;
+    font-size: 1.2em;
+    height: 30px;
+}
+
+.tlr-oa-breadcrumb-list li{
+    padding-left: 20px;
+    float: left;
+}
+
+.tlr-oa-breadcrumb-list li:hover{
+    background-color: #F1592A;
+}
+
+.tlr-oa-breadcrumb-list a{
+    float: left;
+    margin-right: 3px;
+    color: white;
+}
+
+.tlr-oa-breadcrumb-list img{
+    height: 30px;
+    float: left;
+}
+
+.tlr-oa-breadcrumb-item-tail{
+    margin-left: -30px;
+}
+
+.tlr-circle-icon{
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+    margin-top: 5px;
+}
+
+.tlr-circle-icon i{
+    color: #666;
+}
+
+.tlr-circle-icon:hover{
+    background-color: orangered;
+}
+
+.tlr-circle-icon:hover i{
+    color: white;
+}
+
+.tlr-oa-nav nav li{
+    float: left;
+    margin-left: 30px;
+    font-size: 1.5em;
+    line-height: 50px;
+    margin-right: 30px;
+}
+
+.tlr-oa-top-bar-message{
+    font-size: 1.5em;
+    line-height: 50px;
+    margin-right: 20px;
+}
+
+.tlr-oa-nav a{
+    color: #666;
+}
+
+.tlr-oa-nav a:hover{
+    color: black;
+}
+
+
+.tlr-oa-top-bar-message a{
+    color: orangered !important;
+}
+
+.tlr-oa-content{
+    position: fixed;
+    top: 79px;
+    border-top: 1px solid #666;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: white;
+}
+
+li.tlr-oa-nav-active a{
+    color: orangered !important;
+}
+
+.tlr-oa-top-bar-message-user{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 25px;
+    background-color: orangered;
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+}

@@ -1,0 +1,66 @@
+<div class="tlr-daikuan-new-content-header-left-bar-brand-container">
+    <div class="tlr-daikuan-new-content-header-left-bar-brand">
+        <p>
+            <span class="tlr-daikuan-new-content-header-left-bar-menu-title">品牌</span>
+            <span class="tlr-daikuan-new-content-header-left-bar-menu-incon">全部 ></span>
+        </p>
+        <p *ngIf="brands">
+            <a class="tlr-daikuan-new-content-header-menu-item" *ngFor="let brand of brands">{{brand}}</a>
+        </p>
+    </div>
+    <div class="tlr-daikuan-new-content-header-left-bar-brand-detail" *ngIf="brandDetailKeySets">
+        <div *ngFor="let brandDetailKeys of brandDetailKeySets" class="col-md-4">
+            <div class="tlr-brand-detail-menu-item-container" *ngFor="let brandDetailKey of brandDetailKeys">
+                <span class="tlr-brand-menu-item-key">{{brandDetailKey}}</span>
+                <p class="tlr-brand-menu-item-key-detail">
+                    <a class="tlr-daikuan-new-content-header-detail-menu-item" *ngFor="let brandDetail of brandDetails[brandDetailKey]">{{brandDetail}}</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tlr-daikuan-new-content-header-left-bar-filter-container">
+    <div class="tlr-daikuan-new-content-header-left-bar-filter">
+        <p>
+            <span class="tlr-daikuan-new-content-header-left-bar-menu-title">车价</span>
+        </p>
+        <p *ngIf="prices">
+            <a class="tlr-daikuan-new-content-header-menu-item" *ngFor="let price of prices">
+                <span *ngIf="price[0]==0">{{price[1]}}万以下</span>
+                <span *ngIf="price[0]>0">{{price[0]}}-{{price[1]}}万</span>
+            </a>
+        </p>
+    </div>
+    <div class="tlr-daikuan-new-content-header-left-bar-filter">
+        <p>
+            <span class="tlr-daikuan-new-content-header-left-bar-menu-title">首付款</span>
+        </p>
+        <p *ngIf="downPayments">
+            <a class="tlr-daikuan-new-content-header-menu-item" *ngFor="let downPayment of downPayments">
+                <span *ngIf="downPayment[0]==0">零首付</span>
+                <span *ngIf="downPayment[0]>0">{{downPayment[0]}}-{{downPayment[1]}}万</span>
+            </a>
+        </p>
+    </div>
+    <div class="tlr-daikuan-new-content-header-left-bar-filter">
+        <p>
+            <span class="tlr-daikuan-new-content-header-left-bar-menu-title">月供范围</span>
+        </p>
+        <p *ngIf="monthlyPayments">
+            <a class="tlr-daikuan-new-content-header-menu-item" *ngFor="let monthlyPayment of monthlyPayments">
+                <span *ngIf="monthlyPayment[0]==0">{{monthlyPayment[1]}}千元以下</span>
+                <span *ngIf="monthlyPayment[0]>0">{{monthlyPayment[0]}}-{{monthlyPayment[1]}}千元</span>
+            </a>
+        </p>
+    </div>
+    <div class="tlr-daikuan-new-content-header-left-bar-filter">
+        <p>
+            <span class="tlr-daikuan-new-content-header-left-bar-menu-title">级别</span>
+        </p>
+        <p *ngIf="types">
+            <a class="tlr-daikuan-new-content-header-menu-item" *ngFor="let type of types">
+                    {{type}}
+                </a>
+        </p>
+    </div>
+</div>

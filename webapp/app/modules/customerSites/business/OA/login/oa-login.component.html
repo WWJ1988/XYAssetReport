@@ -1,0 +1,26 @@
+<form role="form">
+	<div class="tlr-oa-login-bar">
+        <div class="tlr-oa-login-bar-background">
+            <img src="app/sheets/imgs/b-login.png" />
+        </div>
+		<div class="tlr-oa-login-bar-content">
+            <div class="tlr-oa-login-bar-logo">
+                <img src="app/sheets/imgs/logo.png" />
+            </div>
+			<div class="tlr-oa-login-bar-error">
+				<p>{{errorMessage}}<p>
+			</div>
+			<div class="form-group">
+				<label for="username">用户名：</label>
+				<input type="text" class="form-control" [(ngModel)]="user.userName" placeholder="user name" name="username"/>
+			</div>
+			<div class="form-group">
+				<label for="password">密码：</label>
+				<input type="password" class="form-control" [(ngModel)]="user.password" placeholder="password" name="password"/>
+			</div>
+			<div class="form-group">
+				<button type="button" class="btn" (click)="login()">Submit</button>
+			</div>
+		</div>
+	</div>
+</form>

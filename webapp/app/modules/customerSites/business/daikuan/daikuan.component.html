@@ -1,0 +1,44 @@
+<div class="tlr-daikuan-main">
+    <div class="tlr-daikuan-top-bar">
+        <ul class="tlr-daikuan-top-bar-content">
+            <li *ngIf="user">Hi {{user.userName}}</li>
+            <li *ngIf="!user"><a>登录</a></li>
+        </ul>
+    </div>
+    <div class="tlr-daikuan-main-content">
+        <div class="tlr-daikuan-nav">
+            <div class="tlr-daikuan-nav-logo">
+                <a routerLink="/home"><img src="app/sheets/imgs/logo.jpg" /></a>
+                <div class="tlr-daikuan-nav-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <a class="tlr-daikuan-addon"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="tlr-daikuan-nav-bar">
+                <nav>
+                    <ul>
+                        <li routerLink="/home/homedashboard" routerLinkActive="tlr-nav-active">
+                            <a>首页</a>
+                        </li>
+                        <li routerLink="/home/homebussiness" routerLinkActive="tlr-nav-active">
+                            <a>商务网站</a>
+                        </li>
+                        <li routerLink="/home/homestore" routerLinkActive="tlr-nav-active">
+                            <a>网店</a>
+                        </li>
+                        <li routerLink="/home/homecontact" routerLinkActive="tlr-nav-active">
+                            <a>联系我们</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="tlr-daikuan-content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <div class="tlr-daikuan-footer">
+    </div>
+</div>

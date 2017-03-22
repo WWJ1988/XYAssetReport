@@ -15,10 +15,6 @@ var WidgetComponent = (function () {
     }
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', String)
-    ], WidgetComponent.prototype, "myClass", void 0);
-    __decorate([
-        core_1.Input(), 
         __metadata('design:type', Boolean)
     ], WidgetComponent.prototype, "hasTitle", void 0);
     WidgetComponent = __decorate([

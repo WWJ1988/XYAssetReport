@@ -1,8 +1,8 @@
 <div class="tlr-widget">
     <div class="tlr-widget-title" *ngIf="hasTitle">
-        <ng-content select=".tlr-widget-title"></ng-content>
+        <ng-content select="[tlr-widget-title]"></ng-content>
     </div>
     <div class="tlr-widget-content">
-        <ng-content select=".tlr-widget-content"></ng-content>
+        <ng-content select="[tlr-widget-content]"></ng-content>
     </div>
 </div>

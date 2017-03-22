@@ -1,2 +1,3 @@
-<tlr-image-card></tlr-image-card>
-<tlr-image-card></tlr-image-card>
+<div *ngIf="imageCards">
+    <tlr-image-card *ngFor="let card of imageCards" [imageCard]="card"></tlr-image-card>
+</div>

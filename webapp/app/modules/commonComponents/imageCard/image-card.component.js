@@ -11,12 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var ImageCardComponent = (function () {
     function ImageCardComponent() {
-        this.imageCard = {
-            ImageUrl: "app/sheets/imgs/img1.jpg",
-            State: "/oa",
-            Title: "背景图片",
-            Description: "测试，背景图片"
-        };
     }
     __decorate([
         core_1.Input(), 

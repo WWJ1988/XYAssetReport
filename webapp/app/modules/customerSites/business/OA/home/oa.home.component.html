@@ -1,1 +1,45 @@
-Home Page.
+<div class="tlr-oa">
+    <div class="tlr-oa-top-bar">
+        <div class="tlr-oa-nav">
+            <nav>
+                <ul>
+                    <li routerLink="/oa/home/order" routerLinkActive="tlr-oa-nav-active">
+                        <a>Order</a>
+                    </li>
+                    <li routerLink="/oa/home/logistic" routerLinkActive="tlr-oa-nav-active">
+                        <a>Logistics</a>
+                    </li>
+                    <li routerLink="/oa/home/vehicle" routerLinkActive="tlr-oa-nav-active">
+                        <a>Vehicles</a>
+                    </li>
+                    <li routerLink="/oa/home/system" routerLinkActive="tlr-oa-nav-active">
+                        <a>System</a>
+                    </li>
+                    <li routerLink="/oa/home/personal" routerLinkActive="tlr-oa-nav-active">
+                        <a>Personal Info</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="tlr-oa-top-bar-message">
+                <div class="tlr-oa-top-bar-message-user">贾</div>
+            </div>
+        </div>
+        <div class="tlr-oa-breadcrumb">
+            <span class="tlr-circle-icon">
+                <i class="fa fa-link" aria-hidden="true"></i>
+            </span>
+            <ul *ngIf="breadcrumbs" class="tlr-oa-breadcrumb-list">
+                <li *ngFor="let item of breadcrumbs; let itemIndex=index" [routerLink]="item.state" (mouseenter)="item.isSelected=true"
+                    (mouseleave)="item.isSelected=false">
+                    <img class="tlr-oa-breadcrumb-item-tail" src="app/sheets/imgs/right-tail.png" *ngIf="itemIndex>0 && item.isSelected" />
+                    <a>{{item.title}}</a>
+                    <img src="app/sheets/imgs/right.png" *ngIf="!item.isSelected" />
+                    <img src="app/sheets/imgs/right-hover.png" *ngIf="item.isSelected" />
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="tlr-oa-content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

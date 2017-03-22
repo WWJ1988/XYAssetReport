@@ -9,16 +9,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var OAHomeComponent = (function () {
-    function OAHomeComponent() {
+    function OAHomeComponent(router) {
+        var _this = this;
+        this.router = router;
+        this.router.events
+            .map(function (event) { return event instanceof router_1.NavigationEnd; })
+            .subscribe(function () {
+            _this.breadcrumbs = null;
+            _this.setBreadCrumbs(_this.router.url);
+        });
     }
+    OAHomeComponent.prototype.setBreadCrumbs = function (url) {
+        var urls = url.split("/");
+        if (urls.length > 2) {
+            var currentUrl = "/" + urls[1] + "/" + urls[2];
+            for (var index = 3; index < urls.length; index++) {
+                currentUrl += "/" + urls[index];
+                var item = { title: this.capticalString(urls[index]), state: currentUrl };
+                if (!this.breadcrumbs) {
+                    this.breadcrumbs = [item];
+                }
+                else {
+                    this.breadcrumbs.push(item);
+                }
+            }
+        }
+    };
+    OAHomeComponent.prototype.capticalString = function (value) {
+        return value[0].toUpperCase() + value.substring(1);
+    };
     OAHomeComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: "tlr-oa-home",
-            templateUrl: "./oa.home.component.html"
+            templateUrl: "./oa.home.component.html",
+            styleUrls: ["./oa.home.component.css"]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router])
     ], OAHomeComponent);
     return OAHomeComponent;
 }());
