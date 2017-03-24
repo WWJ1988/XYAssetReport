@@ -44,11 +44,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constracts\TradingEnums.cs" />
+    <Compile Include="Interfaces\ITradingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proxy\Messages\TradingMqMessage.cs" />
     <Compile Include="Proxy\Requests\TradingMqRequest.cs" />
+    <Compile Include="Proxy\Requests\TradingOrderRequest.cs" />
     <Compile Include="Proxy\Responses\TradingMqResponse.cs" />
+    <Compile Include="Proxy\Responses\TradingOrderResponse.cs" />
+    <Compile Include="Proxy\TradingServiceProxy.cs" />
+    <Compile Include="Services\TradingService.cs" />
+    <Compile Include="Transports\TradeOrder.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OMS.Communicator\OMS.Communicator.csproj">
+      <Project>{b249fd84-5072-41bc-bb20-d6434db4701e}</Project>
+      <Name>OMS.Communicator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

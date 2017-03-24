@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OMS.Communicator.Constracts
+namespace OMS.Common.Transports.Trading
 {
-	public enum MqServiceType
+	public enum TradingAction
 	{
-		Trading,
-		Alert
+		Buy,
+		Sell,
+		Short,
+		Cover
 	}
 }

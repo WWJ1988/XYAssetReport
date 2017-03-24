@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constracts\CommunicatorEnums.cs" />
     <Compile Include="Dispatchers\MqConsumerDispatcher.cs" />
     <Compile Include="Dispatchers\MqReceiveDispatcher.cs" />
     <Compile Include="Dispatchers\MqResponseDispatcher.cs" />
@@ -71,6 +70,9 @@
       <Project>{ba3493ac-feee-4c65-ae26-7c315b50acb6}</Project>
       <Name>OMS.Common.Transports</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Constracts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

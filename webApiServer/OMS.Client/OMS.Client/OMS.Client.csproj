@@ -36,11 +36,9 @@
     <Reference Include="EasyNetQ">
       <HintPath>..\..\bin\EasyNetQ.dll</HintPath>
     </Reference>
-    <Reference Include="OMS.Common.Transports">
+    <Reference Include="OMS.Common.Transports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\OMS.Common.Transports.dll</HintPath>
-    </Reference>
-    <Reference Include="OMS.Communicator">
-      <HintPath>..\..\bin\OMS.Communicator.dll</HintPath>
     </Reference>
     <Reference Include="OMS.Trading.Common">
       <HintPath>..\..\bin\OMS.Trading.Common.dll</HintPath>

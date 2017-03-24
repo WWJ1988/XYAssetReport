@@ -1,50 +1,63 @@
+using System;
 using System.Threading.Tasks;
+using OMS.Common.Communicator.Constracts;
 using OMS.Common.Transports.Communicator.Messages;
 using OMS.Common.Transports.Communicator.Request;
 using OMS.Common.Transports.Communicator.Response;
-using OMS.Communicator.Interfaces;
 
 namespace OMS.Communicator.Services
 {
-	public class GenericServiceProxy<TService>
-			where TService : class
+	public abstract class GenericServiceProxy : IDisposable
 	{
-		private readonly INetworkConnectionManager connectionManager;
-		private IMqClient mqClient;
+		private readonly MqClient mqClient;
 
-		public GenericServiceProxy(INetworkConnectionManager connectionManager)
+		public GenericServiceProxy()
 		{
-			this.connectionManager = connectionManager;
+			mqClient = new MqClient(NetworkConnectionManager.Instance.GetBus(ServiceType));
 		}
 
-		public void PublishMessage(MqMessage message, string topic = "")
+		public abstract MqServiceType ServiceType { get; }
+
+		public void PublishMessage<TMessage>(TMessage message, string topic = "") where TMessage : MqMessage
 		{
 			this.mqClient.PublishMessage(message, topic);
 		}
 
-		public Task PublishMessageAsync(MqMessage message, string topic = "")
+		public Task PublishMessageAsync<TMessage>(TMessage message, string topic = "") where TMessage : MqMessage
 		{
 			return this.mqClient.PublishMessageAsync(message, topic);
 		}
 
-		public void SendMessage(MqMessage message, string queueName)
+		public void SendMessage<TMessage>(TMessage message, string queueName) where TMessage : MqMessage
 		{
 			this.mqClient.SendMessage(message, queueName);
 		}
 
-		public Task SendMessageAsync(MqMessage message, string queueName)
+		public Task SendMessageAsync<TMessage>(TMessage message, string queueName) where TMessage : MqMessage
 		{
 			return this.mqClient.SendMessageAsync(message, queueName);
 		}
 
-		public MqResponse RequestMessage(MqRequest request)
+		public TResponse RequestMessage<TRequest, TResponse>(TRequest request)
+			where TRequest : MqRequest
+			where TResponse : MqResponse
 		{
-			return new MqResponse();
+			return this.mqClient.RequestMessage<TRequest, TResponse>(request);
 		}
 
-		public Task<MqResponse> RequestMessageAsync(MqRequest request)
+		public Task<TResponse> RequestMessageAsync<TRequest, TResponse>(TRequest request)
+			where TRequest : MqRequest
+			where TResponse : MqResponse
 		{
-			return null;
+			return this.mqClient.RequestMessageAsync<TRequest, TResponse>(request);
+		}
+
+		public void Dispose()
+		{
+			if (mqClient != null)
+			{
+				mqClient.Dispose();
+			}
 		}
 	}
 }

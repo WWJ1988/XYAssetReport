@@ -7,8 +7,10 @@ using OMS.Trading.Common.Proxy;
 
 namespace OMS.TradingService.Interfaces
 {
-	public interface IOperationHandler
+	public interface IOperationHandler<TRequest, TResponse>
+		where TRequest : TradingMqRequest
+		where TResponse : TradingMqResponse
 	{
-		TradingMqResponse RespondToClient(TradingMqRequest request);
+		TResponse RespondToClient(TRequest request);
 	}
 }

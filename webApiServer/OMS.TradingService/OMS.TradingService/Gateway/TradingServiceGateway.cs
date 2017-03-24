@@ -1,5 +1,5 @@
 using System;
-using OMS.Communicator.Constracts;
+using OMS.Common.Communicator.Constracts;
 using OMS.Communicator.Services;
 
 namespace OMS.TradingService.Gateway
@@ -18,7 +18,8 @@ namespace OMS.TradingService.Gateway
 			messageManager.InitializeResponseDispatcher();
 			messageManager.AddConsumerRegistration(workflowEngine.ConsumeAction);
 			messageManager.AddReceiveRegistration(workflowEngine.ReceiveAction);
-			messageManager.AddResponseRegistrationRegist(workflowEngine.Func);
+			messageManager.AddResponseRegistrationRegist(workflowEngine.TradingGenerateFunc);
+			messageManager.AddResponseRegistrationRegist(workflowEngine.TradingOrderFunc);
 		}
 
 		public void Dispose()

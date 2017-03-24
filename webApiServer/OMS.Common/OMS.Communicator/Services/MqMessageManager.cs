@@ -1,6 +1,6 @@
 using System;
 using EasyNetQ;
-using OMS.Communicator.Constracts;
+using OMS.Common.Communicator.Constracts;
 using OMS.Communicator.Dispatchers;
 using OMS.Communicator.Interfaces;
 

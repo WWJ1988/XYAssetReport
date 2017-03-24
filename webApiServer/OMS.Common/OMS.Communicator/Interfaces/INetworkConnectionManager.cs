@@ -1,5 +1,5 @@
 using EasyNetQ;
-using OMS.Communicator.Constracts;
+using OMS.Common.Communicator.Constracts;
 
 namespace OMS.Communicator.Interfaces
 {

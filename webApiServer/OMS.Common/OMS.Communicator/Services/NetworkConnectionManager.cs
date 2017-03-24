@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 using EasyNetQ;
-using OMS.Communicator.Constracts;
+using OMS.Common.Communicator.Constracts;
 using OMS.Communicator.Interfaces;
 using OMS.Communicator.Models;
 
