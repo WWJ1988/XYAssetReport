@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using OMS.Shell.Desktop.Api.Interfaces;
+using OMS.Framework.Desktop.Common.Interfaces;
+using System;
+using System.Diagnostics;
+using System.Windows.Input;
 
 namespace OMS.Shell.ShellCores.Login
 {
-	internal class LoginWindowViewModel : BindableBase
+    internal class LoginWindowViewModel : BindableBase
 	{
 		private string errorMessage;
 		private string username;

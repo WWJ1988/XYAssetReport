@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 
 namespace OMS.Shell.Controls
 {
-	/// <summary>
-	/// Interaction logic for TopSummeryWidget.xaml
-	/// </summary>
-	public partial class TopSummeryWidget : UserControl
-	{
-		public TopSummeryWidget()
-		{
-			InitializeComponent();
-		}
-	}
+    /// <summary>
+    /// Interaction logic for FrameworkSummary.xaml
+    /// </summary>
+    public partial class FrameworkSummary : UserControl
+    {
+        public FrameworkSummary()
+        {
+            InitializeComponent();
+        }
+    }
 }

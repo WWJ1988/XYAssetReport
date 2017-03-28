@@ -1,12 +1,12 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OMS.Shell.Desktop.Api.Interfaces
+namespace OMS.Shell.Interfaces
 {
-	public interface ITileFactory
-	{
-	}
+    internal interface ISummaryWidgetManager
+    {
+    }
 }

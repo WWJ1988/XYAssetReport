@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace OMS.Shell.Desktop.Api.Interfaces
+namespace OMS.Framework.Desktop.Common.Interfaces
 {
 	public interface IShellApp
 	{

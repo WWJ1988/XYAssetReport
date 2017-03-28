@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMS.Shell.Desktop", "OMS.Shell\OMS.Shell.Desktop.csproj", "{EE45E035-9C81-4866-A322-2105F001F279}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMS.Framework.Desktop", "OMS.Shell\OMS.Framework.Desktop.csproj", "{EE45E035-9C81-4866-A322-2105F001F279}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMS.Trading.Desktop.Order", "OMS.Trading.Desktop.Order\OMS.Trading.Desktop.Order.csproj", "{6901AE28-C21E-43DF-BADA-80BC9B45AAAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMS.Shell.Desktop.Api", "OMS.Shell.Desktop.Api\OMS.Shell.Desktop.Api.csproj", "{70A3264B-0EDF-4216-A525-C4AF52829B95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMS.Framework.Desktop.Common", "OMS.Shell.Desktop.Api\OMS.Framework.Desktop.Common.csproj", "{70A3264B-0EDF-4216-A525-C4AF52829B95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

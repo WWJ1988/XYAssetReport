@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OMS.Framework.Desktop.Common.Properties {
+namespace OMS.Framework.Styles.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

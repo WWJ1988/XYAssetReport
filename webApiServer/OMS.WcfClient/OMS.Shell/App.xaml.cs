@@ -1,17 +1,17 @@
+using OMS.Framework.Desktop.Common.Interfaces;
+using OMS.Shell.ShellCores;
 using System;
 using System.IO;
 using System.Reflection;
 using System.Runtime;
 using System.Windows;
-using OMS.Shell.Desktop.Api.Interfaces;
-using OMS.Shell.ShellCores;
 
 namespace OMS.Shell
 {
-	/// <summary>
-	/// Interaction logic for App.xaml
-	/// </summary>
-	public partial class App : Application, IShellApp, IDisposable
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : Application, IShellApp, IDisposable
 	{
 		internal ShellBootstrapper Bootstrapper { get; set; }
 

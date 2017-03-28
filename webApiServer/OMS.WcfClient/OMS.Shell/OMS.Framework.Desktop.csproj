@@ -80,11 +80,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\TopSummeryWidget.xaml.cs">
-      <DependentUpon>TopSummeryWidget.xaml</DependentUpon>
+    <Compile Include="Constracts\RegionNames.cs" />
+    <Compile Include="Controls\FrameworkSummary.xaml.cs">
+      <DependentUpon>FrameworkSummary.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FrameworkSummaryViewModel.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Services\TileManager.cs" />
+    <Compile Include="Interfaces\ISummaryWidgetManager.cs" />
+    <Compile Include="Services\SummaryWidgetManager.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="ShellCores\Login\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -95,8 +98,7 @@
     </Compile>
     <Compile Include="ShellCores\MainWindows\MainWindowViewModel.cs" />
     <Compile Include="ShellCores\ShellBootstrapper.cs" />
-    <Compile Include="VIewModels\TopSummaryWidgetViewModel.cs" />
-    <Page Include="Controls\TopSummeryWidget.xaml">
+    <Page Include="Controls\FrameworkSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,6 +117,14 @@
     <Page Include="ShellCores\MainWindows\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShellCores\MainWindows\MainWindowStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Editor\EditorStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -145,13 +155,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\OMS.Shell.Desktop.Api\OMS.Shell.Desktop.Api.csproj">
+    <ProjectReference Include="..\OMS.Shell.Desktop.Api\OMS.Framework.Desktop.Common.csproj">
       <Project>{70a3264b-0edf-4216-a525-c4af52829b95}</Project>
-      <Name>OMS.Shell.Desktop.Api</Name>
+      <Name>OMS.Framework.Desktop.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6901AE28-C21E-43DF-BADA-80BC9B45AAAD}</ProjectGuid>
+    <ProjectGuid>{70A3264B-0EDF-4216-A525-C4AF52829B95}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OMS.Trading.Desktop.Order</RootNamespace>
-    <AssemblyName>OMS.Trading.Desktop.Order</AssemblyName>
+    <RootNamespace>OMS.Framework.Desktop.Common</RootNamespace>
+    <AssemblyName>OMS.Framework.Desktop.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -38,8 +38,11 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +57,14 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\SummaryWidget.xaml.cs">
+      <DependentUpon>SummaryWidget.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SummaryWidgetBaseViewModel.cs" />
+    <Compile Include="Interfaces\IShellApp.cs" />
+    <Compile Include="Interfaces\ISummaryWidgetFactory.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Metadatas\SummaryWidgetMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -82,10 +93,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\OMS.Shell.Desktop.Api\OMS.Framework.Desktop.Common.csproj">
-      <Project>{70a3264b-0edf-4216-a525-c4af52829b95}</Project>
-      <Name>OMS.Framework.Desktop.Common</Name>
-    </ProjectReference>
+    <Page Include="Controls\SummaryWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

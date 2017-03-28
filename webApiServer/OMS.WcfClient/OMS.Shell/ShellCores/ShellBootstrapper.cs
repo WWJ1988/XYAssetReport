@@ -1,201 +1,182 @@
+using Microsoft.Practices.Prism.Logging;
+using Microsoft.Practices.Prism.MefExtensions;
+using OMS.Framework.Desktop.Common.Interfaces;
+using OMS.Shell.ShellCores.Login;
+using OMS.Shell.ShellCores.MainWindows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
-using Microsoft.Practices.Prism.Logging;
-using Microsoft.Practices.Prism.MefExtensions;
-using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.ServiceLocation;
-using OMS.Shell.Desktop.Api.Interfaces;
-using OMS.Shell.Services;
-using OMS.Shell.ShellCores.Login;
-using OMS.Shell.ShellCores.MainWindows;
 
 namespace OMS.Shell.ShellCores
 {
-	internal sealed class ShellBootstrapper : MefBootstrapper, IDisposable
-	{
-		private string moduleDirectory;
-		private IShellApp shellApp;
+    internal sealed class ShellBootstrapper : MefBootstrapper, IDisposable
+    {
+        private string moduleDirectory;
+        private IShellApp shellApp;
 
-		[Import]
-		internal IServiceProvider RootServiceProvider { get; set; }
+        [Import]
+        private LoginWindow loginWindow;
 
-		[Import]
-		internal IServiceLocator ServiceLocator { get; set; }
+        public ShellBootstrapper(IShellApp shellApp, string moduleDirectory)
+        {
+            this.shellApp = shellApp;
+            this.moduleDirectory = moduleDirectory;
+        }
 
-		[Import]
-		internal IUserService UserService { get; set; }
+        protected override DependencyObject CreateShell()
+        {
+            loginWindow.LoginComplete += StartupWindowOnLoginComplete;
+            loginWindow.Show();
 
-		[Import]
-		internal TileManager TileManager { get; set; }
+            var mainWindow = new MainWindow();
+            mainWindow.DataContext = new MainWindowViewModel();
 
-		public ShellBootstrapper(IShellApp shellApp, string moduleDirectory)
-		{
-			this.shellApp = shellApp;
-			this.moduleDirectory = moduleDirectory;
-		}
+            shellApp.MainWindow = mainWindow;
 
-		protected override DependencyObject CreateShell()
-		{
-			var mainWindow = new LoginWindow(UserService);
-			mainWindow.LoginComplete += StartupWindowOnLoginComplete;
-			shellApp.MainWindow = mainWindow;
-			mainWindow.Show();
+            return mainWindow;
+        }
 
-			return mainWindow;
-		}
+        protected override void InitializeModules()
+        {
+            base.InitializeModules();
+        }
 
-		protected override void ConfigureContainer()
-		{
-			base.ConfigureContainer();
+        protected override void ConfigureContainer()
+        {
+            base.ConfigureContainer();
 
-			Container.ComposeParts(this);
-		}
+            Container.ComposeParts(this);
+        }
 
-		protected override void ConfigureAggregateCatalog()
-		{
-			base.ConfigureAggregateCatalog();
+        protected override void ConfigureAggregateCatalog()
+        {
+            base.ConfigureAggregateCatalog();
 
-			AggregateCatalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-		}
+            AggregateCatalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
 
-		private void StartupWindowOnLoginComplete(object sender, EventArgs eventArgs)
-		{
-			var loginWindow = Application.Current.MainWindow;
+            var modulesList = new List<DesktopModule>();
+            modulesList.AddRange(GetModules(moduleDirectory));
 
-			var modulesList = new List<DesktopModule>();
-			modulesList.AddRange(GetModules(moduleDirectory));
+            LoadModules(modulesList);
+        }
 
-			LoadModules(modulesList);
+        private void StartupWindowOnLoginComplete(object sender, EventArgs eventArgs)
+        {
+            var mainWindow = shellApp.MainWindow;
 
-			var mainWindow = new MainWindow();
-			mainWindow.DataContext = new MainWindowViewModel(RootServiceProvider);
+            mainWindow.Show();
 
-			shellApp.MainWindow = mainWindow;
-			mainWindow.Show();
+            if (loginWindow != null)
+            {
+                loginWindow.Close();
+            }
+        }
 
-			loginWindow.Close();
-		}
+        private IEnumerable<DesktopModule> GetModules(string moduleRootDir)
+        {
+            // regex format is OMS.<Product>.<SubProduct*>.Desktop.<Module*>.<SubModule*>.dll
+            var moduleNamePattern = new Regex(@"OMS\.(\w+)\.?(\w+)?\.Desktop\.(\w+)?\.?(\w+)?\.?dll", RegexOptions.IgnoreCase);
+            var moduleRootDirInfo = new DirectoryInfo(moduleRootDir);
+            var allDlls = moduleRootDirInfo.EnumerateFiles("*.dll", SearchOption.TopDirectoryOnly);
+            var modules = new List<DesktopModule>();
+            foreach (var dll in allDlls)
+            {
+                var match = moduleNamePattern.Match(dll.Name);
+                if (!match.Success)
+                {
+                    continue; //skip loading DLL if it does not match the pattern
+                }
 
-		private IEnumerable<DesktopModule> GetModules(string moduleRootDir)
-		{
-			// regex format is OMS.<Product>.<SubProduct*>.Desktop.<Module*>.<SubModule*>.dll
-			var moduleNamePattern = new Regex(@"OMS\.(\w+)\.?(\w+)?\.Desktop\.(\w+)?\.?(\w+)?\.?dll", RegexOptions.IgnoreCase);
-			var moduleRootDirInfo = new DirectoryInfo(moduleRootDir);
-			var allDlls = moduleRootDirInfo.EnumerateFiles("*.dll", SearchOption.TopDirectoryOnly);
-			var modules = new List<DesktopModule>();
-			foreach (var dll in allDlls)
-			{
-				var match = moduleNamePattern.Match(dll.Name);
-				if (!match.Success)
-				{
-					continue; //skip loading DLL if it does not match the pattern
-				}
+                var desktopModule = new DesktopModule
+                {
+                    Product = match.Groups[1].Value,
+                    SubProduct = match.Groups[2].Value,
+                    Module = match.Groups[3].Value,
+                    SubModule = match.Groups[4].Value,
+                    FileName = dll.Name
+                };
 
-				var desktopModule = new DesktopModule
-				{
-					Product = match.Groups[1].Value,
-					SubProduct = match.Groups[2].Value,
-					Module = match.Groups[3].Value,
-					SubModule = match.Groups[4].Value,
-					FileName = dll.Name
-				};
+                modules.Add(desktopModule);
+            }
 
-				modules.Add(desktopModule);
-			}
+            return modules;
+        }
 
-			return modules;
-		}
+        internal void LoadModules(IEnumerable<DesktopModule> desktopModules)
+        {
+            if (desktopModules == null)
+            {
+                throw new ArgumentNullException("desktopModules");
+            }
 
-		internal void LoadModules(IEnumerable<DesktopModule> desktopModules)
-		{
-			if (desktopModules == null)
-			{
-				throw new ArgumentNullException("desktopModules");
-			}
+            foreach (var desktopModule in desktopModules)
+            {
+                AssemblyCatalog assemblyCatalog;
 
-			foreach (var desktopModule in desktopModules)
-			{
-				AssemblyCatalog assemblyCatalog;
+                try
+                {
+                    string assemblyPath = Path.Combine(moduleDirectory, desktopModule.FileName);
 
-				try
-				{
-					string assemblyPath = Path.Combine(moduleDirectory, desktopModule.FileName);
-					Logger.Log(String.Format("Loading Desktop Module {0}", desktopModule),
-						Category.Info, Priority.Medium);
+                    assemblyCatalog = new AssemblyCatalog(assemblyPath);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(ex.Message, Category.Exception, Priority.Medium);
+                    continue;
+                }
 
-					assemblyCatalog = new AssemblyCatalog(assemblyPath);
-				}
-				catch (Exception ex)
-				{
-					Logger.Log(ex.Message, Category.Exception, Priority.Medium);
-					continue;
-				}
+                // Ignore any assembly catalogs that were already added
+                if (
+                    AggregateCatalog.Catalogs.OfType<AssemblyCatalog>()
+                        .All(ac => ac.Assembly.FullName != assemblyCatalog.Assembly.FullName))
+                {
+                    try
+                    {
+                        AggregateCatalog.Catalogs.Add(assemblyCatalog);
+                    }
+                    catch (ReflectionTypeLoadException loadEx)
+                    {
+                        var detailBuilder =
+                            new StringBuilder("Failed to Load Module: " + assemblyCatalog.Assembly.FullName)
+                                .AppendLine().AppendLine();
 
-				// Ignore any assembly catalogs that were already added
-				if (
-					AggregateCatalog.Catalogs.OfType<AssemblyCatalog>()
-						.All(ac => ac.Assembly.FullName != assemblyCatalog.Assembly.FullName))
-				{
-					try
-					{
-						AggregateCatalog.Catalogs.Add(assemblyCatalog);
-					}
-					catch (ReflectionTypeLoadException loadEx)
-					{
-						var detailBuilder =
-							new StringBuilder("Failed to Load Module: " + assemblyCatalog.Assembly.FullName)
-								.AppendLine().AppendLine();
+                        foreach (Exception exception in loadEx.LoaderExceptions)
+                        {
+                            detailBuilder.AppendLine(exception.Message);
+                        }
+                    }
+                }
+            }
+        }
 
-						foreach (Exception exception in loadEx.LoaderExceptions)
-						{
-							detailBuilder.AppendLine(exception.Message);
-						}
-					}
-				}
-			}
-		}
+        public void Dispose()
+        {
+            if (this.Container != null)
+            {
+                this.Container.Dispose();
+            }
+        }
+    }
 
-		public void Dispose()
-		{
-			if (this.Container != null)
-			{
-				this.Container.Dispose();
-			}
-		}
-	}
+    internal class DesktopModule
+    {
+        public string Product { get; set; }
+        public string SubProduct { get; set; }
+        public string Module { get; set; }
+        public string SubModule { get; set; }
+        public string FileName { get; set; }
 
-	internal class DesktopModule
-	{
-		public string Product { get; set; }
-		public string SubProduct { get; set; }
-		public string Module { get; set; }
-		public string SubModule { get; set; }
-		public string FileName { get; set; }
-
-		public override string ToString()
-		{
-			return String.Format("Product={0},SubProduct={1}, Module={2}, SubModule={3}",
-				Product, SubProduct, Module, SubModule);
-		}
-	}
-
-	[Export(typeof(IServiceProvider))]
-	internal class RootServiceProvider : ServiceContainer
-	{
-		[ImportingConstructor]
-		public RootServiceProvider(IServiceLocator serviceLocator) :
-			base(serviceLocator)
-		{
-
-		}
-	}
+        public override string ToString()
+        {
+            return String.Format("Product={0},SubProduct={1}, Module={2}, SubModule={3}",
+                Product, SubProduct, Module, SubModule);
+        }
+    }
 }
