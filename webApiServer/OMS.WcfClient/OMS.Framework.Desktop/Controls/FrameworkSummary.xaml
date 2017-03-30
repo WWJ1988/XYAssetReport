@@ -16,7 +16,7 @@
 	<StackPanel>
 		<ScrollViewer Height="95" 
                       HorizontalScrollBarVisibility="Auto"
-                      VerticalScrollBarVisibility="Auto"
+					  VerticalScrollBarVisibility="Hidden"
                       HorizontalAlignment="Left">
 			<StackPanel Orientation="Horizontal">
                 <StackPanel>

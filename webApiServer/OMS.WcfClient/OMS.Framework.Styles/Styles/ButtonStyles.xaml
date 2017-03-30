@@ -4,7 +4,6 @@
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="..\Colors\Colors.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
-
 	
 	<ControlTemplate x:Key="ButtonControlTemplate" TargetType="{x:Type Button}">
 		<Grid>				
@@ -107,6 +106,65 @@
 				<Setter Property="Background" Value="{DynamicResource ButtonCheckedBrush}"/>
 			</Trigger>
 		</Style.Triggers>
+	</Style>
+
+	<ControlTemplate x:Key="ControlTemplate.ButtonBase" TargetType="{x:Type ButtonBase}">
+		<Border x:Name="LayoutRoot" 
+				Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+			<ContentPresenter Margin="{TemplateBinding Padding}"
+							  TextElement.Foreground="{TemplateBinding Foreground}"
+							  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+							  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+				<ContentPresenter.Resources>
+					<Style TargetType="{x:Type TextBlock}" />
+				</ContentPresenter.Resources>
+			</ContentPresenter>
+		</Border>
+	</ControlTemplate>
+
+	<Style x:Key="Style.ButtonBase.Default" TargetType="{x:Type ButtonBase}">
+		<Setter Property="OverridesDefaultStyle" Value="True" />
+		<Setter Property="UseLayoutRounding" Value="True" />
+		<Setter Property="Foreground" Value="{DynamicResource ButtonForeground}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonNormalBackground}" />
+		<Setter Property="BorderBrush" Value="{StaticResource WhiteBrush}" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="Template" Value="{StaticResource ControlTemplate.ButtonBase}" />
+		<Setter Property="Cursor" Value="Hand"/>
+	</Style>
+
+	<Style x:Key="Style.Path.ButtonIcon"
+		   TargetType="Path">
+		<Setter Property="StrokeThickness"
+				Value="0" />
+		<Setter Property="UseLayoutRounding"
+				Value="True" />
+		<Setter Property="Margin"
+				Value="2" />
+		<Setter Property="VerticalAlignment"
+				Value="Center" />
+		<Setter Property="HorizontalAlignment"
+				Value="Center" />
+		<Setter Property="Fill"
+				Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}" />
+		<Setter Property="Stroke"
+				Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}" />
+		<Setter Property="Stretch"
+				Value="Uniform" />
+	</Style>
+
+	<Style x:Key="Style.Button.ButtonIcon"
+		   BasedOn="{StaticResource Style.ButtonBase.Default}"
+		   TargetType="{x:Type Button}">
+		<Style.Resources>
+			<Style x:Key="{x:Type Path}"
+				   BasedOn="{StaticResource Style.Path.ButtonIcon}"
+				   TargetType="{x:Type Path}" />
+		</Style.Resources>
 	</Style>
 
 </ResourceDictionary>

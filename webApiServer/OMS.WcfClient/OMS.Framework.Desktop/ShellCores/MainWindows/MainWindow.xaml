@@ -13,7 +13,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Background="#FFEEEEEE">
+	<Grid Background="{StaticResource GrayLightBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="110"/>
             <RowDefinition Height="150"/>

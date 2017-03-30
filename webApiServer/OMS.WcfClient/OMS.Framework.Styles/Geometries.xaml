@@ -1,0 +1,1346 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<Geometry x:Key="Geometry.New">M0,5 L5,5 5,0 8,0, 8,5 13,5 13,8 8,8 8,13 5,13 5,8 0,8 z</Geometry>
+	<GeometryGroup x:Key="Geometry.Copy" FillRule="Nonzero">
+		<!--  front page  -->
+		<CombinedGeometry GeometryCombineMode="Exclude">
+			<CombinedGeometry.Geometry1>
+				<RectangleGeometry Rect="0,4 10,12" />
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<RectangleGeometry Rect="2,6 6,8" />
+			</CombinedGeometry.Geometry2>
+
+		</CombinedGeometry>
+		<!--  back page  -->
+        <CombinedGeometry GeometryCombineMode="Exclude">
+            <CombinedGeometry.Geometry1>
+				<CombinedGeometry GeometryCombineMode="Exclude">
+					<CombinedGeometry.Geometry1>
+						<RectangleGeometry Rect="4,0 10,12" />
+					</CombinedGeometry.Geometry1>
+					<CombinedGeometry.Geometry2>
+						<RectangleGeometry Rect="6,2 6,8" />
+					</CombinedGeometry.Geometry2>
+				</CombinedGeometry>
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<RectangleGeometry Rect="4,3 7,9" />
+			</CombinedGeometry.Geometry2>
+		</CombinedGeometry>
+	</GeometryGroup>
+	<GeometryGroup x:Key="Geometry.Save" FillRule="Nonzero">
+		<CombinedGeometry GeometryCombineMode="Exclude">
+			<CombinedGeometry.Geometry1>
+				<PathGeometry>
+					<PathGeometry.Figures>
+						<PathFigure>
+							<PolyLineSegment>
+								<PolyLineSegment.Points>
+									<Point X="0" Y="0" />
+									<Point X="13" Y="0" />
+									<Point X="13" Y="11" />
+									<Point X="11" Y="13" />
+									<Point X="0" Y="13" />
+								</PolyLineSegment.Points>
+							</PolyLineSegment>
+						</PathFigure>
+
+					</PathGeometry.Figures>
+				</PathGeometry>
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<PathGeometry>
+					<PathGeometry.Figures>
+						<PathFigure>
+							<PolyLineSegment>
+								<PolyLineSegment.Points>
+									<Point X="1" Y="1" />
+									<Point X="12" Y="1" />
+									<Point X="12" Y="10" />
+									<Point X="10" Y="12" />
+									<Point X="1" Y="12" />
+									<Point X="1" Y="1" />
+								</PolyLineSegment.Points>
+							</PolyLineSegment>
+						</PathFigure>
+					</PathGeometry.Figures>
+				</PathGeometry>
+			</CombinedGeometry.Geometry2>
+
+		</CombinedGeometry>
+		<CombinedGeometry GeometryCombineMode="Exclude">
+			<CombinedGeometry.Geometry1>
+				<RectangleGeometry Rect="2,0 9,7" />
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<RectangleGeometry Rect="3,1 7,5" />
+			</CombinedGeometry.Geometry2>
+
+		</CombinedGeometry>
+		<CombinedGeometry GeometryCombineMode="Exclude">
+			<CombinedGeometry.Geometry1>
+				<RectangleGeometry Rect="3,9 7,3" />
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<RectangleGeometry Rect="4,10 3,3" />
+			</CombinedGeometry.Geometry2>
+		</CombinedGeometry>
+		<RectangleGeometry Rect=" 4,2 5,1" />
+		<RectangleGeometry Rect=" 4,4 5,1" />
+	</GeometryGroup>
+	<GeometryGroup x:Key="Geometry.Delete" FillRule="Nonzero">
+		<CombinedGeometry GeometryCombineMode="Union">
+			<CombinedGeometry.Geometry1>
+				<PathGeometry>
+					<PathFigure>
+						<PolyLineSegment>
+							<PolyLineSegment.Points>
+								<Point X="0" Y="0" />
+								<Point X="3" Y="0" />
+								<Point X="12" Y="10" />
+								<Point X="9" Y="10" />
+								<Point X="0" Y="0" />
+							</PolyLineSegment.Points>
+						</PolyLineSegment>
+					</PathFigure>
+				</PathGeometry>
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<PathGeometry>
+					<PathFigure>
+						<PolyLineSegment>
+							<PolyLineSegment.Points>
+								<Point X="9" Y="0" />
+								<Point X="12" Y="0" />
+								<Point X="3" Y="10" />
+								<Point X="0" Y="10" />
+								<Point X="9" Y="0" />
+							</PolyLineSegment.Points>
+						</PolyLineSegment>
+					</PathFigure>
+				</PathGeometry>
+			</CombinedGeometry.Geometry2>
+		</CombinedGeometry>
+	</GeometryGroup>
+	<Geometry x:Key="Geometry.Pen">
+		M10,0 C14,1 17,0 17,40 C17,60 16,90 14,100 L13,102 L12,104 C12,116 8,116 8,104 L7,102 L6,100 C4,90 3,60 3,40 C3,0 6,1 10,0z
+		M14,100 L13,102 L12,104 L8,104 L7,102 L6,100z
+	</Geometry>
+	<Geometry x:Key="Geometry.Pencil">
+		M0,4 L0,2 C0.5,.5 3.5,.5 4,2 L4,4z
+		M0,5 L0,19 4,19 4,5z 
+		M0,20 L4,20 L2,25z
+	</Geometry>
+	<Geometry x:Key="Geometry.PencilWide" >
+		M0,4 L0,2 C0,0 6,0 6,2 L6,4z 
+		M0,5 L0,19 6,19 6,5z 
+		M0,20 L6,20 L3,25z
+	</Geometry>
+	<Geometry x:Key="Geometry.Edit">
+		M0,4 L0,2 C0,0 6,0 6,2 L6,4z 
+		M0,5 L0,19 6,19 6,5z 
+		M0,20 L6,20 L3,25z
+	</Geometry>
+	<Geometry x:Key="Geometry.ArrowMoveRight">M0,0 L 0,12 10,6z</Geometry>
+	<CombinedGeometry x:Key="Geometry.ArrowMoveRight.Double" GeometryCombineMode="Union">
+		<CombinedGeometry.Geometry1>
+			<PathGeometry Figures="M0,0 L 0,12 10,6z" />
+		</CombinedGeometry.Geometry1>
+		<CombinedGeometry.Geometry2>
+			<PathGeometry Figures=" M7,0 L 17,6 7,12z" />
+		</CombinedGeometry.Geometry2>
+	</CombinedGeometry>
+	<Geometry x:Key="Geometry.ArrowMoveLeft">M10,0 L 10,12 0,6z</Geometry>
+	<CombinedGeometry x:Key="Geometry.ArrowMoveLeft.Double" GeometryCombineMode="Union">
+		<CombinedGeometry.Geometry1>
+			<PathGeometry Figures="M10,0 L 10,12 0,6z" />
+		</CombinedGeometry.Geometry1>
+		<CombinedGeometry.Geometry2>
+			<PathGeometry Figures=" M17,0 L 17,12 7,6z" />
+		</CombinedGeometry.Geometry2>
+	</CombinedGeometry>
+	<Geometry x:Key="Geometry.ItemExpandCollapse.East">M0,0 L 6,4 0,8z</Geometry>
+	<Geometry x:Key="Geometry.Filter">
+		M64,8C28.7,8,0,15.2,0,24c0,6.4,33.5,36.6,52,47.8V112c0,8.3,24,8.3,24,0V71.8c18.5-11.3,52-41.5,52-47.8
+		C128,15.2,99.3,8,64,8z M64,33.5c-28.7,0-52-4.3-52-9.5c0-5.2,23.3-9.5,52-9.5s52,4.3,52,9.5C116,29.2,92.7,33.5,64,33.5z
+	</Geometry>
+	<Geometry x:Key="Geometry.WindowMinimizeButton">M0,7 L10,7 10,10 0,10 z</Geometry>
+	<Geometry x:Key="Geometry.WindowMaximizeButton">M2,4 L2,10 11,10 11,4 z M1,1 L12,1 12,11 1,11 z</Geometry>
+	<CombinedGeometry x:Key="Geometry.WindowCloseButton" GeometryCombineMode="Union">
+		<CombinedGeometry.Geometry1>
+			<PathGeometry>
+				<PathFigure>
+					<PolyLineSegment>
+						<PolyLineSegment.Points>
+							<Point X="0" Y="0" />
+							<Point X="3" Y="0" />
+							<Point X="12" Y="10" />
+							<Point X="9" Y="10" />
+							<Point X="0" Y="0" />
+						</PolyLineSegment.Points>
+					</PolyLineSegment>
+				</PathFigure>
+			</PathGeometry>
+		</CombinedGeometry.Geometry1>
+		<CombinedGeometry.Geometry2>
+			<PathGeometry>
+				<PathFigure>
+					<PolyLineSegment>
+						<PolyLineSegment.Points>
+							<Point X="9" Y="0" />
+							<Point X="12" Y="0" />
+							<Point X="3" Y="10" />
+							<Point X="0" Y="10" />
+							<Point X="9" Y="0" />
+						</PolyLineSegment.Points>
+					</PolyLineSegment>
+				</PathFigure>
+			</PathGeometry>
+		</CombinedGeometry.Geometry2>
+	</CombinedGeometry>
+	<Geometry x:Key="Geometry.WindowRestoreButton">
+		M 4,0 L 12,0 12,2 4,2 z
+		M 4,2 L 5,2 5,3,4,3 z
+		M 11,2 L 11,7, 8,7, 8,8, 12,8, 12,2z
+		M 0,3 L 8,3 8,5,0,5 z
+		M 0,5 L 0,11 8,11 8,5 7,5 7,10 1,10 1,5z
+	</Geometry>
+	<GeometryGroup x:Key="Geometry.CircledArrowEast">
+		<GeometryGroup.Transform>
+			<RotateTransform Angle="180" />
+		</GeometryGroup.Transform>
+		<GeometryCollection>
+			<PathGeometry>
+				<PathGeometry.Figures>
+					<PathFigureCollection >
+						<PathFigure StartPoint="0,.50001" IsClosed="False" IsFilled="False" >
+							<ArcSegment IsLargeArc="True" IsStroked="True" Point="0,.5" Size=".5,.5" SweepDirection="Clockwise"/>
+						</PathFigure>
+					</PathFigureCollection>
+				</PathGeometry.Figures>
+			</PathGeometry>
+			<PathGeometry>
+				<PathGeometry.Figures>
+					<PathFigureCollection >
+						<PathFigure StartPoint="-.2, .5">
+							<LineSegment Point="-.8,.5" IsStroked="True" />
+						</PathFigure>
+						<PathFigure StartPoint="-.8, .5">
+							<LineSegment Point="-.5,.2" IsStroked="True" />
+						</PathFigure>
+						<PathFigure StartPoint="-.8, .5">
+							<LineSegment Point="-.5,.8" IsStroked="True" />
+						</PathFigure>
+					</PathFigureCollection>
+				</PathGeometry.Figures>
+			</PathGeometry>
+		</GeometryCollection>
+	</GeometryGroup>
+	<GeometryGroup x:Key="Geometry.TilesGrid">
+		<GeometryCollection>
+			<RectangleGeometry Rect="0,0,4,4" />
+			<RectangleGeometry Rect="6,0,4,4" />
+			<RectangleGeometry Rect="12,0,4,4" />
+			<RectangleGeometry Rect="0,6,4,4" />
+			<RectangleGeometry Rect="6,6,4,4" />
+			<RectangleGeometry Rect="12,6,4,4" />
+			<RectangleGeometry Rect="6,12,4,4" />
+			<RectangleGeometry Rect="0,12,4,4" />
+			<RectangleGeometry Rect="12,12,4,4"/>
+		</GeometryCollection>
+	</GeometryGroup>
+	<Geometry x:Key="Geometry.WorkspacesGrid">
+		M0,0 L4,0 4,4 0,4z M0,6 L4,6 4,10 0,10z M6,0 L10,0 10,4 6,4z M6,6 L10,6 10,10 6,10z
+	</Geometry>
+	<Geometry x:Key="Geometry.DetailsView">
+		M16,8.8H4.4V6.2H16V8.8z M16,1.7H4.4v2.7H16V1.7z M16,10.6H4.4v2.7H16V10.6z M1.4,1.7  c-0.7,0-1.3,0.6-1.3,1.3s0.6,1.3,1.3,1.3s1.3-0.6,1.3-1.3S2.2,1.7,1.4,1.7z M1.4,6.2c-0.7,0-1.3,0.6-1.3,1.3s0.6,1.3,1.3,1.3  s1.3-0.6,1.3-1.3S2.2,6.2,1.4,6.2z M1.4,10.6c-0.7,0-1.3,0.6-1.3,1.3s0.6,1.3,1.3,1.3s1.3-0.6,1.3-1.3S2.2,10.6,1.4,10.6z
+	</Geometry>
+	<Geometry x:Key="Geometry.ChatBubble" >
+		M	24,2
+		c	13.3,0,24,8.5,24,18.8
+		c	0,5.1-2.6,9.7-6.8,13.1
+		C	38.6,35.9,24,45,24,45
+		v	-5.5
+		c	-13.3,0-24-8.4-24-18.7
+		C	0,10.5,10.7,2,24,2z
+	</Geometry>
+	<Geometry x:Key="Geometry.User" >
+		M	32,33.7
+		c	-1.2-0.2-1.6-3.6-1.6-3.6
+		s	2.1-3.6,2.9-8.4
+		c	2.1,0,3.4-5.1,1.3-6.9
+		C	34.7,13,36.1,1,24,1
+		C	12.3,1,13.3,13,13.3,14.9
+		c	-2.1,1.8-0.8,6.9,1.3,6.9
+		c	0.8,4.8,2.9,8.4,2.9,8.4
+		s	-0.4,3.4-1.6,3.6
+		C	4.5,34.8,0,37.2,0,48
+		h	24
+		h	24
+		C	48,37.4,43.3,34.8,32,33.7z
+	</Geometry>
+	<Geometry x:Key="Geometry.Users">
+		M	48,37.5
+		c	-1.8-1.2-4.2-2-7.3-2.3
+		c	-0.9-0.1-1.1-2.5-1.1-2.5
+		s	1.5-2.5,2.1-5.9
+		c	1.5,0,2.4-3.6,0.9-4.9
+		c	0.1-1.3,1-9.8-7.5-9.8
+		c	-8.3,0-7.6,8.4-7.5,9.8
+		c	-1.5,1.3-0.6,4.9,0.9,4.9
+		c	0.6,3.4,2.1,5.9,2.1,5.9
+		s	-0.3,2.4-1.1,2.5
+		C	21.2,35.9,18,39.4,18,47
+		h	0
+		v	1
+		h	30
+		V	37.5z
+		M	23.3,29.6
+		C	23.3,29.5,23.3,29.5,23.3,29.6
+		c	-1.6-0.8-3.4-1.2-5.6-1.4
+		c	-0.8-0.1-1-2.3-1-2.3
+		s	1.4-2.3,1.9-5.4
+		c	1.4,0,2.2-3.3,0.8-4.5
+		c	0.1-1.2,0.9-9-6.9-9
+		c	-7.6,0-6.9,7.7-6.9,9
+		c	-1.4,1.2-0.5,4.5,0.8,4.5
+		c	0.5,3.1,1.9,5.4,1.9,5.4
+		s	-0.2,2.2-1,2.3
+		c	-3.3,0.3-5.7,1.1-7.3,2.5
+		V	48
+		h	12
+		v	-2
+		c	0.3-9,4.2-13.4,11.6-15.5
+		C	23.5,30.2,23.4,29.9,23.3,29.6z
+	</Geometry>
+	<Geometry x:Key="Geometry.Shield">
+		M953.576,883.615C964.949,879.507 972.886,872.63 976.815,864.132 982.441,851.943 980.722,830.388 980.722,830.388 963.85,830.388 954.269,819.615 954.269,819.615 954.269,819.615 943.306,830.388 926.433,830.388 926.433,830.388 924.714,851.608 930.345,863.797 934.27,872.297 942.207,879.507 953.576,883.615z
+	</Geometry>
+	<Geometry x:Key="Geometry.LightningBolt">
+		F1M1548.36,536.949L1573.21,524.905 1586.59,542.918 1580.36,545.181 1597.29,560.611 1592.21,563.012 1612.36,588.908 1578.08,568.84 1584.43,566.166 1563.68,553.616 1570.75,549.775 1548.36,536.949z
+	</Geometry>
+	<Geometry x:Key="Geometry.Star">
+		F1M1296.83,526.473L1306.72,546.509 1328.83,549.723 1312.83,565.319 1316.61,587.34 1296.83,576.943 1277.06,587.34 1280.83,565.319 1264.83,549.723 1286.94,546.509 1296.83,526.473z
+	</Geometry>
+	<Geometry x:Key="Geometry.Bell">
+		F1M59.8746,46.168C58.6237,44.849 57.1312,44.142 55.3145,43.4492 55.2132,43.4115 55.1055,43.3777 55.0026,43.3412 47.7142,37.0339 51.1328,31.9818 51.1328,25.5339 51.1328,19.1433 44.7653,9.40503 36.179,6.63025 36.2103,6.40369 36.2308,6.17322 36.2308,5.94019 36.2308,3.09509 33.9258,0.790405 31.0823,0.790405 28.2386,0.790405 25.9319,3.09509 25.9319,5.94019 25.9319,6.25659 25.9648,6.56775 26.0208,6.86719 17.8066,9.89063 11.7965,19.1263 11.7965,25.5339 11.7965,31.9271 14.8346,36.9727 8.23468,42.9857 6.90881,43.392 5.72394,43.8542 4.68555,44.3972 3.80042,44.8711 2.99835,45.4011 2.28711,46.168 1.5918,46.9128 0.941406,48.0625 0.94397,49.4297 0.941406,50.8008 1.5918,51.9506 2.28711,52.6941 3.53839,54.0144 5.03186,54.7214 6.84894,55.4167 9.56934,56.4102 13.0719,57.1576 17.1992,57.6927 19.9818,58.0508 23.0553,58.2917 26.2972,58.418 27.5768,60.6484 29.4964,62.0691 31.6445,62.0691 33.8066,62.0691 35.7402,60.6302 37.0201,58.375 42.3177,58.1185 47.082,57.5248 50.9134,56.6719 53.5313,56.0808 55.709,55.3945 57.4778,54.4648 58.3633,53.9922 59.1637,53.4623 59.8746,52.6941 60.5719,51.9506 61.222,50.8008 61.2194,49.4297 61.222,48.0625 60.5719,46.9128 59.8746,46.168z M12.5699,50.7695C10.7207,50.3594 9.19434,49.8777 8.16272,49.4297 8.38184,49.3347 8.62335,49.2371 8.88538,49.1433 10.9075,48.3881 14.0898,47.6654 17.9212,47.1771 20.2897,46.8699 22.9241,46.6498 25.7184,46.5209 25.0566,48.0781 24.6673,49.9102 24.6673,51.8802 24.6673,52.0183 24.6774,52.1537 24.6826,52.2917 19.9688,52.0287 15.7718,51.4883 12.5699,50.7695z M53.278,49.7201C51.2559,50.4779 48.0748,51.1953 44.2435,51.6863 42.498,51.9128 40.5996,52.0898 38.6113,52.2214 38.6126,52.1068 38.6214,51.9949 38.6214,51.8802 38.6214,49.9336 38.2428,48.1224 37.5938,46.5756 42.2633,46.8412 46.4141,47.3816 49.5934,48.0951 51.4414,48.5039 52.9691,48.9883 54.0006,49.4363 53.7816,49.5287 53.5403,49.6277 53.278,49.7201z
+	</Geometry>
+	<Geometry x:Key="Geometry.Clock">
+		M51.380001,32.068995L57.516998,32.068995 57.516998,34.205996 51.380001,34.205996z M46.343998,17.240995L34.391994,32.732965 34.392021,32.733496C34.392021,33.209833,34.271416,33.657843,34.059044,34.048716L34.027981,34.099829 40.27599,45.104986 31.444658,35.482542 31.349895,35.477762C29.958689,35.336584 28.87499,34.162504 28.87499,32.733496 28.87499,31.305424 29.958689,30.131401 31.349895,29.990227L31.631977,29.975996z M31.448,6.0759869L31.330723,6.0774708C17.319036,6.4324751 6.0689697,17.902769 6.0689697,32.000002 6.0689697,32.440477 6.0799561,32.878397 6.1016703,33.31349L6.1380005,33.895815 6.1380005,32.068995 12.276,32.068995 12.276,34.205996 6.1634102,34.205996 6.1987343,34.610064C7.4860158,47.485987,18.194767,57.590624,31.330723,57.923525L31.448,57.925009 31.448,51.861994 33.584999,51.861994 33.584999,57.88236 33.995102,57.856363C47.383911,56.837332 57.930969,45.647802 57.930969,32.000002 57.930969,18.3503 47.383911,7.1633954 33.995102,6.1446152L33.584999,6.1186256 33.584999,12.069994 31.448,12.069994z M32,0C49.671997,-4.802082E-07 64,14.326997 64,32.000002 64,49.670996 49.671997,63.998999 32,63.998999 14.326965,63.998999 0,49.670996 0,32.000002 0,14.326997 14.326965,-4.802082E-07 32,0z
+	</Geometry>
+	<Geometry x:Key="Geometry.Flag">
+		M2.4915056,2.2260001C3.8691173,2.2260004,4.9830005,3.3431869,4.9830005,4.7181533L4.9830005,52.518807C4.9830005,53.897702 3.8691173,55.010998 2.4915056,55.010998 1.1132736,55.010998 0,53.897702 0,52.518807L0,4.7181533C0,3.3431869,1.1132736,2.2260004,2.4915056,2.2260001z M21.916903,2.1072685E-05C34.563281,-0.013741149 44.850898,6.7199533 60.671,0.96500372 60.671,11.992384 60.671,23.027636 60.671,34.061489 39.577531,41.738621 28.30889,27.205954 8.1920012,36.075898L8.1920012,2.9753833C13.223898,0.75891303,17.701443,0.0046082785,21.916903,2.1072685E-05z
+	</Geometry>
+	<GeometryGroup x:Key="Geometry.DatePickerCalendar">
+		<CombinedGeometry GeometryCombineMode="Exclude">
+			<CombinedGeometry.Geometry1>
+				<RectangleGeometry Rect="0,0 16,16" />
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<RectangleGeometry Rect="1,4 14,11" />
+			</CombinedGeometry.Geometry2>
+		</CombinedGeometry>
+		<CombinedGeometry GeometryCombineMode="Union">
+			<CombinedGeometry.Geometry1>
+				<GeometryGroup>
+					<RectangleGeometry Rect="3,4 1,11" />
+					<RectangleGeometry Rect="6,4 1,11" />
+					<RectangleGeometry Rect="9,4 1,11" />
+					<RectangleGeometry Rect="12,4 1,11" />
+				</GeometryGroup>
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<GeometryGroup>
+					<RectangleGeometry Rect="1,6 14,1" />
+					<RectangleGeometry Rect="1,9 14,1" />
+					<RectangleGeometry Rect="1,12 14,1" />
+					<RectangleGeometry Rect="10,7 2,2" />
+				</GeometryGroup>
+			</CombinedGeometry.Geometry2>
+		</CombinedGeometry>
+	</GeometryGroup>
+	<Geometry x:Key="Geometry.AddWorkspace">M7.0100098,29.311123 L7.0100098,32.251173 15.950073,32.251173 15.950073,29.311123 z M7.0100098,21.380776 L7.0100098,24.050919 15.950073,24.050919 15.950073,21.380776 z M7.0100098,13.050512 L7.0100098,15.940633 15.950073,15.940633 15.950073,13.050512 z M0.5,0.5 L64.5,0.5 64.5,55.832001 25.700073,55.832001 25.700073,6.7602405 63.470093,6.7602405 63.470093,1.4200773 1.4700928,1.4200773 1.4700928,6.7602405 22.459955,6.7602405 23.01001,6.7602405 23.01001,55.832001 0.5,55.832001 z M44.293137,25.999 L50.223395,25.999 50.223395,35.284403 59.509,35.284403 59.509,41.214533 50.223395,41.214533 50.223395,50.499 44.293137,50.499 44.293137,41.214533 35.008,41.214533 35.008,35.284403 44.293137,35.284403 z</Geometry>
+	<Geometry x:Key="Geometry.AddWorkroom">M3.1666908,12.172111 L3.1666908,51.356438 37.327282,51.356438 37.327282,12.172111 z M47.86768,8.5183078 L47.86768,21.557398 65.788223,21.557398 65.788223,8.5183078 z M2.5781479,0.8910005 L37.914486,0.8910005 C39.061495,0.89100014 39.994002,1.8454513 39.994002,3.0213443 L39.994002,51.89283 C39.994002,53.070015 39.061495,54.022999 37.914486,54.022999 L2.5781479,54.022999 C1.4297867,54.022999 0.5,53.070015 0.5,51.89283 L0.5,3.0213443 C0.5,1.8454513 1.4297867,0.89100014 2.5781479,0.8910005 z M47.279759,0.5 L66.376743,0.5 C67.525177,0.50000014 68.455,1.3594971 68.455,2.4167502 L68.455,22.304699 C68.455,23.364699 67.525177,24.223999 66.376743,24.223999 L47.279759,24.223999 C46.131326,24.223999 45.201,23.364699 45.201,22.304699 L45.201,2.4167502 C45.201,1.3594971 46.131326,0.50000014 47.279759,0.5 z M54.293137,27.499 L60.223395,27.499 60.223395,36.784403 69.509,36.784403 69.509,42.714533 60.223395,42.714533 60.223395,51.999 54.293137,51.999 54.293137,42.714533 45.008,42.714533 45.008,36.784403 54.293137,36.784403 z</Geometry>
+	<Geometry x:Key="Geometry.ArrowEast">M0,5 L6,5 6,0 14,8 6,16 6,11 0,11 z</Geometry>
+	<Geometry x:Key="Geometry.DataLibraryIcon">M56.705303,6.3580006C53.5452,6.3580001 50.984001,8.9197515 50.984001,12.079175 50.984001,15.239178 53.5452,17.801001 56.705303,17.801001 59.866802,17.801001 62.428005,15.239178 62.428005,12.079175 62.428005,8.9197515 59.866802,6.3580001 56.705303,6.3580006z M33.33345,6.3580006C30.173269,6.3580001 27.612001,8.9197515 27.612001,12.079175 27.612001,15.239178 30.173269,17.801001 33.33345,17.801001 36.493736,17.801001 39.055004,15.239178 39.055004,12.079175 39.055004,8.9197515 36.493736,6.3580001 33.33345,6.3580006z M9.9599902,6.3580006C6.799195,6.3580001 4.2379996,8.9197515 4.2379996,12.079175 4.2379996,15.239178 6.799195,17.801001 9.9599902,17.801001 13.120804,17.801001 15.682,15.239178 15.682,12.079175 15.682,8.9197515 13.120804,6.3580001 9.9599902,6.3580006z M48.44133,0L64.971664,0C65.909179,3.1507148E-07,66.666999,0.75915219,66.666999,1.6953036L66.666999,47.046711C66.666999,47.982807,65.909179,48.742001,64.971664,48.742001L48.44133,48.742001C47.503811,48.742001,46.745998,47.982807,46.745998,47.046711L46.745998,1.6953036C46.745998,0.75915219,47.503811,3.1507148E-07,48.44133,0z M25.068634,0L41.597664,0C42.535183,3.1507148E-07,43.292999,0.75915219,43.292999,1.6953036L43.292999,47.046711C43.292999,47.982807,42.535183,48.742001,41.597664,48.742001L25.068634,48.742001C24.131115,48.742001,23.371999,47.982807,23.371999,47.046711L23.371999,1.6953036C23.371999,0.75915219,24.131115,3.1507148E-07,25.068634,0z M1.6953434,0L18.225664,0C19.163183,3.1507148E-07,19.920999,0.75915219,19.920999,1.6953036L19.920999,47.046711C19.920999,47.982807,19.163183,48.742001,18.225664,48.742001L1.6953434,48.742001C0.7591236,48.742001,-6.2133759E-07,47.982807,3.6948222E-13,47.046711L3.6948222E-13,1.6953036C-6.2133759E-07,0.75915219,0.7591236,3.1507148E-07,1.6953434,0z</Geometry>
+	<Geometry x:Key="Geometry.HelpIcon">F1M1355.27,1727.8L1346.08,1727.8C1346.06,1726.48 1346.05,1725.67 1346.05,1725.38 1346.05,1722.41 1346.54,1719.96 1347.52,1718.04 1348.51,1716.12 1350.47,1713.96 1353.43,1711.56 1356.38,1709.16 1358.14,1707.58 1358.72,1706.84 1359.61,1705.66 1360.05,1704.37 1360.05,1702.95 1360.05,1700.98 1359.27,1699.29 1357.7,1697.89 1356.12,1696.49 1354,1695.78 1351.34,1695.78 1348.77,1695.78 1346.62,1696.52 1344.89,1697.98 1343.16,1699.44 1341.98,1701.68 1341.33,1704.68L1332.04,1703.53C1332.3,1699.23 1334.13,1695.58 1337.53,1692.58 1340.93,1689.58 1345.38,1688.08 1350.91,1688.08 1356.72,1688.08 1361.34,1689.6 1364.77,1692.63 1368.21,1695.67 1369.92,1699.2 1369.92,1703.24 1369.92,1705.47 1369.29,1707.58 1368.03,1709.58 1366.77,1711.57 1364.08,1714.28 1359.95,1717.71 1357.81,1719.49 1356.48,1720.92 1355.97,1722 1355.45,1723.08 1355.22,1725.01 1355.27,1727.8z M1346.08,1741.41L1346.08,1731.29 1356.2,1731.29 1356.2,1741.41 1346.08,1741.41z</Geometry>
+	<GeometryGroup x:Key="Geometry.HelpCircle">
+		<PathGeometry Figures="M528.7-116.8c-2.4,2.6-4,4.3-5.1,5.5C525.8-113.6,528.7-116.8,528.7-116.8z" />
+		<PathGeometry Figures="M910,8c0-169-137-306-306-306C435-298,298-161,298,8c0,169,137,306,306,306C773,314,910,177,910,8z M325.8,8
+                     c0-153.6,124.5-278.2,278.2-278.2S882.2-145.6,882.2,8S757.6,286.2,604,286.2S325.8,161.6,325.8,8z" />
+		<PathGeometry Figures="M653-144.3c11.5,14.2,17.2,30.9,17.2,50.2c0,13.8-3.9,27-11.8,39.9c-4.3,7.3-10,14.3-17.1,21L617.8-10
+                     c-22.6,22.2-37.3,41.9-44,59.2c-6.7,17.2-10,39.9-10,68h52.5c0-24.8,2.8-43.5,8.4-56.2c5.6-12.7,17.8-28.2,36.7-46.5
+                     c26-25.2,43.2-44.3,51.8-57.3c8.5-13,12.9-29.9,12.9-50.8c0-34.4-11.6-62.7-35-84.9c-23.3-22.2-54.4-33.2-93.1-33.2
+                     c-41.9,0-74.9,12.9-98.9,38.8s-36,60-36,102.5h52.5c1-25.6,5-45.2,12.1-58.7c12.6-24.4,35.3-36.6,68.2-36.6
+                     C622.5-165.5,641.6-158.5,653-144.3z M562.6,166.2h58.7v61.4h-58.7V166.2z" />
+	</GeometryGroup>
+	<Geometry x:Key="Geometry.ScrollUp">M 0 0 L 3.5 5 L 7 0 Z</Geometry>
+	<Geometry x:Key="Geometry.TriangleEast">M0,0 0,9 7.5,4.5 z</Geometry>
+	<Geometry x:Key="Geometry.PlayPause">M0,0 L8,6 0,12z M13,0 L17,0 17,12 13,12z M20,0 L24,0 24,12 20,12 z</Geometry>
+	<Geometry x:Key="Geometry.CloseX">M0,0 L4,0 7,3 10,0 14,0 9,5 14,10 10,10 7,7 4,10 0,10 4,5 z</Geometry>
+	<Geometry x:Key="Geometry.Maximize">M1,3 L1,11 12,11 12,3 z M0,0 L13,0 13,12 0,12 z</Geometry>
+	<Geometry x:Key="Geometry.Minimize">M0,5 L11,5 11,8 z</Geometry>
+	<Geometry x:Key="Geometry.ExpandArrowsSouth">M0,0 3.5,3 7,0 7,2 3.5,5 0,2 z M0,4 3.5,7 7,4 7,6 3.5,9 0,6 z</Geometry>
+    <Geometry x:Key="Geometry.Menu.Checked" >M 0 0 L 7 7 M 0 7 L 7 0</Geometry>
+    <Geometry x:Key="Geometry.Menu.ArrowLeft" >M 0 0 L 0 7 L 4 3.5 Z</Geometry>
+    <Geometry x:Key="Geometry.Menu.ArrowDown" >M 0 0 L 4 4 L 8 0 Z</Geometry>
+    <Geometry x:Key="Geometry.Menu.ArrowSE" >M 0,7 L 7,7 L 7,0 z</Geometry>
+    <Geometry x:Key="Geometry.Filter.Simple">M0,0 L10,0 6,4 6,8 4,8 4,4z</Geometry>
+    <Geometry x:Key="Geometry.Checkmark">
+		M 12.4227,0.00012207C 12.4867,0.126587 12.5333,0.274536
+		12.6787,0.321411C 9.49199,3.24792 6.704,6.57336
+		4.69865,10.6827C 4.04399,11.08 3.47066,11.5573 2.83199,
+		11.9706C 2.09467,10.2198 1.692,8.13196 3.8147e-006,
+		7.33606C 0.500004,6.79871 1.31733,6.05994 1.93067,6.2428C
+		2.85999,6.51868 3.14,7.9054 3.60399,8.81604C 5.80133,
+		5.5387 8.53734,2.19202 12.4227,0.00012207 Z
+	</Geometry>
+	<Geometry x:Key="Geometry.Link">M5.4669514,6.5710271 C5.7004991,6.571801 5.9340095,6.5922726 6.1640745,6.6323961 L4.5090564,8.2943257 C4.0970521,8.7093085 3.8890498,9.2522858 3.8840497,9.7982625 L2.7860379,10.899216 C2.4930346,11.193203 2.3330328,11.582187 2.334033,11.997169 2.334033,12.391152 2.4850347,12.759137 2.7530375,13.046125 2.7660377,13.061125 2.7760377,13.078124 2.7900379,13.091123 2.804038,13.104122 2.8210382,13.114122 2.8350384,13.128121 3.1210415,13.39311 3.4890454,13.541104 3.8810496,13.541104 4.2960542,13.541104 4.6860584,13.380111 4.9790616,13.085123 L6.0690734,11.98917 C6.6400796,11.98117 7.1760855,11.75818 7.5800898,11.353197 L9.2651081,9.6632679 C9.5031106,10.885217 9.1501069,12.202161 8.2070966,13.14912 L6.6320797,14.732054 C6.2510754,15.114037 5.8020705,15.403025 5.3150651,15.597017 4.8640604,15.776009 4.3810551,15.875006 3.8810496,15.875006 2.8470385,15.875006 1.8750281,15.474022 1.1430202,14.746053 0.40901232,14.013084 0.0020074844,13.039125 7.6293945E-06,12.001169 -0.00099229813,11.50519 0.097008705,11.024211 0.2720108,10.577229 0.46401262,10.087251 0.75101566,9.635269 1.1340199,9.2522858 L2.706037,7.674352 C3.4421699,6.9341963 4.4549114,6.5676726 5.4669514,6.5710271 z M9.2233503,5.6290029 C9.4913561,5.6290029 9.7423618,5.733003 9.931366,5.9200028 10.321375,6.3100031 10.323375,6.944003 9.9343662,7.3340033 L9.9103656,7.358003 6.7532948,10.528004 C6.5632905,10.720003 6.3102848,10.824003 6.0402788,10.824003 5.7752728,10.824003 5.5252672,10.723003 5.339263,10.537003 4.9432541,10.139004 4.9412541,9.5140036 5.335263,9.1160029 L8.4803336,5.9590028 8.5153344,5.924003 C8.7053385,5.733003 8.9563441,5.6290029 9.2233503,5.6290029 z M11.989649,8.1604819E-06 C12.995892,-0.0019915494 14.001634,0.36352745 14.73513,1.0965647 16.249117,2.6066395 16.256114,5.0677632 14.74913,6.5828432 L12.754143,8.5829447 C12.023153,9.3199814 11.047155,9.7260006 10.006163,9.7260006 9.7561653,9.7260006 9.5121715,9.701002 9.2711761,9.6549977 L10.762162,8.158923 C11.177159,7.7419022 11.385158,7.1958731 11.389155,6.6468457 L13.096143,4.9357565 C13.695137,4.3337282 13.691139,3.3516763 13.08714,2.7486487 12.795143,2.4566303 12.407145,2.2966224 11.996153,2.2966224 11.580156,2.2966224 11.188161,2.458633 10.894157,2.7546459 L9.1691718,4.4897345 C8.6241782,4.501736 8.0841814,4.7037462 7.6891879,5.101765 L6.2001936,6.5968436 C5.9601977,5.3727787 6.3101934,4.054715 7.2541862,3.1066648 L9.2411699,1.1085623 C9.9766645,0.37152538 10.983407,0.0020074082 11.989649,8.1604819E-06 z</Geometry>
+	<Geometry x:Key="Geometry.Float">M0,2.0119995 L7.9249984,2.0119995 7.9249984,4.2769994 2.2639995,4.2769994 2.2639995,13.332998 11.320998,13.332998 11.320998,7.6729988 13.585998,7.6729988 13.585998,15.597997 0,15.597997 z M15.599,0 L15.172001,5.229001 13.571,3.627999 7.5940018,9.6060003 5.9929997,8.0039991 11.970002,2.0270008 10.369,0.42599889 z</Geometry>
+	<Geometry x:Key="Geometry.Undo">
+		M	0.2,-20.001
+		C	-10.706,			-20.001
+		-19.579,			-11.127
+		-19.579,			-0.221
+		-19.579,			10.686
+		-10.706,			19.56
+		0.199999999999999,	19.56
+		4.879,				19.56
+		9.171,				17.916
+		12.556,				15.187
+		L	2.75,				6.707
+		28.578,				2.894
+		28.528,				29.001
+		19.458,				21.156
+		C	14.357,				25.755
+		7.608,				28.56
+		0.198999999999998,	28.56
+		-15.695,			28.56
+		-28.58,				15.673
+		-28.58,				-0.221
+		-28.58,				-16.115
+		-15.694,			-29.001
+		0.198999999999998,	-29.001
+		12.667,				-29.001
+		23.28,				-21.073
+		27.279,				-9.985
+		L	18.08,				-8.626
+		C	14.913,				-15.336,
+		8.1,				-20.001,
+		0.2,				-20.001
+		Z
+	</Geometry>
+	<Geometry x:Key="Geometry.SwoopArrowEast">
+		M	03.0710,	00.0530
+		C	03.3630,	00.3450
+		01.6090,	02.6850
+		02.7790,	04.4400
+		C	03.8020,	06.1960
+		06.5640,	05.9030
+		06.5640,	05.9030
+		L	07.0200,	03.5630
+		L	12.2850,	07.2180
+		L	06.8730,	10.7300
+		L	06.5810,	08.6820
+		C	06.5800,	08.6820
+		03.6560,	08.5350
+		02.0480,	06.9270
+		C	00.0000,	04.7330
+		01.9570,	00.0000
+		03.0710,	00.0530
+		Z
+	</Geometry>
+	<Geometry x:Key="Geometry.Folder">
+		M	2,5
+		L	2,2
+		9,2
+		10,0
+		16,0
+		16,13
+		2,13
+		0,5
+		14,5
+		15,10
+		15,1
+		11,1
+		10,3
+		3,3
+		3,5
+		z
+	</Geometry>
+	<Geometry x:Key="Geometry.Refresh">F1M225.713,1773.49L232.795,1776.66 231.995,1768.94 231.192,1761.23 226.002,1764.99C221.113,1758.99 213.677,1755.15 205.337,1755.15 190.61,1755.15 178.672,1767.1 178.672,1781.82 178.672,1796.55 190.61,1808.49 205.337,1808.49 211.902,1808.49 217.903,1806.11 222.543,1802.17 222.573,1802.11 222.593,1802.06 222.627,1801.99 224.257,1798.82 220.791,1798.99 220.781,1798.99 216.686,1802.68 211.271,1804.93 205.337,1804.93 192.595,1804.93 182.228,1794.56 182.228,1781.82 182.228,1769.08 192.595,1758.71 205.337,1758.71 212.481,1758.71 218.867,1761.98 223.106,1767.09L218.631,1770.33 225.713,1773.49z</Geometry>
+	<GeometryGroup x:Key="Geometry.CircleArrowLeft">
+		<GeometryCollection>
+			<PathGeometry>
+				<PathGeometry.Figures>
+					<PathFigureCollection>
+						<PathFigure IsClosed="False"
+									IsFilled="False"
+									StartPoint="0,.50001">
+							<ArcSegment IsLargeArc="True"
+										IsStroked="True"
+										Point="0,.5"
+										Size=".5,.5"
+										SweepDirection="Clockwise" />
+						</PathFigure>
+					</PathFigureCollection>
+				</PathGeometry.Figures>
+			</PathGeometry>
+			<PathGeometry>
+				<PathGeometry.Figures>
+					<PathFigureCollection>
+						<PathFigure StartPoint="-.2, .5">
+							<LineSegment IsStroked="True" Point="-.8,.5" />
+						</PathFigure>
+						<PathFigure StartPoint="-.8, .5">
+							<LineSegment IsStroked="True" Point="-.5,.2" />
+						</PathFigure>
+						<PathFigure StartPoint="-.8, .5">
+							<LineSegment IsStroked="True" Point="-.5,.8" />
+						</PathFigure>
+					</PathFigureCollection>
+				</PathGeometry.Figures>
+			</PathGeometry>
+		</GeometryCollection>
+	</GeometryGroup>
+	<GeometryGroup x:Key="Geometry.Clear">
+		<PathGeometry Figures="M205.106,133L208.089,133C214.648,133,220,127.805,220,121.257L220,109 255,109 255,121.257C255,127.805,260.248,133,266.814,133L269.796,133C276.355,133,281.999,127.805,281.999,121.257L281.999,109 316.999,109 316.999,121.257C316.999,127.805,321.958,133,328.523,133L331.506,133C338.065,133,342.998,127.805,342.998,121.257L342.998,109 350.548,109 373,131.184 373,157 397,167 397,121.164 360.302,85 343,85 343,72.93C343,66.383,338.066,61,331.508,61L328.525,61C321.959,61,317,66.383,317,72.93L317,85 282,85 282,72.93C282,66.383,276.355,61,269.797,61L266.815,61C260.248,61,255,66.383,255,72.93L255,85 220,85 220,72.93C220,66.383,214.648,61,208.089,61L205.106,61C198.541,61,193,66.383,193,72.93L193,85 158,85 158,72.93C158,66.383,152.937,61,146.378,61L143.396,61C136.83,61,131,66.383,131,72.93L131,85 75,85 75,443 191.38,443 176.357,419 99,419 99,109 131,109 131,121.257C131,127.805,136.83,133,143.396,133L146.378,133C152.938,133,158,127.805,158,121.257L158,109 193,109 193,121.257C193,127.805,198.541,133,205.106,133z" FillRule="Nonzero" />
+		<PathGeometry Figures="M357.297,259.076L357.297,259.076 320.56,295.814 283.825,259.079 252.339,290.565 289.073,327.3 252.341,364.031 283.828,395.518 320.56,358.786 357.294,395.521 388.779,364.035 352.045,327.3 388.784,290.563z" FillRule="Nonzero" />
+		<PathGeometry Figures="M418.895,228.964C364.587,174.655 276.536,174.652 222.225,228.964 167.92,283.269 167.916,371.327 222.225,425.635 276.534,479.943 364.59,479.941 418.895,425.635 473.206,371.324 473.204,283.273 418.895,228.964z M403.53,410.271C357.783,456.017 283.338,456.021 237.589,410.271 191.839,364.522 191.842,290.077 237.589,244.33 283.343,198.577 357.78,198.58 403.53,244.33 449.279,290.079 449.283,364.518 403.53,410.271z" FillRule="Nonzero" />
+	</GeometryGroup>
+	<GeometryGroup x:Key="Geometry.Target" FillRule="EvenOdd">
+		<EllipseGeometry Center="12,12"
+							RadiusX="10"
+							RadiusY="10" />
+		<EllipseGeometry Center="12,12"
+							RadiusX="8"
+							RadiusY="8" />
+		<EllipseGeometry Center="12,12"
+							RadiusX="6"
+							RadiusY="6" />
+		<EllipseGeometry Center="12,12"
+							RadiusX="4"
+							RadiusY="4" />
+		<EllipseGeometry Center="12,12"
+							RadiusX="2"
+							RadiusY="2" />
+	</GeometryGroup>
+	<GeometryGroup x:Key="Geometry.Workflow">
+		<PathGeometry>
+			<PathFigureCollection>
+				<PathFigure IsClosed="True"
+							IsFilled="False"
+							StartPoint="3, 3">
+					<LineSegment IsStroked="True" Point="10, 3" />
+					<LineSegment IsStroked="True" Point="10, 0" />
+					<LineSegment IsStroked="True" Point="16, 6" />
+					<LineSegment IsStroked="True" Point="10, 12" />
+					<LineSegment IsStroked="True" Point="10, 9" />
+					<LineSegment IsStroked="True" Point="3, 9" />
+				</PathFigure>
+				<PathFigure IsClosed="True"
+							IsFilled="False"
+							StartPoint="13, 14">
+					<LineSegment IsStroked="True" Point="6, 14" />
+					<LineSegment IsStroked="True" Point="6, 11" />
+					<LineSegment IsStroked="True" Point="0, 17" />
+					<LineSegment IsStroked="True" Point="6, 23" />
+					<LineSegment IsStroked="True" Point="6, 20" />
+					<LineSegment IsStroked="True" Point="13, 20" />
+				</PathFigure>
+			</PathFigureCollection>
+		</PathGeometry>
+	</GeometryGroup>
+	<GeometryGroup x:Key="Geometry.Tiles">
+		<RectangleGeometry Rect="0,0 4,4" />
+		<RectangleGeometry Rect="6,0 10,4" />
+		<RectangleGeometry Rect="0,6 4,10" />
+		<RectangleGeometry Rect="6,6 10,10" />
+	</GeometryGroup>
+	<GeometryGroup x:Key="Geometry.Mail">
+		<PathGeometry>
+			<PathFigure IsClosed="False"
+						IsFilled="False"
+						StartPoint="0 0">
+				<LineSegment IsStroked="True" Point="0, 24" />
+				<LineSegment IsStroked="True" Point="32, 24" />
+				<LineSegment IsStroked="True" Point="32, 0" />
+				<LineSegment IsStroked="True" Point="16, 14" />
+				<LineSegment IsStroked="True" Point=".5, 0" />
+				<LineSegment IsStroked="True" Point="32, 0" />
+			</PathFigure>
+		</PathGeometry>
+	</GeometryGroup>
+	<CombinedGeometry x:Key="Geometry.Dashboard" GeometryCombineMode="Union">
+		<CombinedGeometry.Geometry1>
+			<CombinedGeometry GeometryCombineMode="Exclude">
+				<CombinedGeometry.Geometry1>
+					<PathGeometry>
+						<PathFigure IsClosed="True"
+									IsFilled="True"
+									StartPoint="0,16">
+							<PathFigure.Segments>
+								<ArcSegment Point="32, 16"
+											RotationAngle="180"
+											Size="16, 16"
+											SweepDirection="Clockwise" />
+							</PathFigure.Segments>
+						</PathFigure>
+					</PathGeometry>
+				</CombinedGeometry.Geometry1>
+				<CombinedGeometry.Geometry2>
+					<PathGeometry>
+						<PathFigure IsClosed="True"
+									IsFilled="True"
+									StartPoint="1,15">
+							<PathFigure.Segments>
+								<ArcSegment Point="31, 15"
+											RotationAngle="180"
+											Size="14, 13"
+											SweepDirection="Clockwise" />
+							</PathFigure.Segments>
+						</PathFigure>
+					</PathGeometry>
+				</CombinedGeometry.Geometry2>
+			</CombinedGeometry>
+		</CombinedGeometry.Geometry1>
+		<CombinedGeometry.Geometry2>
+			<CombinedGeometry GeometryCombineMode="Union">
+				<CombinedGeometry.Geometry1>
+					<PathGeometry>
+						<PathFigure IsClosed="True"
+									IsFilled="True"
+									StartPoint="12.5,16">
+							<PathFigure.Segments>
+								<ArcSegment Point="19.5, 16"
+											RotationAngle="180"
+											Size="3, 3"
+											SweepDirection="Clockwise" />
+							</PathFigure.Segments>
+						</PathFigure>
+					</PathGeometry>
+				</CombinedGeometry.Geometry1>
+				<CombinedGeometry.Geometry2>
+					<PathGeometry>
+						<PathFigure IsClosed="True"
+									IsFilled="True"
+									StartPoint="15,16">
+							<PathFigure.Segments>
+								<LineSegment Point="12,2" />
+								<LineSegment Point="18,16" />
+							</PathFigure.Segments>
+						</PathFigure>
+					</PathGeometry>
+				</CombinedGeometry.Geometry2>
+			</CombinedGeometry>
+		</CombinedGeometry.Geometry2>
+	</CombinedGeometry>
+	<CombinedGeometry x:Key="Geometry.Gear" GeometryCombineMode="Exclude">
+		<CombinedGeometry.Geometry1>
+			<CombinedGeometry GeometryCombineMode="Union">
+				<CombinedGeometry.Geometry1>
+					<EllipseGeometry Center="50,50"
+										RadiusX="35"
+										RadiusY="35" />
+				</CombinedGeometry.Geometry1>
+				<CombinedGeometry.Geometry2>
+					<GeometryGroup>
+						<RectangleGeometry Rect="42,0 14,100" />
+						<RectangleGeometry Rect="0,42 100,14" />
+						<RectangleGeometry Rect="42,0 14,100">
+							<RectangleGeometry.Transform>
+								<RotateTransform Angle="45" CenterX="50" CenterY="50" />
+							</RectangleGeometry.Transform>
+						</RectangleGeometry>
+						<RectangleGeometry Rect="0,42 100,14">
+							<RectangleGeometry.Transform>
+								<RotateTransform Angle="45" CenterX="50" CenterY="50" />
+							</RectangleGeometry.Transform>
+						</RectangleGeometry>
+					</GeometryGroup>
+				</CombinedGeometry.Geometry2>
+			</CombinedGeometry>
+		</CombinedGeometry.Geometry1>
+		<CombinedGeometry.Geometry2>
+			<EllipseGeometry Center="50,50"
+								RadiusX="18"
+								RadiusY="18" />
+		</CombinedGeometry.Geometry2>
+	</CombinedGeometry>
+	<Geometry x:Key="Geometry.DialogIcon">
+		M 11,0 C13,0 14,1 14,3 14,3 14,7 14,7 14,9 13,10 11,10 11,10 9,10 9,10 9,10 3,14 3,14 3,14 4,10 4,10 4,10 3,10 3,10 1,10 0,9 0,7 0,7 0,3 0,3 0,1 1,0 3,0 3,0 11,0 11,0 z
+	</Geometry>
+	<GeometryGroup x:Key="Geometry.WarningTriangle">
+		<PathGeometry Figures="M 58.5832,55.4172L 17.4169,55.4171C 15.5619,53.5621 15.5619,50.5546 17.4168,48.6996L 35.201,15.8402C 37.056,13.9852 40.0635,13.9852 41.9185,15.8402L 58.5832,48.6997C 60.4382,50.5546 60.4382,53.5622 58.5832,55.4172 Z M 34.0417,25.7292L 36.0208,41.9584L 39.9791,41.9583L 41.9583,25.7292L 34.0417,25.7292 Z M 38,44.3333C 36.2511,44.3333 34.8333,45.7511 34.8333,47.5C 34.8333,49.2489 36.2511,50.6667 38,50.6667C 39.7489,50.6667 41.1666,49.2489 41.1666,47.5C 41.1666,45.7511 39.7489,44.3333 38,44.3333 Z" />
+		<GeometryGroup.Transform>
+			<ScaleTransform ScaleX="0.4"
+							ScaleY="0.4" />
+		</GeometryGroup.Transform>
+	</GeometryGroup>
+	<Geometry x:Key="Geometry.WarningTriangleB">M102.0635,44.0566L102.0635,44.0566L96.0715,55.6776C95.9255,55.9606,95.8495,56.2756,95.8495,56.5936C95.8495,57.6986,96.7455,58.5936,97.8495,58.5936L110.0145,58.5936C110.3415,58.5936,110.6645,58.5136,110.9535,58.3606C111.9285,57.8416,112.2995,56.6306,111.7815,55.6556L105.6075,44.0346C105.4165,43.6746,105.1205,43.3816,104.7575,43.1956C103.7765,42.6896,102.5705,43.0746,102.0635,44.0566z M103.2055,56.3526C102.8435,55.9916,102.8435,55.4066,103.2055,55.0446C103.5655,54.6836,104.1515,54.6836,104.5125,55.0446C104.8735,55.4066,104.8735,55.9916,104.5125,56.3526C104.1515,56.7136,103.5655,56.7136,103.2055,56.3526 M104.5705,48.8686L104.5705,48.8686L103.7755,53.2306L102.8025,48.8686C102.8025,48.8686,102.5685,47.8456,102.8755,47.2806C103.1805,46.7136,104.0875,46.7046,104.4555,47.2186C104.8205,47.7306,104.5725,48.8626,104.5705,48.8686z</Geometry>
+	<Geometry x:Key="Geometry.WarningCircle">
+		M 38,19C 48.4934,19 57,27.5066 57,38C 57,48.4934 48.4934,57 38,57C 27.5066,57 19,48.4934 19,38C 19,27.5066 27.5066,19 38,19 Z M 34.0417,25.7292L 36.0208,41.9584L 39.9792,41.9583L 41.9583,25.7292L 34.0417,25.7292 Z M 38,44.3333C 36.2511,44.3333 34.8333,45.7511 34.8333,47.5C 34.8333,49.2489 36.2511,50.6667 38,50.6667C 39.7489,50.6667 41.1667,49.2489 41.1667,47.5C 41.1667,45.7511 39.7489,44.3333 38,44.3333 Z
+	</Geometry>
+	<Geometry x:Key="Geometry.Message">
+		M12.346,9.615L7.341,9.615 2.749,12.349 3.28,9.604C2.096,9.604,0.5,8.795,0.5,7.792L0.5,2.323C0.5,1.32,1.469,0.5,2.654,0.5L12.346,0.5C13.531,0.5,14.5,1.32,14.5,2.323L14.5,7.792C14.5,8.795,13.531,9.615,12.346,9.615Z
+	</Geometry>
+	<Geometry x:Key="Geometry.SquareCheckmark">
+		M0,7 6,13 16,3 13,0 6,7 3,4Z
+	</Geometry>
+	<Geometry x:Key="Geometry.SquareCheckmark.Thin">
+		M0,9 9,18 24,3 21,0 9,12 3,6Z
+	</Geometry>
+	<Geometry x:Key="Geometry.Link.TileHeader">
+		M38.3,25.3c-1.6-1.6-4.1-1.6-5.7,0l-1.4,1.4 c-1.3,1.3-1.5,3.1-0.7,4.6l-0.3,0.3c-1.5-0.7-3.4-0.5-4.6,0.7l-1.4,1.4c-1.6,1.6-1.6,4.1,0,5.7c1.6,1.6,4.1,1.6,5.7,0 l1.4-1.4 c1.3-1.3,1.5-3.1,0.7-4.6l0.2-0.2c1.5,0.8,3.4,0.5,4.6-0.7l1.4-1.4C39.9,29.4,39.9,26.9,38.3,25.3z M29.9,36.6L28.5,38 c-0.4,0.4-0.9,0.6-1.4,0.6c-0.5,0-1-0.2-1.4-0.6c-0.8-0.8-0.8-2.1,0-2.8l1.4-1.4c0.4-0.4,0.9-0.6,1.4-0.6c0.1,0,0.1,0,0.2,0 l-1.1,1.1c-0.5,0.5-0.5,1.3,0,1.8c0.5,0.5,1.3,0.5,1.8,0l1.1-1.1C30.5,35.5,30.4,36.1,29.9,36.6z M36.9,29.6L35.5,31 c-0.4,0.4-0.9,0.6-1.4,0.6c-0.1,0-0.1,0-0.2,0l0.7-0.7c0.5-0.5,0.5-1.3,0-1.8c-0.5-0.5-1.3-0.5-1.8,0l-0.7,0.7 c0-0.6,0.1-1.2,0.6-1.6l1.4-1.4c0.4-0.4,0.9-0.6,1.4-0.6c0.5,0,1,0.2,1.4,0.6C37.7,27.5,37.7,28.8,36.9,29.6z
+	</Geometry>
+	<Geometry x:Key="Geometry.Search.Lens">M4.9,11.1l-4,4 M9.2,0.9
+       c-3.2,0-5.9,2.6-5.9,5.9s2.6,5.9,5.9,5.9c3.2,0,5.9-2.6,5.9-5.9S12.4,0.9,9.2,0.9z</Geometry>
+
+	<Geometry x:Key="Geometry.Move">
+		M14.5,6.7 13,5.5 13,7 9,7 9,3 10.5,3 9.3,1.5 8,0 6.8,1.5 5.5,3 7.1,3 7.1,7 3,7 3,5.5 1.5,6.7 0,
+		8 1.5,9.2 3,10.5 3,8.9 7.1,8.9 7.1,13 5.5,13 6.8,14.5 8,16 9.3,14.5 10.5,13 9,13 9,8.9 13,8.9 13,10.5 14.5,9.2 16,8z
+	</Geometry>
+	<Geometry x:Key="Geometry.ChevronEast">
+		M0,0 5,5 0,10 3,10 8,5 3,0Z
+	</Geometry>
+
+	<Geometry x:Key="WindowMinimizeButtonGeometry">M0,7 L10,7 10,10 0,10 z</Geometry>
+    <Geometry x:Key="WindowMaximizeButtonGeometry">M2,4 L2,10 11,10 11,4 z M1,1 L12,1 12,11 1,11 z</Geometry>
+    <CombinedGeometry x:Key="WindowCloseButtonGeometry" GeometryCombineMode="Union">
+        <CombinedGeometry.Geometry1>
+            <PathGeometry>
+                <PathFigure>
+                    <PolyLineSegment>
+                        <PolyLineSegment.Points>
+                            <Point X="0" Y="0" />
+                            <Point X="3" Y="0" />
+                            <Point X="12" Y="10" />
+                            <Point X="9" Y="10" />
+                            <Point X="0" Y="0" />
+                        </PolyLineSegment.Points>
+                    </PolyLineSegment>
+                </PathFigure>
+            </PathGeometry>
+        </CombinedGeometry.Geometry1>
+        <CombinedGeometry.Geometry2>
+            <PathGeometry>
+                <PathFigure>
+                    <PolyLineSegment>
+                        <PolyLineSegment.Points>
+                            <Point X="9" Y="0" />
+                            <Point X="12" Y="0" />
+                            <Point X="3" Y="10" />
+                            <Point X="0" Y="10" />
+                            <Point X="9" Y="0" />
+                        </PolyLineSegment.Points>
+                    </PolyLineSegment>
+                </PathFigure>
+            </PathGeometry>
+        </CombinedGeometry.Geometry2>
+    </CombinedGeometry>
+    <Geometry x:Key="WindowRestoreButtonGeometry">
+        M 4,0 L 12,0 12,2 4,2 z
+        M 4,2 L 5,2 5,3,4,3 z
+        M 11,2 L 11,7, 8,7, 8,8, 12,8, 12,2z
+        M 0,3 L 8,3 8,5,0,5 z
+        M 0,5 L 0,11 8,11 8,5 7,5 7,10 1,10 1,5z
+    </Geometry>
+    <GeometryGroup x:Key="CircledArrowEastGeometry">
+        <GeometryGroup.Transform>
+            <RotateTransform Angle="180" />
+        </GeometryGroup.Transform>
+        <GeometryCollection>
+            <PathGeometry>
+                <PathGeometry.Figures>
+                    <PathFigureCollection >
+                        <PathFigure StartPoint="0,.50001" IsClosed="False" IsFilled="False" >
+                            <ArcSegment IsLargeArc="True" IsStroked="True" Point="0,.5" Size=".5,.5" SweepDirection="Clockwise"/>
+                        </PathFigure>
+                    </PathFigureCollection>
+                </PathGeometry.Figures>
+            </PathGeometry>
+            <PathGeometry>
+                <PathGeometry.Figures>
+                    <PathFigureCollection >
+                        <PathFigure StartPoint="-.2, .5">
+                            <LineSegment Point="-.8,.5" IsStroked="True" />
+                        </PathFigure>
+                        <PathFigure StartPoint="-.8, .5">
+                            <LineSegment Point="-.5,.2" IsStroked="True" />
+                        </PathFigure>
+                        <PathFigure StartPoint="-.8, .5">
+                            <LineSegment Point="-.5,.8" IsStroked="True" />
+                        </PathFigure>
+                    </PathFigureCollection>
+                </PathGeometry.Figures>
+            </PathGeometry>
+        </GeometryCollection>
+    </GeometryGroup>
+    <GeometryGroup x:Key="TilesGridGeometry">
+        <GeometryCollection>
+            <RectangleGeometry Rect="0,0,4,4" />
+            <RectangleGeometry Rect="6,0,4,4" />
+            <RectangleGeometry Rect="12,0,4,4" />
+            <RectangleGeometry Rect="0,6,4,4" />
+            <RectangleGeometry Rect="6,6,4,4" />
+            <RectangleGeometry Rect="12,6,4,4" />
+            <RectangleGeometry Rect="6,12,4,4" />
+            <RectangleGeometry Rect="0,12,4,4" />
+            <RectangleGeometry Rect="12,12,4,4"/>
+        </GeometryCollection>
+    </GeometryGroup>
+	<Geometry x:Key="ChatBubbleGeometry" >
+		M	24,2
+		c	13.3,0,24,8.5,24,18.8
+		c	0,5.1-2.6,9.7-6.8,13.1
+		C	38.6,35.9,24,45,24,45
+		v	-5.5
+		c	-13.3,0-24-8.4-24-18.7
+		C	0,10.5,10.7,2,24,2z
+	</Geometry> 
+	<Geometry x:Key="UserGeometry" >
+		M	32,33.7
+		c	-1.2-0.2-1.6-3.6-1.6-3.6
+		s	2.1-3.6,2.9-8.4
+		c	2.1,0,3.4-5.1,1.3-6.9
+		C	34.7,13,36.1,1,24,1
+		C	12.3,1,13.3,13,13.3,14.9
+		c	-2.1,1.8-0.8,6.9,1.3,6.9
+		c	0.8,4.8,2.9,8.4,2.9,8.4
+		s	-0.4,3.4-1.6,3.6
+		C	4.5,34.8,0,37.2,0,48
+		h	24
+		h	24
+		C	48,37.4,43.3,34.8,32,33.7z
+	</Geometry>
+	<Geometry x:Key="UsersGeometry">
+		M	48,37.5
+		c	-1.8-1.2-4.2-2-7.3-2.3
+		c	-0.9-0.1-1.1-2.5-1.1-2.5
+		s	1.5-2.5,2.1-5.9
+		c	1.5,0,2.4-3.6,0.9-4.9
+		c	0.1-1.3,1-9.8-7.5-9.8
+		c	-8.3,0-7.6,8.4-7.5,9.8
+		c	-1.5,1.3-0.6,4.9,0.9,4.9
+		c	0.6,3.4,2.1,5.9,2.1,5.9
+		s	-0.3,2.4-1.1,2.5
+		C	21.2,35.9,18,39.4,18,47
+		h	0
+		v	1
+		h	30
+		V	37.5z
+		M	23.3,29.6
+		C	23.3,29.5,23.3,29.5,23.3,29.6
+		c	-1.6-0.8-3.4-1.2-5.6-1.4
+		c	-0.8-0.1-1-2.3-1-2.3
+		s	1.4-2.3,1.9-5.4
+		c	1.4,0,2.2-3.3,0.8-4.5
+		c	0.1-1.2,0.9-9-6.9-9
+		c	-7.6,0-6.9,7.7-6.9,9
+		c	-1.4,1.2-0.5,4.5,0.8,4.5
+		c	0.5,3.1,1.9,5.4,1.9,5.4
+		s	-0.2,2.2-1,2.3
+		c	-3.3,0.3-5.7,1.1-7.3,2.5
+		V	48
+		h	12
+		v	-2
+		c	0.3-9,4.2-13.4,11.6-15.5
+		C	23.5,30.2,23.4,29.9,23.3,29.6z
+	</Geometry>
+	<Geometry x:Key="ShieldGeometry">
+		M953.576,883.615C964.949,879.507 972.886,872.63 976.815,864.132 982.441,851.943 980.722,830.388 980.722,830.388 963.85,830.388 954.269,819.615 954.269,819.615 954.269,819.615 943.306,830.388 926.433,830.388 926.433,830.388 924.714,851.608 930.345,863.797 934.27,872.297 942.207,879.507 953.576,883.615z
+	</Geometry>
+	<Geometry x:Key="LightningBoltGeometry">
+		F1M1548.36,536.949L1573.21,524.905 1586.59,542.918 1580.36,545.181 1597.29,560.611 1592.21,563.012 1612.36,588.908 1578.08,568.84 1584.43,566.166 1563.68,553.616 1570.75,549.775 1548.36,536.949z
+	</Geometry>
+	<Geometry x:Key="StarGeometry">
+		F1M1296.83,526.473L1306.72,546.509 1328.83,549.723 1312.83,565.319 1316.61,587.34 1296.83,576.943 1277.06,587.34 1280.83,565.319 1264.83,549.723 1286.94,546.509 1296.83,526.473z
+	</Geometry>
+	<Geometry x:Key="BellGeometry">
+		F1M59.8746,46.168C58.6237,44.849 57.1312,44.142 55.3145,43.4492 55.2132,43.4115 55.1055,43.3777 55.0026,43.3412 47.7142,37.0339 51.1328,31.9818 51.1328,25.5339 51.1328,19.1433 44.7653,9.40503 36.179,6.63025 36.2103,6.40369 36.2308,6.17322 36.2308,5.94019 36.2308,3.09509 33.9258,0.790405 31.0823,0.790405 28.2386,0.790405 25.9319,3.09509 25.9319,5.94019 25.9319,6.25659 25.9648,6.56775 26.0208,6.86719 17.8066,9.89063 11.7965,19.1263 11.7965,25.5339 11.7965,31.9271 14.8346,36.9727 8.23468,42.9857 6.90881,43.392 5.72394,43.8542 4.68555,44.3972 3.80042,44.8711 2.99835,45.4011 2.28711,46.168 1.5918,46.9128 0.941406,48.0625 0.94397,49.4297 0.941406,50.8008 1.5918,51.9506 2.28711,52.6941 3.53839,54.0144 5.03186,54.7214 6.84894,55.4167 9.56934,56.4102 13.0719,57.1576 17.1992,57.6927 19.9818,58.0508 23.0553,58.2917 26.2972,58.418 27.5768,60.6484 29.4964,62.0691 31.6445,62.0691 33.8066,62.0691 35.7402,60.6302 37.0201,58.375 42.3177,58.1185 47.082,57.5248 50.9134,56.6719 53.5313,56.0808 55.709,55.3945 57.4778,54.4648 58.3633,53.9922 59.1637,53.4623 59.8746,52.6941 60.5719,51.9506 61.222,50.8008 61.2194,49.4297 61.222,48.0625 60.5719,46.9128 59.8746,46.168z M12.5699,50.7695C10.7207,50.3594 9.19434,49.8777 8.16272,49.4297 8.38184,49.3347 8.62335,49.2371 8.88538,49.1433 10.9075,48.3881 14.0898,47.6654 17.9212,47.1771 20.2897,46.8699 22.9241,46.6498 25.7184,46.5209 25.0566,48.0781 24.6673,49.9102 24.6673,51.8802 24.6673,52.0183 24.6774,52.1537 24.6826,52.2917 19.9688,52.0287 15.7718,51.4883 12.5699,50.7695z M53.278,49.7201C51.2559,50.4779 48.0748,51.1953 44.2435,51.6863 42.498,51.9128 40.5996,52.0898 38.6113,52.2214 38.6126,52.1068 38.6214,51.9949 38.6214,51.8802 38.6214,49.9336 38.2428,48.1224 37.5938,46.5756 42.2633,46.8412 46.4141,47.3816 49.5934,48.0951 51.4414,48.5039 52.9691,48.9883 54.0006,49.4363 53.7816,49.5287 53.5403,49.6277 53.278,49.7201z
+	</Geometry>
+	<Geometry x:Key="ClockGeometry">
+		M51.380001,32.068995L57.516998,32.068995 57.516998,34.205996 51.380001,34.205996z M46.343998,17.240995L34.391994,32.732965 34.392021,32.733496C34.392021,33.209833,34.271416,33.657843,34.059044,34.048716L34.027981,34.099829 40.27599,45.104986 31.444658,35.482542 31.349895,35.477762C29.958689,35.336584 28.87499,34.162504 28.87499,32.733496 28.87499,31.305424 29.958689,30.131401 31.349895,29.990227L31.631977,29.975996z M31.448,6.0759869L31.330723,6.0774708C17.319036,6.4324751 6.0689697,17.902769 6.0689697,32.000002 6.0689697,32.440477 6.0799561,32.878397 6.1016703,33.31349L6.1380005,33.895815 6.1380005,32.068995 12.276,32.068995 12.276,34.205996 6.1634102,34.205996 6.1987343,34.610064C7.4860158,47.485987,18.194767,57.590624,31.330723,57.923525L31.448,57.925009 31.448,51.861994 33.584999,51.861994 33.584999,57.88236 33.995102,57.856363C47.383911,56.837332 57.930969,45.647802 57.930969,32.000002 57.930969,18.3503 47.383911,7.1633954 33.995102,6.1446152L33.584999,6.1186256 33.584999,12.069994 31.448,12.069994z M32,0C49.671997,-4.802082E-07 64,14.326997 64,32.000002 64,49.670996 49.671997,63.998999 32,63.998999 14.326965,63.998999 0,49.670996 0,32.000002 0,14.326997 14.326965,-4.802082E-07 32,0z
+	</Geometry>
+	<Geometry x:Key="FlagGeometry">
+		M2.4915056,2.2260001C3.8691173,2.2260004,4.9830005,3.3431869,4.9830005,4.7181533L4.9830005,52.518807C4.9830005,53.897702 3.8691173,55.010998 2.4915056,55.010998 1.1132736,55.010998 0,53.897702 0,52.518807L0,4.7181533C0,3.3431869,1.1132736,2.2260004,2.4915056,2.2260001z M21.916903,2.1072685E-05C34.563281,-0.013741149 44.850898,6.7199533 60.671,0.96500372 60.671,11.992384 60.671,23.027636 60.671,34.061489 39.577531,41.738621 28.30889,27.205954 8.1920012,36.075898L8.1920012,2.9753833C13.223898,0.75891303,17.701443,0.0046082785,21.916903,2.1072685E-05z
+	</Geometry>
+	<Geometry x:Key="PenGeometry">
+		M10,0 C14,1 17,0 17,40 C17,60 16,90 14,100 L13,102 L12,104 C12,116 8,116 8,104 L7,102 L6,100 C4,90 3,60 3,40 C3,0 6,1 10,0z
+		M14,100 L13,102 L12,104 L8,104 L7,102 L6,100z
+	</Geometry>
+	<Geometry x:Key="PencilGeometry">
+		M0,4 L0,2 C0.5,.5 3.5,.5 4,2 L4,4z
+		M0,5 L0,19 4,19 4,5z 
+		M0,20 L4,20 L2,25z
+	</Geometry>
+	<Geometry x:Key="PencilWideGeometry" >
+		M0,4 L0,2 C0,0 6,0 6,2 L6,4z 
+		M0,5 L0,19 6,19 6,5z 
+		M0,20 L6,20 L3,25z
+	</Geometry>
+	<GeometryGroup x:Key="DatePickerCalendarGeometry">
+		<CombinedGeometry GeometryCombineMode="Exclude">
+			<CombinedGeometry.Geometry1>
+				<RectangleGeometry Rect="0,0 16,16" />
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<RectangleGeometry Rect="1,4 14,11" />
+			</CombinedGeometry.Geometry2>
+		</CombinedGeometry>
+		<CombinedGeometry GeometryCombineMode="Union">
+			<CombinedGeometry.Geometry1>
+				<GeometryGroup>
+					<RectangleGeometry Rect="3,4 1,11" />
+					<RectangleGeometry Rect="6,4 1,11" />
+					<RectangleGeometry Rect="9,4 1,11" />
+					<RectangleGeometry Rect="12,4 1,11" />
+				</GeometryGroup>
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<GeometryGroup>
+					<RectangleGeometry Rect="1,6 14,1" />
+					<RectangleGeometry Rect="1,9 14,1" />
+					<RectangleGeometry Rect="1,12 14,1" />
+					<RectangleGeometry Rect="10,7 2,2" />
+				</GeometryGroup>
+			</CombinedGeometry.Geometry2>
+		</CombinedGeometry>
+	</GeometryGroup>
+	<Geometry x:Key="g_AddWorkspace">M7.0100098,29.311123 L7.0100098,32.251173 15.950073,32.251173 15.950073,29.311123 z M7.0100098,21.380776 L7.0100098,24.050919 15.950073,24.050919 15.950073,21.380776 z M7.0100098,13.050512 L7.0100098,15.940633 15.950073,15.940633 15.950073,13.050512 z M0.5,0.5 L64.5,0.5 64.5,55.832001 25.700073,55.832001 25.700073,6.7602405 63.470093,6.7602405 63.470093,1.4200773 1.4700928,1.4200773 1.4700928,6.7602405 22.459955,6.7602405 23.01001,6.7602405 23.01001,55.832001 0.5,55.832001 z M44.293137,25.999 L50.223395,25.999 50.223395,35.284403 59.509,35.284403 59.509,41.214533 50.223395,41.214533 50.223395,50.499 44.293137,50.499 44.293137,41.214533 35.008,41.214533 35.008,35.284403 44.293137,35.284403 z</Geometry>
+	<Geometry x:Key="g_AddWorkroom">M3.1666908,12.172111 L3.1666908,51.356438 37.327282,51.356438 37.327282,12.172111 z M47.86768,8.5183078 L47.86768,21.557398 65.788223,21.557398 65.788223,8.5183078 z M2.5781479,0.8910005 L37.914486,0.8910005 C39.061495,0.89100014 39.994002,1.8454513 39.994002,3.0213443 L39.994002,51.89283 C39.994002,53.070015 39.061495,54.022999 37.914486,54.022999 L2.5781479,54.022999 C1.4297867,54.022999 0.5,53.070015 0.5,51.89283 L0.5,3.0213443 C0.5,1.8454513 1.4297867,0.89100014 2.5781479,0.8910005 z M47.279759,0.5 L66.376743,0.5 C67.525177,0.50000014 68.455,1.3594971 68.455,2.4167502 L68.455,22.304699 C68.455,23.364699 67.525177,24.223999 66.376743,24.223999 L47.279759,24.223999 C46.131326,24.223999 45.201,23.364699 45.201,22.304699 L45.201,2.4167502 C45.201,1.3594971 46.131326,0.50000014 47.279759,0.5 z M54.293137,27.499 L60.223395,27.499 60.223395,36.784403 69.509,36.784403 69.509,42.714533 60.223395,42.714533 60.223395,51.999 54.293137,51.999 54.293137,42.714533 45.008,42.714533 45.008,36.784403 54.293137,36.784403 z</Geometry>
+	<Geometry x:Key="g_DataLibraryIcon">M56.705303,6.3580006C53.5452,6.3580001 50.984001,8.9197515 50.984001,12.079175 50.984001,15.239178 53.5452,17.801001 56.705303,17.801001 59.866802,17.801001 62.428005,15.239178 62.428005,12.079175 62.428005,8.9197515 59.866802,6.3580001 56.705303,6.3580006z M33.33345,6.3580006C30.173269,6.3580001 27.612001,8.9197515 27.612001,12.079175 27.612001,15.239178 30.173269,17.801001 33.33345,17.801001 36.493736,17.801001 39.055004,15.239178 39.055004,12.079175 39.055004,8.9197515 36.493736,6.3580001 33.33345,6.3580006z M9.9599902,6.3580006C6.799195,6.3580001 4.2379996,8.9197515 4.2379996,12.079175 4.2379996,15.239178 6.799195,17.801001 9.9599902,17.801001 13.120804,17.801001 15.682,15.239178 15.682,12.079175 15.682,8.9197515 13.120804,6.3580001 9.9599902,6.3580006z M48.44133,0L64.971664,0C65.909179,3.1507148E-07,66.666999,0.75915219,66.666999,1.6953036L66.666999,47.046711C66.666999,47.982807,65.909179,48.742001,64.971664,48.742001L48.44133,48.742001C47.503811,48.742001,46.745998,47.982807,46.745998,47.046711L46.745998,1.6953036C46.745998,0.75915219,47.503811,3.1507148E-07,48.44133,0z M25.068634,0L41.597664,0C42.535183,3.1507148E-07,43.292999,0.75915219,43.292999,1.6953036L43.292999,47.046711C43.292999,47.982807,42.535183,48.742001,41.597664,48.742001L25.068634,48.742001C24.131115,48.742001,23.371999,47.982807,23.371999,47.046711L23.371999,1.6953036C23.371999,0.75915219,24.131115,3.1507148E-07,25.068634,0z M1.6953434,0L18.225664,0C19.163183,3.1507148E-07,19.920999,0.75915219,19.920999,1.6953036L19.920999,47.046711C19.920999,47.982807,19.163183,48.742001,18.225664,48.742001L1.6953434,48.742001C0.7591236,48.742001,-6.2133759E-07,47.982807,3.6948222E-13,47.046711L3.6948222E-13,1.6953036C-6.2133759E-07,0.75915219,0.7591236,3.1507148E-07,1.6953434,0z</Geometry>
+	<Geometry x:Key="g_HelpIcon">F1M1355.27,1727.8L1346.08,1727.8C1346.06,1726.48 1346.05,1725.67 1346.05,1725.38 1346.05,1722.41 1346.54,1719.96 1347.52,1718.04 1348.51,1716.12 1350.47,1713.96 1353.43,1711.56 1356.38,1709.16 1358.14,1707.58 1358.72,1706.84 1359.61,1705.66 1360.05,1704.37 1360.05,1702.95 1360.05,1700.98 1359.27,1699.29 1357.7,1697.89 1356.12,1696.49 1354,1695.78 1351.34,1695.78 1348.77,1695.78 1346.62,1696.52 1344.89,1697.98 1343.16,1699.44 1341.98,1701.68 1341.33,1704.68L1332.04,1703.53C1332.3,1699.23 1334.13,1695.58 1337.53,1692.58 1340.93,1689.58 1345.38,1688.08 1350.91,1688.08 1356.72,1688.08 1361.34,1689.6 1364.77,1692.63 1368.21,1695.67 1369.92,1699.2 1369.92,1703.24 1369.92,1705.47 1369.29,1707.58 1368.03,1709.58 1366.77,1711.57 1364.08,1714.28 1359.95,1717.71 1357.81,1719.49 1356.48,1720.92 1355.97,1722 1355.45,1723.08 1355.22,1725.01 1355.27,1727.8z M1346.08,1741.41L1346.08,1731.29 1356.2,1731.29 1356.2,1741.41 1346.08,1741.41z</Geometry>
+	<Geometry x:Key="ScrollUpGeometry">M 0 0 L 3.5 5 L 7 0 Z</Geometry>
+	<Geometry x:Key="g_ArrowEast">M0,5 L6,5 6,0 14,8 6,16 6,11 0,11 z</Geometry>
+	<Geometry x:Key="g_TriangleEast">M0,0 0,9 7.5,4.5 z</Geometry>
+	<Geometry x:Key="g_PlayPause">M0,0 L8,6 0,12z M13,0 L17,0 17,12 13,12z M20,0 L24,0 24,12 20,12 z</Geometry>
+	<Geometry x:Key="g_CloseX">M0,0 L4,0 7,3 10,0 14,0 9,5 14,10 10,10 7,7 4,10 0,10 4,5 z</Geometry>
+	<Geometry x:Key="g_Maximize">M1,3 L1,11 12,11 12,3 z M0,0 L13,0 13,12 0,12 z</Geometry>
+	<Geometry x:Key="g_Minimize">M0,5 L11,5 11,8 z</Geometry>
+	<Geometry x:Key="g_ExpandArrowsSouth">M0,0 3.5,3 7,0 7,2 3.5,5 0,2 z M0,4 3.5,7 7,4 7,6 3.5,9 0,6 z</Geometry>
+	<Geometry x:Key="g_New">M0,5 L5,5 5,0 8,0, 8,5 13,5 13,8 8,8 8,13 5,13 5,8 0,8 z</Geometry>
+	<Geometry x:Key="g_Checkmark">
+		M 12.4227,0.00012207C 12.4867,0.126587 12.5333,0.274536
+		12.6787,0.321411C 9.49199,3.24792 6.704,6.57336
+		4.69865,10.6827C 4.04399,11.08 3.47066,11.5573 2.83199,
+		11.9706C 2.09467,10.2198 1.692,8.13196 3.8147e-006,
+		7.33606C 0.500004,6.79871 1.31733,6.05994 1.93067,6.2428C
+		2.85999,6.51868 3.14,7.9054 3.60399,8.81604C 5.80133,
+		5.5387 8.53734,2.19202 12.4227,0.00012207 Z
+	</Geometry>
+	<Geometry x:Key="g_WarningTriangle">M102.0635,44.0566L102.0635,44.0566L96.0715,55.6776C95.9255,55.9606,95.8495,56.2756,95.8495,56.5936C95.8495,57.6986,96.7455,58.5936,97.8495,58.5936L110.0145,58.5936C110.3415,58.5936,110.6645,58.5136,110.9535,58.3606C111.9285,57.8416,112.2995,56.6306,111.7815,55.6556L105.6075,44.0346C105.4165,43.6746,105.1205,43.3816,104.7575,43.1956C103.7765,42.6896,102.5705,43.0746,102.0635,44.0566z M103.2055,56.3526C102.8435,55.9916,102.8435,55.4066,103.2055,55.0446C103.5655,54.6836,104.1515,54.6836,104.5125,55.0446C104.8735,55.4066,104.8735,55.9916,104.5125,56.3526C104.1515,56.7136,103.5655,56.7136,103.2055,56.3526 M104.5705,48.8686L104.5705,48.8686L103.7755,53.2306L102.8025,48.8686C102.8025,48.8686,102.5685,47.8456,102.8755,47.2806C103.1805,46.7136,104.0875,46.7046,104.4555,47.2186C104.8205,47.7306,104.5725,48.8626,104.5705,48.8686z</Geometry>
+	<Geometry x:Key="g_Link">M5.4669514,6.5710271 C5.7004991,6.571801 5.9340095,6.5922726 6.1640745,6.6323961 L4.5090564,8.2943257 C4.0970521,8.7093085 3.8890498,9.2522858 3.8840497,9.7982625 L2.7860379,10.899216 C2.4930346,11.193203 2.3330328,11.582187 2.334033,11.997169 2.334033,12.391152 2.4850347,12.759137 2.7530375,13.046125 2.7660377,13.061125 2.7760377,13.078124 2.7900379,13.091123 2.804038,13.104122 2.8210382,13.114122 2.8350384,13.128121 3.1210415,13.39311 3.4890454,13.541104 3.8810496,13.541104 4.2960542,13.541104 4.6860584,13.380111 4.9790616,13.085123 L6.0690734,11.98917 C6.6400796,11.98117 7.1760855,11.75818 7.5800898,11.353197 L9.2651081,9.6632679 C9.5031106,10.885217 9.1501069,12.202161 8.2070966,13.14912 L6.6320797,14.732054 C6.2510754,15.114037 5.8020705,15.403025 5.3150651,15.597017 4.8640604,15.776009 4.3810551,15.875006 3.8810496,15.875006 2.8470385,15.875006 1.8750281,15.474022 1.1430202,14.746053 0.40901232,14.013084 0.0020074844,13.039125 7.6293945E-06,12.001169 -0.00099229813,11.50519 0.097008705,11.024211 0.2720108,10.577229 0.46401262,10.087251 0.75101566,9.635269 1.1340199,9.2522858 L2.706037,7.674352 C3.4421699,6.9341963 4.4549114,6.5676726 5.4669514,6.5710271 z M9.2233503,5.6290029 C9.4913561,5.6290029 9.7423618,5.733003 9.931366,5.9200028 10.321375,6.3100031 10.323375,6.944003 9.9343662,7.3340033 L9.9103656,7.358003 6.7532948,10.528004 C6.5632905,10.720003 6.3102848,10.824003 6.0402788,10.824003 5.7752728,10.824003 5.5252672,10.723003 5.339263,10.537003 4.9432541,10.139004 4.9412541,9.5140036 5.335263,9.1160029 L8.4803336,5.9590028 8.5153344,5.924003 C8.7053385,5.733003 8.9563441,5.6290029 9.2233503,5.6290029 z M11.989649,8.1604819E-06 C12.995892,-0.0019915494 14.001634,0.36352745 14.73513,1.0965647 16.249117,2.6066395 16.256114,5.0677632 14.74913,6.5828432 L12.754143,8.5829447 C12.023153,9.3199814 11.047155,9.7260006 10.006163,9.7260006 9.7561653,9.7260006 9.5121715,9.701002 9.2711761,9.6549977 L10.762162,8.158923 C11.177159,7.7419022 11.385158,7.1958731 11.389155,6.6468457 L13.096143,4.9357565 C13.695137,4.3337282 13.691139,3.3516763 13.08714,2.7486487 12.795143,2.4566303 12.407145,2.2966224 11.996153,2.2966224 11.580156,2.2966224 11.188161,2.458633 10.894157,2.7546459 L9.1691718,4.4897345 C8.6241782,4.501736 8.0841814,4.7037462 7.6891879,5.101765 L6.2001936,6.5968436 C5.9601977,5.3727787 6.3101934,4.054715 7.2541862,3.1066648 L9.2411699,1.1085623 C9.9766645,0.37152538 10.983407,0.0020074082 11.989649,8.1604819E-06 z</Geometry>
+	<Geometry x:Key="g_Float">M0,2.0119995 L7.9249984,2.0119995 7.9249984,4.2769994 2.2639995,4.2769994 2.2639995,13.332998 11.320998,13.332998 11.320998,7.6729988 13.585998,7.6729988 13.585998,15.597997 0,15.597997 z M15.599,0 L15.172001,5.229001 13.571,3.627999 7.5940018,9.6060003 5.9929997,8.0039991 11.970002,2.0270008 10.369,0.42599889 z</Geometry>
+	<Geometry x:Key="g_Undo">
+		M	0.2,-20.001
+		C	-10.706,			-20.001
+		-19.579,			-11.127
+		-19.579,			-0.221
+		-19.579,			10.686
+		-10.706,			19.56
+		0.199999999999999,	19.56
+		4.879,				19.56
+		9.171,				17.916
+		12.556,				15.187
+		L	2.75,				6.707
+		28.578,				2.894
+		28.528,				29.001
+		19.458,				21.156
+		C	14.357,				25.755
+		7.608,				28.56
+		0.198999999999998,	28.56
+		-15.695,			28.56
+		-28.58,				15.673
+		-28.58,				-0.221
+		-28.58,				-16.115
+		-15.694,			-29.001
+		0.198999999999998,	-29.001
+		12.667,				-29.001
+		23.28,				-21.073
+		27.279,				-9.985
+		L	18.08,				-8.626
+		C	14.913,				-15.336,
+		8.1,				-20.001,
+		0.2,				-20.001
+		Z
+	</Geometry>
+	<Geometry x:Key="g_SwoopArrowEast">
+		M	03.0710,	00.0530
+		C	03.3630,	00.3450
+		01.6090,	02.6850
+		02.7790,	04.4400
+		C	03.8020,	06.1960
+		06.5640,	05.9030
+		06.5640,	05.9030
+		L	07.0200,	03.5630
+		L	12.2850,	07.2180
+		L	06.8730,	10.7300
+		L	06.5810,	08.6820
+		C	06.5800,	08.6820
+		03.6560,	08.5350
+		02.0480,	06.9270
+		C	00.0000,	04.7330
+		01.9570,	00.0000
+		03.0710,	00.0530
+		Z
+	</Geometry>
+	<Geometry x:Key="g_Folder">
+		M	2,5
+		L	2,2
+		9,2
+		10,0
+		16,0
+		16,13
+		2,13
+		0,5
+		14,5
+		15,10
+		15,1
+		11,1
+		10,3
+		3,3
+		3,5
+		z
+	</Geometry>
+	<Geometry x:Key="g_Refresh">F1M225.713,1773.49L232.795,1776.66 231.995,1768.94 231.192,1761.23 226.002,1764.99C221.113,1758.99 213.677,1755.15 205.337,1755.15 190.61,1755.15 178.672,1767.1 178.672,1781.82 178.672,1796.55 190.61,1808.49 205.337,1808.49 211.902,1808.49 217.903,1806.11 222.543,1802.17 222.573,1802.11 222.593,1802.06 222.627,1801.99 224.257,1798.82 220.791,1798.99 220.781,1798.99 216.686,1802.68 211.271,1804.93 205.337,1804.93 192.595,1804.93 182.228,1794.56 182.228,1781.82 182.228,1769.08 192.595,1758.71 205.337,1758.71 212.481,1758.71 218.867,1761.98 223.106,1767.09L218.631,1770.33 225.713,1773.49z</Geometry>
+	<GeometryGroup x:Key="g_CircleArrowLeft">
+		<GeometryCollection>
+			<PathGeometry>
+				<PathGeometry.Figures>
+					<PathFigureCollection>
+						<PathFigure IsClosed="False"
+						            IsFilled="False"
+						            StartPoint="0,.50001">
+							<ArcSegment IsLargeArc="True"
+							            IsStroked="True"
+							            Point="0,.5"
+							            Size=".5,.5"
+							            SweepDirection="Clockwise" />
+						</PathFigure>
+					</PathFigureCollection>
+				</PathGeometry.Figures>
+			</PathGeometry>
+			<PathGeometry>
+				<PathGeometry.Figures>
+					<PathFigureCollection>
+						<PathFigure StartPoint="-.2, .5">
+							<LineSegment IsStroked="True" Point="-.8,.5" />
+						</PathFigure>
+						<PathFigure StartPoint="-.8, .5">
+							<LineSegment IsStroked="True" Point="-.5,.2" />
+						</PathFigure>
+						<PathFigure StartPoint="-.8, .5">
+							<LineSegment IsStroked="True" Point="-.5,.8" />
+						</PathFigure>
+					</PathFigureCollection>
+				</PathGeometry.Figures>
+			</PathGeometry>
+		</GeometryCollection>
+	</GeometryGroup>
+	<GeometryGroup x:Key="g_Clear">
+		<PathGeometry Figures="M205.106,133L208.089,133C214.648,133,220,127.805,220,121.257L220,109 255,109 255,121.257C255,127.805,260.248,133,266.814,133L269.796,133C276.355,133,281.999,127.805,281.999,121.257L281.999,109 316.999,109 316.999,121.257C316.999,127.805,321.958,133,328.523,133L331.506,133C338.065,133,342.998,127.805,342.998,121.257L342.998,109 350.548,109 373,131.184 373,157 397,167 397,121.164 360.302,85 343,85 343,72.93C343,66.383,338.066,61,331.508,61L328.525,61C321.959,61,317,66.383,317,72.93L317,85 282,85 282,72.93C282,66.383,276.355,61,269.797,61L266.815,61C260.248,61,255,66.383,255,72.93L255,85 220,85 220,72.93C220,66.383,214.648,61,208.089,61L205.106,61C198.541,61,193,66.383,193,72.93L193,85 158,85 158,72.93C158,66.383,152.937,61,146.378,61L143.396,61C136.83,61,131,66.383,131,72.93L131,85 75,85 75,443 191.38,443 176.357,419 99,419 99,109 131,109 131,121.257C131,127.805,136.83,133,143.396,133L146.378,133C152.938,133,158,127.805,158,121.257L158,109 193,109 193,121.257C193,127.805,198.541,133,205.106,133z" FillRule="Nonzero" />
+		<PathGeometry Figures="M357.297,259.076L357.297,259.076 320.56,295.814 283.825,259.079 252.339,290.565 289.073,327.3 252.341,364.031 283.828,395.518 320.56,358.786 357.294,395.521 388.779,364.035 352.045,327.3 388.784,290.563z" FillRule="Nonzero" />
+		<PathGeometry Figures="M418.895,228.964C364.587,174.655 276.536,174.652 222.225,228.964 167.92,283.269 167.916,371.327 222.225,425.635 276.534,479.943 364.59,479.941 418.895,425.635 473.206,371.324 473.204,283.273 418.895,228.964z M403.53,410.271C357.783,456.017 283.338,456.021 237.589,410.271 191.839,364.522 191.842,290.077 237.589,244.33 283.343,198.577 357.78,198.58 403.53,244.33 449.279,290.079 449.283,364.518 403.53,410.271z" FillRule="Nonzero" />
+	</GeometryGroup>
+	<GeometryGroup x:Key="g_Copy" FillRule="Nonzero">
+		<CombinedGeometry GeometryCombineMode="Exclude">
+			<CombinedGeometry.Geometry1>
+				<RectangleGeometry Rect="0,4 10,12" />
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<RectangleGeometry Rect="2,6 6,8" />
+			</CombinedGeometry.Geometry2>
+
+		</CombinedGeometry>
+		<CombinedGeometry GeometryCombineMode="Exclude">
+			<CombinedGeometry.Geometry1>
+				<CombinedGeometry GeometryCombineMode="Exclude">
+					<CombinedGeometry.Geometry1>
+						<RectangleGeometry Rect="4,0 10,12" />
+					</CombinedGeometry.Geometry1>
+					<CombinedGeometry.Geometry2>
+						<RectangleGeometry Rect="6,2 6,8" />
+					</CombinedGeometry.Geometry2>
+				</CombinedGeometry>
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<RectangleGeometry Rect="4,3 7,9" />
+			</CombinedGeometry.Geometry2>
+		</CombinedGeometry>
+	</GeometryGroup>
+	<GeometryGroup x:Key="g_Save" FillRule="Nonzero">
+		<CombinedGeometry GeometryCombineMode="Exclude">
+			<CombinedGeometry.Geometry1>
+				<PathGeometry>
+					<PathGeometry.Figures>
+						<PathFigure>
+							<PolyLineSegment>
+								<PolyLineSegment.Points>
+									<Point X="0" Y="0" />
+									<Point X="13" Y="0" />
+									<Point X="13" Y="11" />
+									<Point X="11" Y="13" />
+									<Point X="0" Y="13" />
+								</PolyLineSegment.Points>
+							</PolyLineSegment>
+						</PathFigure>
+
+					</PathGeometry.Figures>
+				</PathGeometry>
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<PathGeometry>
+					<PathGeometry.Figures>
+						<PathFigure>
+							<PolyLineSegment>
+								<PolyLineSegment.Points>
+									<Point X="1" Y="1" />
+									<Point X="12" Y="1" />
+									<Point X="12" Y="10" />
+									<Point X="10" Y="12" />
+									<Point X="1" Y="12" />
+									<Point X="1" Y="1" />
+								</PolyLineSegment.Points>
+							</PolyLineSegment>
+						</PathFigure>
+					</PathGeometry.Figures>
+				</PathGeometry>
+			</CombinedGeometry.Geometry2>
+
+		</CombinedGeometry>
+		<CombinedGeometry GeometryCombineMode="Exclude">
+			<CombinedGeometry.Geometry1>
+				<RectangleGeometry Rect="2,0 9,7" />
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<RectangleGeometry Rect="3,1 7,5" />
+			</CombinedGeometry.Geometry2>
+
+		</CombinedGeometry>
+		<CombinedGeometry GeometryCombineMode="Exclude">
+			<CombinedGeometry.Geometry1>
+				<RectangleGeometry Rect="3,9 7,3" />
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<RectangleGeometry Rect="4,10 3,3" />
+			</CombinedGeometry.Geometry2>
+		</CombinedGeometry>
+		<RectangleGeometry Rect=" 4,2 5,1" />
+		<RectangleGeometry Rect=" 4,4 5,1" />
+	</GeometryGroup>
+	<GeometryGroup x:Key="Delete" FillRule="Nonzero">
+		<CombinedGeometry GeometryCombineMode="Union">
+			<CombinedGeometry.Geometry1>
+				<PathGeometry>
+					<PathFigure>
+						<PolyLineSegment>
+							<PolyLineSegment.Points>
+								<Point X="0" Y="0" />
+								<Point X="3" Y="0" />
+								<Point X="12" Y="10" />
+								<Point X="9" Y="10" />
+								<Point X="0" Y="0" />
+							</PolyLineSegment.Points>
+						</PolyLineSegment>
+					</PathFigure>
+				</PathGeometry>
+			</CombinedGeometry.Geometry1>
+			<CombinedGeometry.Geometry2>
+				<PathGeometry>
+					<PathFigure>
+						<PolyLineSegment>
+							<PolyLineSegment.Points>
+								<Point X="9" Y="0" />
+								<Point X="12" Y="0" />
+								<Point X="3" Y="10" />
+								<Point X="0" Y="10" />
+								<Point X="9" Y="0" />
+							</PolyLineSegment.Points>
+						</PolyLineSegment>
+					</PathFigure>
+				</PathGeometry>
+			</CombinedGeometry.Geometry2>
+		</CombinedGeometry>
+	</GeometryGroup>
+	<GeometryGroup x:Key="g_Target" FillRule="EvenOdd">
+		<EllipseGeometry Center="12,12"
+		                 RadiusX="10"
+		                 RadiusY="10" />
+		<EllipseGeometry Center="12,12"
+		                 RadiusX="8"
+		                 RadiusY="8" />
+		<EllipseGeometry Center="12,12"
+		                 RadiusX="6"
+		                 RadiusY="6" />
+		<EllipseGeometry Center="12,12"
+		                 RadiusX="4"
+		                 RadiusY="4" />
+		<EllipseGeometry Center="12,12"
+		                 RadiusX="2"
+		                 RadiusY="2" />
+	</GeometryGroup>
+	<GeometryGroup x:Key="g_Workflow">
+		<PathGeometry>
+			<PathFigureCollection>
+				<PathFigure IsClosed="True"
+				            IsFilled="False"
+				            StartPoint="3, 3">
+					<LineSegment IsStroked="True" Point="10, 3" />
+					<LineSegment IsStroked="True" Point="10, 0" />
+					<LineSegment IsStroked="True" Point="16, 6" />
+					<LineSegment IsStroked="True" Point="10, 12" />
+					<LineSegment IsStroked="True" Point="10, 9" />
+					<LineSegment IsStroked="True" Point="3, 9" />
+				</PathFigure>
+				<PathFigure IsClosed="True"
+				            IsFilled="False"
+				            StartPoint="13, 14">
+					<LineSegment IsStroked="True" Point="6, 14" />
+					<LineSegment IsStroked="True" Point="6, 11" />
+					<LineSegment IsStroked="True" Point="0, 17" />
+					<LineSegment IsStroked="True" Point="6, 23" />
+					<LineSegment IsStroked="True" Point="6, 20" />
+					<LineSegment IsStroked="True" Point="13, 20" />
+				</PathFigure>
+			</PathFigureCollection>
+		</PathGeometry>
+	</GeometryGroup>
+	<GeometryGroup x:Key="g_Tiles">
+		<RectangleGeometry Rect="0,0 4,4" />
+		<RectangleGeometry Rect="6,0 10,4" />
+		<RectangleGeometry Rect="0,6 4,10" />
+		<RectangleGeometry Rect="6,6 10,10" />
+	</GeometryGroup>
+	<GeometryGroup x:Key="g_Mail">
+		<PathGeometry>
+			<PathFigure IsClosed="False"
+			            IsFilled="False"
+			            StartPoint="0 0">
+				<LineSegment IsStroked="True" Point="0, 24" />
+				<LineSegment IsStroked="True" Point="32, 24" />
+				<LineSegment IsStroked="True" Point="32, 0" />
+				<LineSegment IsStroked="True" Point="16, 14" />
+				<LineSegment IsStroked="True" Point=".5, 0" />
+				<LineSegment IsStroked="True" Point="32, 0" />
+			</PathFigure>
+		</PathGeometry>
+	</GeometryGroup>
+	<CombinedGeometry x:Key="g_Dashboard" GeometryCombineMode="Union">
+		<CombinedGeometry.Geometry1>
+			<CombinedGeometry GeometryCombineMode="Exclude">
+				<CombinedGeometry.Geometry1>
+					<PathGeometry>
+						<PathFigure IsClosed="True"
+						            IsFilled="True"
+						            StartPoint="0,16">
+							<PathFigure.Segments>
+								<ArcSegment Point="32, 16"
+								            RotationAngle="180"
+								            Size="16, 16"
+								            SweepDirection="Clockwise" />
+							</PathFigure.Segments>
+						</PathFigure>
+					</PathGeometry>
+				</CombinedGeometry.Geometry1>
+				<CombinedGeometry.Geometry2>
+					<PathGeometry>
+						<PathFigure IsClosed="True"
+						            IsFilled="True"
+						            StartPoint="1,15">
+							<PathFigure.Segments>
+								<ArcSegment Point="31, 15"
+								            RotationAngle="180"
+								            Size="14, 13"
+								            SweepDirection="Clockwise" />
+							</PathFigure.Segments>
+						</PathFigure>
+					</PathGeometry>
+				</CombinedGeometry.Geometry2>
+			</CombinedGeometry>
+		</CombinedGeometry.Geometry1>
+		<CombinedGeometry.Geometry2>
+			<CombinedGeometry GeometryCombineMode="Union">
+				<CombinedGeometry.Geometry1>
+					<PathGeometry>
+						<PathFigure IsClosed="True"
+						            IsFilled="True"
+						            StartPoint="12.5,16">
+							<PathFigure.Segments>
+								<ArcSegment Point="19.5, 16"
+								            RotationAngle="180"
+								            Size="3, 3"
+								            SweepDirection="Clockwise" />
+							</PathFigure.Segments>
+						</PathFigure>
+					</PathGeometry>
+				</CombinedGeometry.Geometry1>
+				<CombinedGeometry.Geometry2>
+					<PathGeometry>
+						<PathFigure IsClosed="True"
+						            IsFilled="True"
+						            StartPoint="15,16">
+							<PathFigure.Segments>
+								<LineSegment Point="12,2" />
+								<LineSegment Point="18,16" />
+							</PathFigure.Segments>
+						</PathFigure>
+					</PathGeometry>
+				</CombinedGeometry.Geometry2>
+			</CombinedGeometry>
+		</CombinedGeometry.Geometry2>
+	</CombinedGeometry>
+	<CombinedGeometry x:Key="g_Gear" GeometryCombineMode="Exclude">
+		<CombinedGeometry.Geometry1>
+			<CombinedGeometry GeometryCombineMode="Union">
+				<CombinedGeometry.Geometry1>
+					<EllipseGeometry Center="50,50"
+					                 RadiusX="35"
+					                 RadiusY="35" />
+				</CombinedGeometry.Geometry1>
+				<CombinedGeometry.Geometry2>
+					<GeometryGroup>
+						<RectangleGeometry Rect="42,0 14,100" />
+						<RectangleGeometry Rect="0,42 100,14" />
+						<RectangleGeometry Rect="42,0 14,100">
+							<RectangleGeometry.Transform>
+								<RotateTransform Angle="45" CenterX="50" CenterY="50" />
+							</RectangleGeometry.Transform>
+						</RectangleGeometry>
+						<RectangleGeometry Rect="0,42 100,14">
+							<RectangleGeometry.Transform>
+								<RotateTransform Angle="45" CenterX="50" CenterY="50" />
+							</RectangleGeometry.Transform>
+						</RectangleGeometry>
+					</GeometryGroup>
+				</CombinedGeometry.Geometry2>
+			</CombinedGeometry>
+		</CombinedGeometry.Geometry1>
+		<CombinedGeometry.Geometry2>
+			<EllipseGeometry Center="50,50"
+			                 RadiusX="18"
+			                 RadiusY="18" />
+		</CombinedGeometry.Geometry2>
+	</CombinedGeometry>
+	<Geometry x:Key="g_DialogIcon">
+		M 11,0 C13,0 14,1 14,3 14,3 14,7 14,7 14,9 13,10 11,10 11,10 9,10 9,10 9,10 3,14 3,14 3,14 4,10 4,10 4,10 3,10 3,10 1,10 0,9 0,7 0,7 0,3 0,3 0,1 1,0 3,0 3,0 11,0 11,0 z
+	</Geometry>
+	<GeometryGroup x:Key="g_PauseWarning">
+		<PathGeometry Figures="M 58.5832,55.4172L 17.4169,55.4171C 15.5619,53.5621 15.5619,50.5546 17.4168,48.6996L 35.201,15.8402C 37.056,13.9852 40.0635,13.9852 41.9185,15.8402L 58.5832,48.6997C 60.4382,50.5546 60.4382,53.5622 58.5832,55.4172 Z M 34.0417,25.7292L 36.0208,41.9584L 39.9791,41.9583L 41.9583,25.7292L 34.0417,25.7292 Z M 38,44.3333C 36.2511,44.3333 34.8333,45.7511 34.8333,47.5C 34.8333,49.2489 36.2511,50.6667 38,50.6667C 39.7489,50.6667 41.1666,49.2489 41.1666,47.5C 41.1666,45.7511 39.7489,44.3333 38,44.3333 Z" />
+		<GeometryGroup.Transform>
+			<ScaleTransform ScaleX="0.4"
+							ScaleY="0.4" />
+		</GeometryGroup.Transform>
+	</GeometryGroup>
+	<Geometry x:Key="g_WarningCircle">
+		M 38,19C 48.4934,19 57,27.5066 57,38C 57,48.4934 48.4934,57 38,57C 27.5066,57 19,48.4934 19,38C 19,27.5066 27.5066,19 38,19 Z M 34.0417,25.7292L 36.0208,41.9584L 39.9792,41.9583L 41.9583,25.7292L 34.0417,25.7292 Z M 38,44.3333C 36.2511,44.3333 34.8333,45.7511 34.8333,47.5C 34.8333,49.2489 36.2511,50.6667 38,50.6667C 39.7489,50.6667 41.1667,49.2489 41.1667,47.5C 41.1667,45.7511 39.7489,44.3333 38,44.3333 Z
+	</Geometry>
+	<Geometry x:Key="g_Message">
+		M12.346,9.615L7.341,9.615 2.749,12.349 3.28,9.604C2.096,9.604,0.5,8.795,0.5,7.792L0.5,2.323C0.5,1.32,1.469,0.5,2.654,0.5L12.346,0.5C13.531,0.5,14.5,1.32,14.5,2.323L14.5,7.792C14.5,8.795,13.531,9.615,12.346,9.615Z
+	</Geometry>
+    <Geometry x:Key="g_SquareCheckmark">
+        M0,7 6,13 16,3 13,0 6,7 3,4Z
+    </Geometry>
+</ResourceDictionary>

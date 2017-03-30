@@ -19,6 +19,8 @@
         <ResourceDictionary Source="Styles\DatePickerStyle.xaml"/>
 		<ResourceDictionary Source="Styles\MenuStyle.xaml"/>
 		<ResourceDictionary Source="Styles\DataGridStyle.xaml"/>
+		<ResourceDictionary Source="Styles\CommonStyles.xaml"/>
+		<ResourceDictionary Source=".\Geometries.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style BasedOn="{StaticResource ButtonStyle}" TargetType="{x:Type Button}" />

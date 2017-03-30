@@ -104,6 +104,10 @@
       <Project>{70a3264b-0edf-4216-a525-c4af52829b95}</Project>
       <Name>OMS.Framework.Desktop.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OMS.Framework.Styles\OMS.Framework.Styles.csproj">
+      <Project>{d8166ad7-25dd-4953-84dd-347cb0321582}</Project>
+      <Name>OMS.Framework.Styles</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

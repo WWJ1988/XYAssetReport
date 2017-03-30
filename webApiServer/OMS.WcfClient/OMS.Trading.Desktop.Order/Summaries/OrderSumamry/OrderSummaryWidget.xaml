@@ -5,16 +5,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:framework="clr-namespace:OMS.Framework.Desktop.Common.Controls;assembly=OMS.Framework.Desktop.Common"
              mc:Ignorable="d">
-    <StackPanel>
-        <StackPanel Background="Black" Height="25">
-            <TextBlock Foreground="White" Text="{Binding Title}" TextAlignment="Center" Padding="2" FontSize="15" FontWeight="Bold"/>
-        </StackPanel>
-        <DataGrid IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding PLSummaryData}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Long P/L" Binding="{Binding LongPL}"/>
-                <DataGridTextColumn Header="Short P/L" Binding="{Binding ShortPL}" />
-                <DataGridTextColumn Header="Total P/L" Binding="{Binding TotalPL}" />
-            </DataGrid.Columns>
-        </DataGrid>
-    </StackPanel>
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="pack://application:,,,/OMS.Framework.Styles;component/Style.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</UserControl.Resources>
+	<ContentControl Style="{StaticResource SummaryWidget}">
+		<StackPanel Width="220">
+			<StackPanel Background="Black" Height="25">
+				<TextBlock Foreground="White" 
+						   Text="{Binding Title}" 
+						   TextAlignment="Center" 
+						   Padding="2" FontSize="15" 
+						   FontWeight="Bold"/>
+			</StackPanel>
+			<DataGrid IsReadOnly="True" 
+					  Name="PLDataGrid"
+					  AutoGenerateColumns="False" 
+					  ItemsSource="{Binding PLSummaryData}">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="Long P/L" Binding="{Binding LongPL}" Width="70"/>
+					<DataGridTextColumn Header="Short P/L" Binding="{Binding ShortPL}" Width="70" />
+					<DataGridTextColumn Header="Total P/L" Binding="{Binding TotalPL}" Width="70" />
+				</DataGrid.Columns>
+			</DataGrid>
+		</StackPanel>
+	</ContentControl>
 </UserControl>

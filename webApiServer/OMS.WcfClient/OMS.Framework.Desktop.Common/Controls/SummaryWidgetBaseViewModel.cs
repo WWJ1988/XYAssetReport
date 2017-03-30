@@ -1,20 +1,24 @@
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
+using OMS.Framework.Desktop.Common.Interfaces;
 
 namespace OMS.Framework.Desktop.Common.Controls
 {
 	public class SummaryWidgetBaseViewModel : BindableBase
 	{
 		private string title;
-		private readonly DelegateCommand removeSummaryWidgetCommand;
+		private string widgetName;
+		private readonly DelegateCommand removeCommand;
+		private readonly ISummaryWidgetManager summaryWidgetManager;
 
-		public SummaryWidgetBaseViewModel(string title)
+		public SummaryWidgetBaseViewModel(string title, string widgetName, ISummaryWidgetManager summaryWidgetManager)
 		{
 			this.title = title;
-			removeSummaryWidgetCommand = new DelegateCommand(() =>
-			{
-			});
+			this.widgetName = widgetName;
+			this.summaryWidgetManager = summaryWidgetManager;
+
+			removeCommand = new DelegateCommand(RemoveWidget);
 		}
 
 		public string Title
@@ -23,6 +27,14 @@ namespace OMS.Framework.Desktop.Common.Controls
 			set { SetProperty(ref title, value); }
 		}
 
-		public ICommand RemoveSummaryWidgetCommand { get { return removeSummaryWidgetCommand; } }
+		public ICommand RemoveCommand { get { return removeCommand; } }
+
+		public virtual void RemoveWidget()
+		{
+			if (summaryWidgetManager != null)
+			{
+				summaryWidgetManager.RemoveActiveWidget(widgetName);
+			}
+		}
 	}
 }
