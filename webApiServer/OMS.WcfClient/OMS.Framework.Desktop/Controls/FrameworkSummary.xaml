@@ -33,7 +33,7 @@
 		<Popup IsOpen="{Binding ShowPopup}" Placement="Center" 
                PlacementTarget="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
 			<StackPanel Background="White">
-				<TextBlock Text="Add Summary Widget"
+                <TextBlock Text="Add Summary Widget"
                            Background="#FFBDBEBD"
                            Padding="10 5"/>
                 <StackPanel>
