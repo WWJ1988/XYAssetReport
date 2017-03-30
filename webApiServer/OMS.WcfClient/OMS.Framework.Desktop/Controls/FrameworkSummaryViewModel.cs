@@ -21,11 +21,6 @@ namespace OMS.Framework.Desktop.Controls
 		private readonly DelegateCommand addSummaryWidgetCommand;
 		private readonly DelegateCommand doAddSummaryWidgetCommand;
 		private readonly DelegateCommand cancelAddSummaryWidgetCommand;
-
-		[Import]
-		private readonly IServiceProvider rootServiceProvider;
-
-		private IRegionManager regionManager;
 		private ISummaryWidgetManager summaryWidgetManager;
 
 		public FrameworkSummaryViewModel()
@@ -36,16 +31,7 @@ namespace OMS.Framework.Desktop.Controls
 			});
 			doAddSummaryWidgetCommand = new DelegateCommand(() =>
 			{
-				var region = regionManager.Regions["SummaryWidget"];
-
-				var widget = summaryWidgetManager.GetSummaryWidget(selectedVidgetName);
-
-				if (widget.Key != null)
-				{
-					var view = widget.Key.View as UserControl;
-					view.DataContext = widget.Value(rootServiceProvider);
-					region.Add(view);
-				}
+				summaryWidgetManager.AddActiveWidget(selectedVidgetName);
 
 				ShowPopup = false;
 			});
@@ -92,7 +78,6 @@ namespace OMS.Framework.Desktop.Controls
 
 		public void InitializeServices(IServiceLocator serviceLocator)
 		{
-			regionManager = serviceLocator.GetInstance<IRegionManager>();
 			summaryWidgetManager = serviceLocator.GetInstance<ISummaryWidgetManager>();
 			summaryWidgetManager.Initialize();
 		}

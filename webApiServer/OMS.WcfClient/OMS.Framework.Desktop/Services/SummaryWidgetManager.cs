@@ -5,6 +5,8 @@ using System.Linq;
 using OMS.Framework.Desktop.Common.Controls;
 using OMS.Framework.Desktop.Common.Interfaces;
 using OMS.Framework.Desktop.Common.Metadatas;
+using System.Windows.Controls;
+using Microsoft.Practices.Prism.Regions;
 
 namespace OMS.Framework.Desktop.Services
 {
@@ -13,7 +15,9 @@ namespace OMS.Framework.Desktop.Services
 	{
 		private readonly IEnumerable<ISummaryWidgetFactory> widgetFactories;
 		private readonly IServiceProvider rootServiceProvider;
-		private readonly Dictionary<SummaryWidgetMetadata, Func<IServiceProvider, SummaryWidgetBaseViewModel>> summaryWidgets = new Dictionary<SummaryWidgetMetadata, Func<IServiceProvider, SummaryWidgetBaseViewModel>>();
+		private IRegionManager regionManager;
+		private readonly Dictionary<SummaryWidgetMetadata, Func<IServiceProvider, Tuple<UserControl, SummaryWidgetBaseViewModel>>> summaryWidgets = new Dictionary<SummaryWidgetMetadata, Func<IServiceProvider, Tuple<UserControl, SummaryWidgetBaseViewModel>>>();
+		private readonly Dictionary<string, object> activeWidgets = new Dictionary<string, object>();
 
 		[ImportingConstructor]
 		public SummaryWidgetManager([ImportMany]IEnumerable<ISummaryWidgetFactory> widgetFactories,
@@ -25,6 +29,8 @@ namespace OMS.Framework.Desktop.Services
 
 		public void Initialize()
 		{
+			regionManager = rootServiceProvider.GetService(typeof(IRegionManager)) as IRegionManager;
+
 			if (widgetFactories != null)
 			{
 				foreach (var factory in widgetFactories)
@@ -34,7 +40,7 @@ namespace OMS.Framework.Desktop.Services
 			}
 		}
 
-		public void Register(SummaryWidgetMetadata metadata, Func<IServiceProvider, SummaryWidgetBaseViewModel> getVmFunc)
+		public void Register(SummaryWidgetMetadata metadata, Func<IServiceProvider, Tuple<UserControl, SummaryWidgetBaseViewModel>> getVmFunc)
 		{
 			if (!summaryWidgets.ContainsKey(metadata))
 			{
@@ -47,9 +53,39 @@ namespace OMS.Framework.Desktop.Services
 			return summaryWidgets.Keys;
 		}
 
-		public KeyValuePair<SummaryWidgetMetadata, Func<IServiceProvider, SummaryWidgetBaseViewModel>> GetSummaryWidget(string widgetName)
+		public KeyValuePair<SummaryWidgetMetadata, Func<IServiceProvider, Tuple<UserControl, SummaryWidgetBaseViewModel>>> GetSummaryWidget(string widgetName)
 		{
 			return summaryWidgets.FirstOrDefault(w => w.Key.WidgetName == widgetName);
+		}
+
+		public void AddActiveWidget(string widgetName)
+		{
+			if (!activeWidgets.ContainsKey(widgetName))
+			{
+				var region = regionManager.Regions["SummaryWidget"];
+
+				var widget = GetSummaryWidget(widgetName);
+
+				if (widget.Key != null)
+				{
+					var summaryWidgetData = widget.Value(rootServiceProvider);
+					var view = summaryWidgetData.Item1;
+					view.DataContext = summaryWidgetData.Item2;
+					region.Add(view);
+
+					activeWidgets.Add(widgetName, view);
+				}
+			}
+		}
+
+		public void RemoveActiveWidget(string widgetName)
+		{
+			if (activeWidgets.ContainsKey(widgetName))
+			{
+				var region = regionManager.Regions["SummaryWidget"];
+				region.Remove(activeWidgets[widgetName]);
+				activeWidgets.Remove(widgetName);
+			}
 		}
 	}
 }

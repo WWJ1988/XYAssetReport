@@ -37,15 +37,24 @@ namespace OMS.Framework.Desktop.ShellCores
 
 		protected override DependencyObject CreateShell()
 		{
-			loginWindow.LoginComplete += StartupWindowOnLoginComplete;
-			loginWindow.Show();
+            //loginWindow.LoginComplete += StartupWindowOnLoginComplete;
+            //loginWindow.Show();
 
-			var mainWindow = new MainWindow();
-			mainWindow.DataContext = new MainWindowViewModel();
+            //var mainWindow = new MainWindow();
+            //mainWindow.DataContext = new MainWindowViewModel();
 
-			shellApp.MainWindow = mainWindow;
+            //shellApp.MainWindow = mainWindow;
 
-			return mainWindow;
+
+            var mainWindow = new MainWindow();
+
+            var mainWindoViewModel = new MainWindowViewModel();
+            mainWindoViewModel.InitializeVMs(serviceLocator);
+            mainWindow.DataContext = mainWindoViewModel;
+            shellApp.MainWindow = mainWindow;
+            mainWindow.Show();
+
+            return mainWindow;
 		}
 
 		protected override void InitializeModules()

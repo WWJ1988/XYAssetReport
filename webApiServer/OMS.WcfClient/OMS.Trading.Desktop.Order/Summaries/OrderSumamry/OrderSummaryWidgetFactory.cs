@@ -1,5 +1,7 @@
 using System;
 using System.ComponentModel.Composition;
+using System.Windows.Controls;
+using OMS.Framework.Desktop.Common.Controls;
 using OMS.Framework.Desktop.Common.Interfaces;
 using OMS.Framework.Desktop.Common.Metadatas;
 
@@ -17,13 +19,12 @@ namespace OMS.Trading.Desktop.Order.Summaries.OrderSumamry
 				var metadata = new SummaryWidgetMetadata()
 				{
 					WidgetName = "OrderSummary",
-					Title = "Order Summary",
-					View = new OrderSummaryWidget()
+					Title = "Order Summary"
 				};
 
 				summaryWidgetManager.Register(metadata, (provider) =>
 				{
-					return new OrderSummaryWidgetViewModel();
+					return new Tuple<UserControl, SummaryWidgetBaseViewModel>(new OrderSummaryWidget(), new OrderSummaryWidgetViewModel(summaryWidgetManager));
 				});
 			}
 		}

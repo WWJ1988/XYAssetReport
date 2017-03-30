@@ -9,22 +9,22 @@
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="../ShellCores/MainWindows/MainWindowStyles.xaml"></ResourceDictionary>
-				<ResourceDictionary Source="../Styles/Editor/EditorStyle.xaml"></ResourceDictionary>
-			</ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/EditorStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</UserControl.Resources>
 	<StackPanel>
-		<ScrollViewer Height="115" 
+        <ScrollViewer Height="115" 
                       HorizontalScrollBarVisibility="Auto"
-                      VerticalScrollBarVisibility="Auto">
-			<StackPanel Orientation="Horizontal">
+					  VerticalScrollBarVisibility="Hidden"
+                      HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal">
                 <StackPanel>
                     <ContentControl prism:RegionManager.RegionName="SummaryWidget">
                     </ContentControl>
                 </StackPanel>
-                <StackPanel Margin="10">
-					<Button Style="{StaticResource LinkButton}" 
+                <StackPanel>
+                    <Button Style="{StaticResource LinkButton}"
                             Content="+"
                             Command="{Binding AddSummaryWidgetCommand}"></Button>
 				</StackPanel>
@@ -36,8 +36,9 @@
 				<TextBlock Text="Add Summary Widget"
                            Background="#FFBDBEBD"
                            Padding="10 5"/>
-				<StackPanel>
-                    <ComboBox ItemsSource="{Binding Widgets, Mode=OneWay}" 
+                <StackPanel>
+                    <ComboBox Name="WidgetList" 
+							  ItemsSource="{Binding Widgets, Mode=OneWay}" 
 							  DisplayMemberPath="Title"
 							  SelectedValuePath="WidgetName"
 							  SelectedValue="{Binding SelectedVidgetName}"></ComboBox>

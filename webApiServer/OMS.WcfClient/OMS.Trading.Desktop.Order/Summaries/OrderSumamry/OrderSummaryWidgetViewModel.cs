@@ -4,22 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OMS.Framework.Desktop.Common.Controls;
+using OMS.Framework.Desktop.Common.Interfaces;
 
 namespace OMS.Trading.Desktop.Order.Summaries.OrderSumamry
 {
-    public class OrderSummaryWidgetViewModel : SummaryWidgetBaseViewModel
-    {
-        private const string title = "P/L Overview";
-        private string summary = "P/L Overview";
+	public class OrderSummaryWidgetViewModel : SummaryWidgetBaseViewModel
+	{
+		private const string title = "P/L Overview";
+		private const string widget = "OrderSummary";
 
-        public OrderSummaryWidgetViewModel()
-            : base(title)
-        { }
+		private readonly List<PLSummaryItem> plSummaryData = new List<PLSummaryItem>();
 
-        public string Summary
-        {
-            get { return summary; }
-            set { SetProperty(ref summary, value); }
-        }
-    }
+		public OrderSummaryWidgetViewModel(ISummaryWidgetManager summaryWidgetManager)
+			: base(title, widget, summaryWidgetManager)
+		{
+			plSummaryData.Add(new PLSummaryItem() { LongPL = 50000, ShortPL = 20000, TotalPL = 70000 });
+		}
+
+		public List<PLSummaryItem> PLSummaryData
+		{
+			get { return plSummaryData; }
+		}
+	}
+
+	public class PLSummaryItem
+	{
+		public decimal LongPL { get; set; }
+		public decimal ShortPL { get; set; }
+		public decimal TotalPL { get; set; }
+	}
 }
