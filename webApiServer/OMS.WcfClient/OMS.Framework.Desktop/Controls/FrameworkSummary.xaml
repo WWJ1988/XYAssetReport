@@ -15,14 +15,15 @@
 		</ResourceDictionary>
 	</UserControl.Resources>
 	<StackPanel>
-		<ScrollViewer Height="95" 
+		<ScrollViewer Height="115" 
                       HorizontalScrollBarVisibility="Auto"
-                      VerticalScrollBarVisibility="Auto"
-                      HorizontalAlignment="Left">
-			<StackPanel>
-				<ContentControl prism:RegionManager.RegionName="SummaryWidget">
-				</ContentControl>
-				<StackPanel>
+                      VerticalScrollBarVisibility="Auto">
+			<StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <ContentControl prism:RegionManager.RegionName="SummaryWidget">
+                    </ContentControl>
+                </StackPanel>
+                <StackPanel Margin="10">
 					<Button Style="{StaticResource LinkButton}" 
                             Content="+"
                             Command="{Binding AddSummaryWidgetCommand}"></Button>
@@ -36,16 +37,11 @@
                            Background="#FFBDBEBD"
                            Padding="10 5"/>
 				<StackPanel>
-					<ComboBox Name="WidgetList" 
-							  ItemsSource="{Binding Widgets, Mode=OneWay}" 
+                    <ComboBox ItemsSource="{Binding Widgets, Mode=OneWay}" 
 							  DisplayMemberPath="Title"
 							  SelectedValuePath="WidgetName"
 							  SelectedValue="{Binding SelectedVidgetName}"></ComboBox>
-					<ListBox ItemsSource="{Binding Widgets, Mode=OneWay}"
-							 DisplayMemberPath="TItle"
-							 SelectedValuePath="WidgetName">
-					</ListBox>
-					<StackPanel Orientation="Horizontal" 
+                    <StackPanel Orientation="Horizontal" 
                                 HorizontalAlignment="Right">
 						<Button Content="OK" Command="{Binding DoAddSummaryWidgetCommand}" />
 						<Button Content="Cancel" Command="{Binding CancelAddSummaryWidgetCommand}"/>

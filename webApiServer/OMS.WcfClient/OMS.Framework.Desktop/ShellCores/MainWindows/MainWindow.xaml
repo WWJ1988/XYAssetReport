@@ -15,7 +15,7 @@
     </Window.Resources>
     <Grid Style="{StaticResource FrameworkBackgoundColor}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="110"/>
+            <RowDefinition Height="130"/>
             <RowDefinition Height="150"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
