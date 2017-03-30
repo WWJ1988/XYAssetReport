@@ -12,89 +12,90 @@ using OMS.Framework.Desktop.Common.Metadatas;
 
 namespace OMS.Framework.Desktop.Controls
 {
-	public class FrameworkSummaryViewModel : BindableBase
-	{
-		private IEnumerable<SummaryWidgetMetadata> widgets;
-		private string selectedVidgetName = "";
-		private bool showPopup = false;
+    public class FrameworkSummaryViewModel : BindableBase
+    {
+        private IEnumerable<SummaryWidgetMetadata> widgets;
+        private string selectedVidgetName = "";
+        private bool showPopup = false;
 
-		private readonly DelegateCommand addSummaryWidgetCommand;
-		private readonly DelegateCommand doAddSummaryWidgetCommand;
-		private readonly DelegateCommand cancelAddSummaryWidgetCommand;
+        private readonly DelegateCommand addSummaryWidgetCommand;
+        private readonly DelegateCommand doAddSummaryWidgetCommand;
+        private readonly DelegateCommand cancelAddSummaryWidgetCommand;
 
-		[Import]
-		private readonly IServiceProvider rootServiceProvider;
+        [Import]
+        private readonly IServiceProvider rootServiceProvider;
 
-		private IRegionManager regionManager;
-		private ISummaryWidgetManager summaryWidgetManager;
+        private IRegionManager regionManager;
+        private ISummaryWidgetManager summaryWidgetManager;
 
-		public FrameworkSummaryViewModel()
-		{
-			addSummaryWidgetCommand = new DelegateCommand(() =>
-			{
-				ShowPopup = true;
-			});
-			doAddSummaryWidgetCommand = new DelegateCommand(() =>
-			{
-				var region = regionManager.Regions["SummaryWidget"];
+        public FrameworkSummaryViewModel()
+        {
+            addSummaryWidgetCommand = new DelegateCommand(() =>
+            {
+                ShowPopup = true;
+            });
+            doAddSummaryWidgetCommand = new DelegateCommand(() =>
+            {
+                var region = regionManager.Regions["SummaryWidget"];
 
-				var widget = summaryWidgetManager.GetSummaryWidget(selectedVidgetName);
+                var widget = summaryWidgetManager.GetSummaryWidget(selectedVidgetName);
 
-				if (widget.Key != null)
-				{
-					var view = widget.Key.View as UserControl;
-					view.DataContext = widget.Value(rootServiceProvider);
-					region.Add(view);
-				}
+                if (widget.Key != null)
+                {
+                    var summaryWidgetData = widget.Value(rootServiceProvider);
+                    var view = summaryWidgetData.Item1;
+                    view.DataContext = summaryWidgetData.Item2;
+                    region.Add(view);
+                }
 
-				ShowPopup = false;
-			});
-			cancelAddSummaryWidgetCommand = new DelegateCommand(() =>
-			{
-				ShowPopup = false;
-			});
-		}
+                ShowPopup = false;
+            });
+            cancelAddSummaryWidgetCommand = new DelegateCommand(() =>
+            {
+                ShowPopup = false;
+            });
+        }
 
-		public ICommand AddSummaryWidgetCommand { get { return addSummaryWidgetCommand; } }
-		public ICommand DoAddSummaryWidgetCommand { get { return doAddSummaryWidgetCommand; } }
-		public ICommand CancelAddSummaryWidgetCommand { get { return cancelAddSummaryWidgetCommand; } }
+        public ICommand AddSummaryWidgetCommand { get { return addSummaryWidgetCommand; } }
+        public ICommand DoAddSummaryWidgetCommand { get { return doAddSummaryWidgetCommand; } }
+        public ICommand CancelAddSummaryWidgetCommand { get { return cancelAddSummaryWidgetCommand; } }
 
-		public IEnumerable<SummaryWidgetMetadata> Widgets
-		{
-			get
-			{
-				if (summaryWidgetManager != null && widgets == null)
-				{
-					widgets = summaryWidgetManager.GetWidgetMetadatas();
-				}
+        public IEnumerable<SummaryWidgetMetadata> Widgets
+        {
+            get
+            {
+                if (summaryWidgetManager != null && widgets == null)
+                {
+                    widgets = summaryWidgetManager.GetWidgetMetadatas();
+                }
 
-				return widgets;
-			}
-		}
+                return widgets;
+            }
+        }
 
-		public bool ShowPopup
-		{
-			get { return showPopup; }
-			set { SetProperty(ref showPopup, value); }
-		}
+        public bool ShowPopup
+        {
+            get { return showPopup; }
+            set { SetProperty(ref showPopup, value); }
+        }
 
-		public string SelectedVidgetName
-		{
-			get
-			{
-				return selectedVidgetName;
-			}
-			set
-			{
-				SetProperty(ref selectedVidgetName, value);
-			}
-		}
+        public string SelectedVidgetName
+        {
+            get
+            {
+                return selectedVidgetName;
+            }
+            set
+            {
+                SetProperty(ref selectedVidgetName, value);
+            }
+        }
 
-		public void InitializeServices(IServiceLocator serviceLocator)
-		{
-			regionManager = serviceLocator.GetInstance<IRegionManager>();
-			summaryWidgetManager = serviceLocator.GetInstance<ISummaryWidgetManager>();
-			summaryWidgetManager.Initialize();
-		}
-	}
+        public void InitializeServices(IServiceLocator serviceLocator)
+        {
+            regionManager = serviceLocator.GetInstance<IRegionManager>();
+            summaryWidgetManager = serviceLocator.GetInstance<ISummaryWidgetManager>();
+            summaryWidgetManager.Initialize();
+        }
+    }
 }

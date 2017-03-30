@@ -9,9 +9,8 @@
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="../ShellCores/MainWindows/MainWindowStyles.xaml"></ResourceDictionary>
-				<ResourceDictionary Source="../Styles/Editor/EditorStyle.xaml"></ResourceDictionary>
-			</ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/EditorStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</UserControl.Resources>
 	<StackPanel>
@@ -19,11 +18,13 @@
                       HorizontalScrollBarVisibility="Auto"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalAlignment="Left">
-			<StackPanel>
-				<ContentControl prism:RegionManager.RegionName="SummaryWidget">
-				</ContentControl>
-				<StackPanel>
-					<Button Style="{StaticResource LinkButton}" 
+			<StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <ContentControl prism:RegionManager.RegionName="SummaryWidget">
+                    </ContentControl>
+                </StackPanel>
+                <StackPanel>
+                    <Button Style="{StaticResource LinkButton}"
                             Content="+"
                             Command="{Binding AddSummaryWidgetCommand}"></Button>
 				</StackPanel>
@@ -36,16 +37,12 @@
                            Background="#FFBDBEBD"
                            Padding="10 5"/>
 				<StackPanel>
-					<ComboBox Name="WidgetList" 
+                    <ComboBox Name="WidgetList" 
 							  ItemsSource="{Binding Widgets, Mode=OneWay}" 
 							  DisplayMemberPath="Title"
 							  SelectedValuePath="WidgetName"
 							  SelectedValue="{Binding SelectedVidgetName}"></ComboBox>
-					<ListBox ItemsSource="{Binding Widgets, Mode=OneWay}"
-							 DisplayMemberPath="TItle"
-							 SelectedValuePath="WidgetName">
-					</ListBox>
-					<StackPanel Orientation="Horizontal" 
+                    <StackPanel Orientation="Horizontal" 
                                 HorizontalAlignment="Right">
 						<Button Content="OK" Command="{Binding DoAddSummaryWidgetCommand}" />
 						<Button Content="Cancel" Command="{Binding CancelAddSummaryWidgetCommand}"/>

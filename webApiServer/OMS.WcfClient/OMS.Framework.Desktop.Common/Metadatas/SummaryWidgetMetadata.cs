@@ -10,7 +10,6 @@ namespace OMS.Framework.Desktop.Common.Metadatas
 	public class SummaryWidgetMetadata
 	{
 		public string WidgetName { get; set; }
-		public object View { get; set; }
 		public string Title { get; set; }
 	}
 }

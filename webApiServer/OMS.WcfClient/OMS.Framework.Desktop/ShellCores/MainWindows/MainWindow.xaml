@@ -8,12 +8,12 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="./MainWindowStyles.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="../../Styles/Editor/EditorStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../../Style/EditorStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/OMS.Framework.Styles;component/Style.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Style="{StaticResource FrameworkBackgoundColor}">
+    <Grid Background="#FFEEEEEE">
         <Grid.RowDefinitions>
             <RowDefinition Height="110"/>
             <RowDefinition Height="150"/>
