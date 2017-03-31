@@ -1,0 +1,27 @@
+﻿<TabItem x:Class="OMS.Trading.Desktop.Order.Blotter.OrderBlotterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Header="{Binding Title}">
+	<TabItem.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="pack://application:,,,/OMS.Framework.Styles;component/Style.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</TabItem.Resources>
+	<StackPanel>
+		<TextBlock Text="Hello"/>
+		<DataGrid IsReadOnly="True" 
+					  Name="OrderBlotterGrid"
+					  AutoGenerateColumns="False">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Long P/L" Binding="{Binding LongPL}" Width="70"/>
+				<DataGridTextColumn Header="Short P/L" Binding="{Binding ShortPL}" Width="70" />
+				<DataGridTextColumn Header="Total P/L" Binding="{Binding TotalPL}" Width="70" />
+			</DataGrid.Columns>
+		</DataGrid>
+	</StackPanel>
+</TabItem>

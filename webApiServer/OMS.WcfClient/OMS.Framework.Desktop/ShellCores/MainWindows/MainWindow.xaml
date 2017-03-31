@@ -26,7 +26,7 @@
             <ContentControl prism:RegionManager.RegionName="SecurityRegion"></ContentControl>
         </Border>
         <Border Grid.Row="2" Style="{StaticResource FrameworkBorder}">
-            <ContentControl regions:RegionManager.RegionName="ContentRegion"></ContentControl>
+			<local:ApplicationWidget DataContext="{Binding ApplicationViewModel}"></local:ApplicationWidget>
         </Border>
     </Grid>
 </Window>

@@ -61,14 +61,15 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\SummaryWidget.xaml.cs">
-      <DependentUpon>SummaryWidget.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\SummaryWidgetBaseViewModel.cs" />
+    <Compile Include="BaseViewModels\ApplicationWidgetBaseViewModel.cs" />
+    <Compile Include="BaseViewModels\SummaryWidgetBaseViewModel.cs" />
+    <Compile Include="Interfaces\IApplicationWidgetFactory.cs" />
+    <Compile Include="Interfaces\IApplicationWidgetManager.cs" />
     <Compile Include="Interfaces\IShellApp.cs" />
     <Compile Include="Interfaces\ISummaryWidgetFactory.cs" />
     <Compile Include="Interfaces\ISummaryWidgetManager.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Metadatas\ApplicationWidgetMetadata.cs" />
     <Compile Include="Metadatas\SummaryWidgetMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -97,12 +98,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Page Include="Controls\SummaryWidget.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

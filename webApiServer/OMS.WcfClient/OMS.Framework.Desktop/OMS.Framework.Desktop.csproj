@@ -81,11 +81,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constracts\RegionNames.cs" />
-    <Compile Include="Controls\FrameworkSummary.xaml.cs">
+    <Compile Include="Controls\ApplicationWidget\ApplicationWidget.xaml.cs">
+      <DependentUpon>ApplicationWidget.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ApplicationWidget\ApplicationWidgetViewModel.cs" />
+    <Compile Include="Controls\SummaryWidget\FrameworkSummary.xaml.cs">
       <DependentUpon>FrameworkSummary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FrameworkSummaryViewModel.cs" />
+    <Compile Include="Controls\SummaryWidget\FrameworkSummaryViewModel.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Services\ApplicationWidgetManager.cs" />
     <Compile Include="Services\SummaryWidgetManager.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="ShellCores\Login\LoginWindow.xaml.cs">
@@ -97,7 +102,11 @@
     </Compile>
     <Compile Include="ShellCores\MainWindows\MainWindowViewModel.cs" />
     <Compile Include="ShellCores\ShellBootstrapper.cs" />
-    <Page Include="Controls\FrameworkSummary.xaml">
+    <Page Include="Controls\ApplicationWidget\ApplicationWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SummaryWidget\FrameworkSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -62,6 +62,14 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Blotter\OrderBlotterView.xaml.cs">
+      <DependentUpon>OrderBlotterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Blotter\OrderBlotterViewModel.cs" />
+    <Compile Include="Blotter\OrderBlotterWidgetFactory.cs" />
+    <Compile Include="Blotter\OrderTest.xaml.cs">
+      <DependentUpon>OrderTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,6 +102,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Blotter\OrderBlotterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Blotter\OrderTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Summaries\OrderSumamry\OrderSummaryWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +125,7 @@
       <Name>OMS.Framework.Styles</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

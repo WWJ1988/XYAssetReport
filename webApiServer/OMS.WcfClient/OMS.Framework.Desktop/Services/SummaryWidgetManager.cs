@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using OMS.Framework.Desktop.Common.Controls;
+using OMS.Framework.Desktop.Common.BaseViewModels;
 using OMS.Framework.Desktop.Common.Interfaces;
 using OMS.Framework.Desktop.Common.Metadatas;
 using System.Windows.Controls;

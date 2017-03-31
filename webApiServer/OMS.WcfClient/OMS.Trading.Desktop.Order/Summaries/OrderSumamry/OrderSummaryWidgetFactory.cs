@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
-using OMS.Framework.Desktop.Common.Controls;
+using OMS.Framework.Desktop.Common.BaseViewModels;
 using OMS.Framework.Desktop.Common.Interfaces;
 using OMS.Framework.Desktop.Common.Metadatas;
 

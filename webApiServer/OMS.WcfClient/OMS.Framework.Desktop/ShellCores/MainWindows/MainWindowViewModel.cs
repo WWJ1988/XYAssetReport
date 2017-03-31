@@ -7,10 +7,12 @@ namespace OMS.Framework.Desktop.ShellCores.MainWindows
 	public class MainWindowViewModel : BindableBase
 	{
 		private FrameworkSummaryViewModel summaryViewModel;
+		private ApplicationWidgetViewModel applicationViewModel;
 
 		public MainWindowViewModel()
 		{
 			summaryViewModel = new FrameworkSummaryViewModel();
+			applicationViewModel = new ApplicationWidgetViewModel();
 		}
 
 		public FrameworkSummaryViewModel SummaryViewModel
@@ -25,9 +27,22 @@ namespace OMS.Framework.Desktop.ShellCores.MainWindows
 			}
 		}
 
+		public ApplicationWidgetViewModel ApplicationViewModel
+		{
+			get
+			{
+				return applicationViewModel;
+			}
+			set
+			{
+				SetProperty(ref applicationViewModel, value);
+			}
+		}
+
 		public void InitializeVMs(IServiceLocator serviceLocator)
 		{
 			summaryViewModel.InitializeServices(serviceLocator);
+			applicationViewModel.InitializeServices(serviceLocator);
 		}
 	}
 }

@@ -9,7 +9,7 @@
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Style/EditorStyle.xaml"/>
+                <ResourceDictionary Source="../../Style/EditorStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</UserControl.Resources>

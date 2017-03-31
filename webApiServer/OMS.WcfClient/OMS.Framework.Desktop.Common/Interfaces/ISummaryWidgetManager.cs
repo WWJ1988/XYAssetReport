@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using OMS.Framework.Desktop.Common.Controls;
+using OMS.Framework.Desktop.Common.BaseViewModels;
 using OMS.Framework.Desktop.Common.Metadatas;
 using System.Windows.Controls;
 
